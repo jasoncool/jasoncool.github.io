@@ -1,0 +1,1036 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="SpringBoot," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="&amp;#x4EC0;&amp;#x4E48;&amp;#x662F;&amp;#x5355;&amp;#x70B9;&amp;#x767B;&amp;#x5F55;&amp;#xFF1F;&amp;#x5148;&amp;#x8BF4;&amp;#x4E00;&amp;#x4E2A;&amp;#x9700;&amp;#x6C42;&amp;#x573A;&amp;#x666F;&amp;#xFF0C;&amp;#x6BD4;&amp;#x5982;&amp;#xFF1A;&amp;#x4E00;&amp;#x4E2A;&amp;#x4F01;&amp;#x4E1A;&amp;#x7684;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Springboot集成Shiro和Cas实现单点登录(服务端篇CAS5)">
+<meta property="og:url" content="http://jasoncool.com/2017/11/29/Springboot集成Shiro和Cas实现单点登录-服务端篇CAS5/index.html">
+<meta property="og:site_name" content="移动开发小水吧">
+<meta property="og:description" content="&amp;#x4EC0;&amp;#x4E48;&amp;#x662F;&amp;#x5355;&amp;#x70B9;&amp;#x767B;&amp;#x5F55;&amp;#xFF1F;&amp;#x5148;&amp;#x8BF4;&amp;#x4E00;&amp;#x4E2A;&amp;#x9700;&amp;#x6C42;&amp;#x573A;&amp;#x666F;&amp;#xFF0C;&amp;#x6BD4;&amp;#x5982;&amp;#xFF1A;&amp;#x4E00;&amp;#x4E2A;&amp;#x4F01;&amp;#x4E1A;&amp;#x7684;">
+<meta property="og:image" content="http://jasoncool.com/2017/11/29/Springboot集成Shiro和Cas实现单点登录-服务端篇CAS5/2.png">
+<meta property="og:image" content="http://jasoncool.com/2017/11/29/Springboot集成Shiro和Cas实现单点登录-服务端篇CAS5/3.png">
+<meta property="og:image" content="http://jasoncool.com/2017/11/29/Springboot集成Shiro和Cas实现单点登录-服务端篇CAS5/4.png">
+<meta property="og:image" content="http://jasoncool.com/2017/11/29/Springboot集成Shiro和Cas实现单点登录-服务端篇CAS5/5.png">
+<meta property="og:image" content="http://jasoncool.com/2017/11/29/Springboot集成Shiro和Cas实现单点登录-服务端篇CAS5/6.png">
+<meta property="og:updated_time" content="2017-11-29T09:17:41.273Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Springboot集成Shiro和Cas实现单点登录(服务端篇CAS5)">
+<meta name="twitter:description" content="&amp;#x4EC0;&amp;#x4E48;&amp;#x662F;&amp;#x5355;&amp;#x70B9;&amp;#x767B;&amp;#x5F55;&amp;#xFF1F;&amp;#x5148;&amp;#x8BF4;&amp;#x4E00;&amp;#x4E2A;&amp;#x9700;&amp;#x6C42;&amp;#x573A;&amp;#x666F;&amp;#xFF0C;&amp;#x6BD4;&amp;#x5982;&amp;#xFF1A;&amp;#x4E00;&amp;#x4E2A;&amp;#x4F01;&amp;#x4E1A;&amp;#x7684;">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://jasoncool.com/2017/11/29/Springboot集成Shiro和Cas实现单点登录-服务端篇CAS5/"/>
+
+  <title> Springboot集成Shiro和Cas实现单点登录(服务端篇CAS5) | 移动开发小水吧 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">移动开发小水吧</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">没啥高深技术，只求水水更健康！</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup">
+ <span class="search-icon fa fa-search"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Springboot集成Shiro和Cas实现单点登录(服务端篇CAS5)
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-11-29T17:15:26+08:00" content="Nov 29 2017">
+              Nov 29 2017
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/SpringBoot/" itemprop="url" rel="index">
+                    <span itemprop="name">SpringBoot</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2017/11/29/Springboot集成Shiro和Cas实现单点登录-服务端篇CAS5/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/11/29/Springboot集成Shiro和Cas实现单点登录-服务端篇CAS5/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="&#x4EC0;&#x4E48;&#x662F;&#x5355;&#x70B9;&#x767B;&#x5F55;&#xFF1F;">&#x4EC0;&#x4E48;&#x662F;&#x5355;&#x70B9;&#x767B;&#x5F55;&#xFF1F;</h2><p>&#x5148;&#x8BF4;&#x4E00;&#x4E2A;&#x9700;&#x6C42;&#x573A;&#x666F;&#xFF0C;&#x6BD4;&#x5982;&#xFF1A;&#x4E00;&#x4E2A;&#x4F01;&#x4E1A;&#x7684;&#x5185;&#x90E8;&#x6709;N&#x591A;&#x4E2A;&#x5B50;&#x7CFB;&#x7EDF;&#xFF0C;&#x6BCF;&#x4E2A;&#x5B50;&#x7CFB;&#x7EDF;&#x90FD;&#x6709;&#x4E00;&#x5957;&#x81EA;&#x5DF1;&#x7684;&#x7528;&#x6237;&#x540D;&#x548C;&#x5BC6;&#x7801;&#xFF0C;&#x90A3;&#x4E48;&#x4F01;&#x4E1A;&#x7684;&#x5458;&#x5DE5;&#x8981;&#x767B;&#x5F55;N&#x4E2A;&#x5B50;&#x7CFB;&#x7EDF;&#xFF0C;&#x8FD9;&#x6837;&#x4E00;&#x4E2A;&#x5458;&#x5DE5; &#x5C31;&#x8981;&#x8BB0;&#x4F4F;N&#x4E2A;&#x7528;&#x6237;&#x540D;&#x548C;&#x5BC6;&#x7801;&#xFF0C;&#x5C31;&#x7B97;&#x5404;&#x4E2A;&#x5B50;&#x7CFB;&#x7EDF;&#x7684;&#x7528;&#x6237;&#x540D;&#x548C;&#x5BC6;&#x7801;&#x90FD;&#x662F;&#x7EDF;&#x4E00;&#x7684;&#xFF0C;&#x767B;&#x5F55;&#x6BCF;&#x4E2A;&#x5B50;&#x7CFB;&#x7EDF;&#x90FD;&#x8981;&#x8F93;&#x5165;&#x7528;&#x6237;&#x540D;&#x548C;&#x5BC6;&#x7801;&#x8FDB;&#x884C;&#x767B;&#x5F55;&#x4E5F;&#x662F;&#x4E00;&#x4E2A;&#x7E41;&#x7410;&#x7684;&#x64CD;&#x4F5C;&#x8FC7;&#x7A0B;&#xFF0C;&#x90A3;&#x4E48;&#x5355;&#x70B9;&#x767B;&#x5F55;&#x529F;&#x80FD;&#x7531;&#x6B64;&#x4FBF;&#x5E94;&#x8FD0;&#x800C;&#x751F;&#x4E86;&#x3002;<br><strong>&#x5355;&#x70B9;&#x767B;&#x5F55;</strong>&#xFF08;Single Sign On&#xFF09;&#xFF0C;&#x7B80;&#x79F0;&#x4E3A; SSO&#xFF0C;&#x662F;&#x76EE;&#x524D;&#x6BD4;&#x8F83;&#x6D41;&#x884C;&#x7684;&#x4F01;&#x4E1A;&#x4E1A;&#x52A1;&#x6574;&#x5408;&#x7684;&#x89E3;&#x51B3;&#x65B9;&#x6848;&#x4E4B;&#x4E00;&#x3002;SSO&#x7684;&#x5B9A;&#x4E49;&#x662F;&#x5728;&#x591A;&#x4E2A;&#x5E94;&#x7528;&#x7CFB;&#x7EDF;&#x4E2D;&#xFF0C;&#x7528;&#x6237;&#x53EA;&#x9700;&#x8981;&#x767B;&#x5F55;&#x4E00;&#x6B21;&#x5C31;&#x53EF;&#x4EE5;&#x8BBF;&#x95EE;&#x6240;&#x6709;&#x76F8;&#x4E92;&#x4FE1;&#x4EFB;&#x7684;&#x5E94;&#x7528;&#x7CFB;&#x7EDF;&#x3002;<br><a id="more"></a></p>
+<h2 id="CAS&#x67B6;&#x6784;&#x56FE;">CAS&#x67B6;&#x6784;&#x56FE;</h2><p>&#x8FD9;&#x91CC;&#x76F4;&#x63A5;&#x8BF4;CAS&#x6574;&#x4F53;&#x67B6;&#x6784;&#x662F;&#x56E0;&#x4E3A;&#x8FD9;&#x4E0D;&#x662F;&#x4E00;&#x4E2A;&#x5165;&#x95E8;&#x6559;&#x7A0B;&#xFF0C;&#x6211;&#x5DF2;&#x7ECF;&#x9ED8;&#x8BA4;&#x4F60;&#x77E5;&#x9053;&#x4EC0;&#x4E48;&#x662F;SSO&#x3001;&#x4EC0;&#x4E48;&#x662F;CAS&#xFF0C;&#x4EE5;&#x53CA;&#x4F60;&#x5DF2;&#x7ECF;&#x88C5;&#x597D;&#x4E86;&#x5F00;&#x53D1;&#x5DE5;&#x5177;IDEA&#x548C;Java&#x73AF;&#x5883;Jdk1.8&#xFF0C;&#x5E76;&#x4E14;&#x4F60;&#x4E5F;&#x77E5;&#x9053;&#x4EC0;&#x4E48;&#x662F;Web&#x5BB9;&#x5668;&#xFF0C;&#x77E5;&#x9053;Tomcat8.5+&#x8BE5;&#x4ECE;&#x54EA;&#x4E0B;&#x8F7D;&#x5E76;&#x542F;&#x52A8;&#x90E8;&#x7F72;&#xFF0C;&#x4F60;&#x4E5F;&#x77E5;&#x9053;&#x4EC0;&#x4E48;&#x662F;Maven&#x9879;&#x76EE;&#x8BE5;&#x600E;&#x4E48;&#x5F15;&#x5165;&#x76F8;&#x5173;&#x7684;jar&#x5305;&#x7B49;&#x7B49;&#xFF0C;&#x6240;&#x4EE5;&#x5982;&#x679C;&#x4F60;&#x4E0D;&#x5177;&#x5907;&#x4EE5;&#x4E0A;&#x8FD9;&#x4E9B;&#x77E5;&#x8BC6;&#xFF0C;&#x90A3;&#x4E48;CAS&#x670D;&#x52A1;&#x7AEF;&#x7684;&#x5B66;&#x4E60;&#x6211;&#x5EFA;&#x8BAE;&#x4F60;&#x8FD8;&#x662F;&#x5148;&#x4E0D;&#x8981;&#x5F00;&#x59CB;&#xFF0C;&#x5F04;&#x6E05;&#x695A;&#x524D;&#x9762;&#x7684;&#x77E5;&#x8BC6;&#x70B9;&#xFF0C;&#x624D;&#x80FD;&#x7545;&#x901A;&#x65E0;&#x963B;&#x7684;&#x5B66;&#x4E60;CAS&#x670D;&#x52A1;&#x7AEF;&#x3002;<br>&#x597D;&#x4E86;&#xFF0C;&#x8FD9;&#x91CC;&#x5148;&#x653E;&#x67B6;&#x6784;&#x56FE;&#xFF1A;</p>
+<p> <img src="/2017/11/29/Springboot&#x96C6;&#x6210;Shiro&#x548C;Cas&#x5B9E;&#x73B0;&#x5355;&#x70B9;&#x767B;&#x5F55;-&#x670D;&#x52A1;&#x7AEF;&#x7BC7;CAS5/2.png" alt="logo"></p>
+<p>&#x73B0;&#x5728;&#x6765;&#x8BB2;&#x89E3;&#x8FD9;&#x4E2A;&#x67B6;&#x6784;&#x56FE;&#xFF1A;<br>&#x9996;&#x5148;&#x642D;&#x5EFA;&#x597D;CAS&#x670D;&#x52A1;&#x7AEF;&#x540E;&#xFF0C;&#x670D;&#x52A1;&#x7AEF;&#x4F1A;&#x81EA;&#x5B9A;&#x4E49;&#x4E00;&#x4E2A;&#x6570;&#x636E;&#x5E93;&#x548C;&#x7528;&#x6237;&#x8868;&#xFF0C;&#x7528;&#x6237;&#x8868;&#x4E2D;&#x5B58;&#x653E;&#x7684;&#x662F;&#x7528;&#x6237;&#x540D;&#x548C;&#x5BC6;&#x7801;&#xFF0C;&#x901A;&#x8FC7;&#x8BBF;&#x95EE;&#x5B50;&#x7CFB;&#x7EDF;&#x7684;URL&#x5730;&#x5740;&#xFF0C;&#x5982;&#x679C;CAS&#x7CFB;&#x7EDF;&#x5224;&#x5B9A;&#x4F60;&#x6CA1;&#x6709;&#x767B;&#x5F55;&#xFF0C;&#x5C31;&#x4F1A;&#x5C06;URL&#x91CD;&#x5B9A;&#x5411;&#x5230;CAS&#x7684;&#x670D;&#x52A1;&#x7AEF;&#x767B;&#x5F55;&#x754C;&#x9762;&#xFF0C;&#x7528;&#x6237;&#x901A;&#x8FC7;&#x8F93;&#x5165;&#x7528;&#x6237;&#x6570;&#x636E;&#x5E93;&#x7684;&#x7528;&#x6237;&#x540D;&#x548C;&#x5BC6;&#x7801;&#x6765;&#x8FDB;&#x884C;&#x767B;&#x5F55;&#xFF0C;&#x5F85;&#x767B;&#x5F55;&#x6210;&#x529F;&#x540E;&#xFF0C;CAS&#x670D;&#x52A1;&#x7AEF;&#x4F1A;&#x7ED9;CAS&#x5BA2;&#x6237;&#x7AEF;(&#x5B50;&#x7CFB;&#x7EDF;)&#x53D1;&#x9001;&#x767B;&#x5F55;&#x7684;&#x7528;&#x6237;&#x540D;&#xFF0C;CAS&#x5BA2;&#x6237;&#x7AEF;&#x63A5;&#x5230;&#x7528;&#x6237;&#x540D;&#x540E;&#xFF0C;&#x4F1A;&#x4ECE;CAS&#x5BA2;&#x6237;&#x7AEF;&#x7684;&#x7528;&#x6237;&#x8868;&#x4E2D;&#x5BFB;&#x627E;&#x5BF9;&#x5E94;&#x7528;&#x6237;&#x540D;&#x7684;userid,&#x5E76;&#x901A;&#x8FC7;&#x8BE5;userid&#x83B7;&#x53D6;&#x5230;&#x8BE5;&#x540D;&#x7528;&#x6237;&#x5728;CAS&#x5BA2;&#x6237;&#x7AEF;&#x7684;&#x76F8;&#x5173;&#x6743;&#x9650;&#x3002;<br>&#x6211;&#x4EEC;&#x8FD8;&#x53EF;&#x4EE5;&#x57FA;&#x4E8E;CAS&#x670D;&#x52A1;&#x7AEF;&#x914D;&#x7F6E;&#x7684;&#x7528;&#x6237;&#x6570;&#x636E;&#x5E93;&#x505A;&#x4E00;&#x4E2A;&#x7528;&#x6237;&#x7BA1;&#x7406;&#x754C;&#x9762;&#xFF0C;&#x8BE5;&#x754C;&#x9762;&#x53EF;&#x4EE5;&#x5BF9;CAS&#x670D;&#x52A1;&#x7AEF;&#x7684;&#x7528;&#x6237;&#x8FDB;&#x884C;&#x4E00;&#x4E9B;&#x57FA;&#x672C;&#x7684;&#x4E1A;&#x52A1;&#x64CD;&#x4F5C;&#xFF0C;&#x6BD4;&#x5982;&#x65B0;&#x589E;&#x3001;&#x4FEE;&#x6539;&#x3001;&#x5220;&#x9664;&#x7B49;&#xFF0C;&#x65B0;&#x589E;&#x7528;&#x6237;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x9700;&#x8981;&#x540C;&#x65F6;&#x5728;&#x5404;&#x4E2A;&#x5B50;&#x7CFB;&#x7EDF;&#x7684;&#x7528;&#x6237;&#x8868;&#x4E2D;&#x63D2;&#x5165;&#x8BE5;&#x7528;&#x6237;&#x7684;&#x76F8;&#x5173;&#x4FE1;&#x606F;&#xFF0C;&#x7136;&#x540E;&#x5404;&#x4E2A;&#x5B50;&#x7CFB;&#x7EDF;&#x7684;&#x7BA1;&#x7406;&#x5458;&#x5C31;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;&#x5B50;&#x7CFB;&#x7EDF;&#x7684;&#x89D2;&#x8272;&#x6743;&#x9650;&#x8BBE;&#x7F6E;&#xFF0C;&#x7ED9;&#x8BE5;&#x7528;&#x6237;&#x914D;&#x7F6E;&#x76F8;&#x5173;&#x7684;&#x89D2;&#x8272;&#x6743;&#x9650;&#x4E86;&#x3002;</p>
+<h2 id="&#x5B89;&#x88C5;CAS&#x670D;&#x52A1;&#x7AEF;">&#x5B89;&#x88C5;CAS&#x670D;&#x52A1;&#x7AEF;</h2><p>&#x8BB2;&#x4E86;&#x8FD9;&#x4E48;&#x591A;&#xFF0C;&#x73B0;&#x5728;&#x5F00;&#x59CB;&#x8FDB;&#x5165;&#x6B63;&#x9898;&#xFF0C;&#x6211;&#x4EEC;&#x8981;&#x5B9E;&#x73B0;&#x6211;&#x4EEC;&#x7684;&#x76EE;&#x7684;&#x9996;&#x5148;&#x8981;&#x505A;&#x7684;&#x5C31;&#x662F;&#x5B89;&#x88C5;CAS&#x670D;&#x52A1;&#x7AEF;&#xFF0C;&#x73B0;&#x5728;&#x7F51;&#x4E0A;&#x7684;&#x5F88;&#x591A;Springboot&#x6574;&#x5408;CAS&#x7684;&#x6559;&#x7A0B;&#x57FA;&#x672C;&#x4E0A;&#x90FD;&#x662F;&#x53EA;&#x8BB2;&#x5BA2;&#x6237;&#x7AEF;&#x7684;&#x914D;&#x7F6E;&#xFF0C;&#x770B;&#x5B8C;&#x4E4B;&#x540E;&#x4E91;&#x91CC;&#x96FE;&#x91CC;&#x7684;&#xFF0C;&#x6240;&#x4EE5;&#x6211;&#x8FD9;&#x4E2A;&#x6559;&#x7A0B;&#x8981;&#x4ECE;CAS&#x7684;&#x670D;&#x52A1;&#x7AEF;&#x5F00;&#x59CB;&#x8BB2;&#x8D77;&#xFF0C;&#x5982;&#x679C;&#x4F60;&#x4EEC;&#x516C;&#x53F8;&#x6709;&#x4EBA;&#x4E13;&#x95E8;&#x642D;&#x5EFA;CAS&#x670D;&#x52A1;&#x7AEF;&#xFF0C;&#x90A3;&#x5C31;&#x53EF;&#x4EE5;&#x8DF3;&#x8FC7;&#x672C;&#x7BC7;&#x6559;&#x7A0B;&#x7EE7;&#x7EED;&#x4E0B;&#x4E00;&#x7BC7;&#x4E86;&#x3002;</p>
+<ol>
+<li>&#x4E0B;&#x8F7D;Overlay<br>&#x901A;&#x8FC7;&#x9605;&#x8BFB;&#x5B98;&#x7F51;&#x6587;&#x6863;&#xFF08;<a href="https://apereo.github.io/cas/5.1.x/planning/Getting-Started.html" target="_blank" rel="external">https://apereo.github.io/cas/5.1.x/planning/Getting-Started.html</a>&#xFF09;&#x4E86;&#x89E3;&#x5230;&#x5B98;&#x65B9;&#x5EFA;&#x8BAE;&#x6211;&#x4EEC;&#xFF1A;<br>&#x901A;&#x8FC7;&#x4F7F;&#x7528;&#x4E00;&#x4E2A;&#x540D;&#x53EB;Overlay&#x7684;&#x9879;&#x76EE;&#x6765;&#x751F;&#x6210;&#x4E00;&#x4E2A;&#x53EF;&#x4EE5;&#x76F4;&#x63A5;&#x7528;&#x7684;war&#x5305;&#xFF0C;&#x6765;&#x90E8;&#x7F72;&#x670D;&#x52A1;&#x7AEF;&#xFF0C;&#x4E8E;&#x662F;&#x6211;&#x4EEC;&#x5148;&#x4E0B;&#x8F7D;&#x8FD9;&#x4E2A;&#x9879;<br>&#x76EE;&#xFF0C;&#x6211;&#x8FD9;&#x91CC;&#x4F7F;&#x7528;Maven&#x7684;&#xFF0C;&#x4E0B;&#x8F7D;&#x5730;&#x5740;&#xFF1A;<a href="https://github.com/apereo/cas-overlay-template" target="_blank" rel="external">https://github.com/apereo/cas-overlay-template</a>&#x3002;</li>
+<li><p>&#x642D;&#x5EFA;Overlay&#x9879;&#x76EE;<br>&#x5C06;&#x9879;&#x76EE;&#x4E0B;&#x597D;&#x540E;&#x89E3;&#x538B;&#x7F29;&#x5E76;&#x653E;&#x5165;&#x6211;&#x4EEC;&#x7684;&#x5DE5;&#x4F5C;&#x7A7A;&#x95F4;&#xFF0C;&#x7136;&#x540E;&#x6253;&#x5F00;IDEA&#xFF0C;&#x7136;&#x540E;&#x9009;&#x62E9;File&#x2013;Open&#x6253;&#x5F00;&#x6211;&#x4EEC;&#x9879;&#x76EE;&#x6240;&#x5728;&#x8DEF;&#x5F84;&#xFF0C;&#x7136;&#x540E;&#x6211;&#x4EEC;&#x53EA;&#x8981;&#x9759;&#x9759;&#x7684;&#x7B49;&#x5F85;Maven&#x5C06;&#x9879;&#x76EE;&#x6784;&#x7B51;&#x597D;&#x5C31;&#x53EF;&#x4EE5;&#x4E86;&#x3002;&#x8FD9;&#x65F6;&#x4F60;&#x770B;&#x5230;&#x7684;&#x9879;&#x76EE;&#x662F;&#x8FD9;&#x4E2A;&#x6837;&#x5B50;&#x7684;&#xFF1A;</p>
+<p><img src="/2017/11/29/Springboot&#x96C6;&#x6210;Shiro&#x548C;Cas&#x5B9E;&#x73B0;&#x5355;&#x70B9;&#x767B;&#x5F55;-&#x670D;&#x52A1;&#x7AEF;&#x7BC7;CAS5/3.png" alt="logo"></p>
+</li>
+</ol>
+<p>&#x8FD9;&#x662F;&#x6211;&#x7684;&#x9879;&#x76EE;&#xFF0C;&#x4F60;&#x7684;&#x9879;&#x76EE;&#x4E2D;&#x5E76;&#x6CA1;&#x6709;src&#x76EE;&#x5F55;&#x548C;target&#x76EE;&#x5F55;&#xFF0C;src&#x76EE;&#x5F55;&#x662F;&#x7528;&#x6237;&#x81EA;&#x5DF1;&#x5EFA;&#x7ACB;&#x7684;&#xFF0C;&#x81F3;&#x4E8E;&#x4E3A;&#x4EC0;&#x4E48;&#x540E;&#x8FB9;&#x4F1A;&#x8BB2;&#xFF0C;target&#x76EE;&#x5F55;&#x662F;&#x5BFC;&#x51FA;war&#x65F6;&#x624D;&#x51FA;&#x73B0;&#x7684;&#xFF0C;&#x65B0;&#x5BFC;&#x5165;&#x7684;&#x9879;&#x76EE;&#x662F;&#x6CA1;&#x6709;&#x7684;&#x3002;</p>
+<ol>
+<li><p>&#x5236;&#x6210;&#x53EF;&#x7528;&#x7684;CAS&#x670D;&#x52A1;&#x7AEF;<br>&#x73B0;&#x5728;&#x7684;CAS&#x670D;&#x52A1;&#x7AEF;&#x57FA;&#x672C;&#x4E0A;&#x662F;&#x4E0D;&#x53EF;&#x7528;&#x7684;&#xFF0C;&#x4E3A;&#x4EC0;&#x4E48;&#x8BF4;&#x57FA;&#x672C;&#x4E0A;&#x5462;&#xFF1F;&#x56E0;&#x4E3A;&#x5982;&#x679C;&#x4F60;&#x73B0;&#x5728;&#x8BB2;&#x9879;&#x76EE;&#x6253;&#x6210;war&#x5305;,&#x5E76;&#x5C06;&#x5B83;&#x90E8;&#x7F72;&#x5230;Tomcat&#x4E2D;&#x53BB;&#x540E;&#x662F;&#x53EF;&#x4EE5;&#x542F;&#x52A8;&#x670D;&#x52A1;&#x7684;&#xFF0C;&#x5E76;&#x4E14;&#x8BBF;&#x95EE;&#x672C;&#x5730;&#x5730;&#x5740;&#xFF1A;<a href="http://localhost:8080/cas/login" target="_blank" rel="external">http://localhost:8080/cas/login</a>&#x8FD8;&#x53EF;&#x4EE5;&#x770B;&#x5230;&#x5982;&#x4E0B;&#x754C;&#x9762;&#xFF1A;</p>
+<p><img src="/2017/11/29/Springboot&#x96C6;&#x6210;Shiro&#x548C;Cas&#x5B9E;&#x73B0;&#x5355;&#x70B9;&#x767B;&#x5F55;-&#x670D;&#x52A1;&#x7AEF;&#x7BC7;CAS5/4.png" alt="logo"></p>
+</li>
+</ol>
+<p>&#x4F7F;&#x7528; &#x9ED8;&#x8BA4;&#x8D26;&#x53F7;&#xFF1A;casuser  &#x9ED8;&#x8BA4;&#x5BC6;&#x7801;&#xFF1A;Mellon&#x8FD8;&#x53EF;&#x4EE5;&#x767B;&#x5F55;&#x6210;&#x529F;&#xFF0C;&#x4E0D;&#x8FC7;&#x8FD9;&#x4E2A;CAS&#x670D;&#x52A1;&#x7AEF;&#x76EE;&#x524D;&#x5E76;&#x6CA1;&#x6709;&#x4EC0;&#x4E48;&#x5375;&#x7528;&#xFF0C;&#x53EA;&#x662F;&#x53EF;&#x4EE5;&#x770B;&#x770B;&#x800C;&#x5DF2;&#x3002;<br>&#x8FD9;&#x4E24;&#x4E2A;&#x7EA2;&#x8272;&#x8B66;&#x544A;&#xFF0C;&#x4E00;&#x4E2A;&#x662F;&#x8BF4;&#x6CA1;&#x6709;&#x4F7F;&#x7528;Https&#xFF0C;&#x53E6;&#x4E00;&#x4E2A;&#x662F;&#x8BF4;&#x4F60;&#x53EA;&#x6709;&#x4E00;&#x4E2A;&#x9759;&#x6001;&#x7684;&#x6743;&#x9650;&#xFF0C;&#x4E00;&#x4E2A;&#x5199;&#x6B7B;&#x7684;&#x7528;&#x6237;&#xFF0C;&#x5176;&#x5B9E;&#x5C31;&#x662F;&#x544A;&#x8BC9;&#x4F60;&#x73B0;&#x5728;&#x7684;&#x670D;&#x52A1;&#x7AEF;&#x662F;&#x4E0D;&#x5B89;&#x5168;&#x7684;&#x3002;</p>
+<ul>
+<li>&#x7B2C;&#x4E00;&#x4E2A;&#x95EE;&#x9898;&#xFF1A;&#x5173;&#x4E8E;https&#x8BF7;&#x6C42;<br>&#x670D;&#x52A1;&#x7AEF;&#x662F;http&#x7684;&#x5176;&#x5B9E;&#x4E5F;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;&#xFF0C;&#x6211;&#x5728;&#x8FD9;&#x4E2A;&#x6559;&#x7A0B;&#x4E2D;&#x4E0D;&#x4F1A;&#x8BB2;&#x89E3;&#x5982;&#x4F55;&#x642D;&#x5EFA;https&#x8BF7;&#x6C42;&#x7684;&#x670D;&#x52A1;&#x7AEF;&#xFF0C;&#x56E0;&#x4E3A;&#x6211;&#x4EEC;&#x7684;&#x5B50;&#x9879;&#x76EE;&#x90FD;&#x662F;http&#x8BF7;&#x6C42;&#x7684;&#xFF0C;&#x6240;&#x4EE5;&#x670D;&#x52A1;&#x7AEF;&#x6211;&#x4E5F;&#x4E0D;&#x6253;&#x7B97;&#x7528;https&#x8BF7;&#x6C42;&#x4E86;&#xFF0C;&#x5982;&#x679C;&#x4F60;&#x60F3;&#x5B66;&#x4E60;https&#x8BF7;&#x6C42;&#xFF0C;&#x8BF7;&#x53C2;&#x770B;&#x522B;&#x4EBA;&#x7684;&#x53C2;&#x8003;&#x6559;&#x7A0B;&#xFF0C;&#x8FD9;&#x91CC;&#x4E0D;&#x505A;&#x8BB2;&#x89E3;&#x3002;</li>
+<li>&#x7B2C;&#x4E8C;&#x4E2A;&#x95EE;&#x9898;&#xFF1A;&#x5173;&#x4E8E;&#x9759;&#x6001;&#x7528;&#x6237;</li>
+</ul>
+<ol>
+<li>&#x6211;&#x4EEC;&#x5148;&#x6253;&#x5F00;&#x9879;&#x76EE;&#x7684;pom.xml&#x6587;&#x4EF6;&#xFF0C;&#x5F15;&#x5165;&#x76F8;&#x5173;&#x7684;jar&#x5305;&#xFF0C;&#x6CE8;&#x91CA;&#x6389;&#x7528;&#x4E0D;&#x5230;&#x7684;jar&#x5305;&#xFF0C;&#x6211;&#x7684;&#x6570;&#x636E;&#x5E93;&#x662F;mysql&#x7684;&#xFF0C;&#x5982;&#x679C;&#x4F60;&#x7684;&#x6570;&#x636E;&#x5E93;&#x4E0D;&#x662F;&#xFF0C;&#x8BF7;&#x627E;&#x5230;&#x5BF9;&#x5E94;&#x7684;jar&#x5305;&#x8FDB;&#x884C;&#x5F15;&#x5165;&#x5373;&#x53EF;&#xFF1A;</li>
+</ol>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br></pre></td><td class="code"><pre><span class="line"><span class="pi">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">project</span> <span class="attribute">xmlns</span>=<span class="value">&quot;http://maven.apache.org/POM/4.0.0&quot;</span> <span class="attribute">xmlns:xsi</span>=<span class="value">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span> <span class="attribute">xsi:schemaLocation</span>=<span class="value">&quot;http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd &quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">modelVersion</span>&gt;</span>4.0.0<span class="tag">&lt;/<span class="title">modelVersion</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">groupId</span>&gt;</span>org.apereo.cas<span class="tag">&lt;/<span class="title">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">artifactId</span>&gt;</span>cas-overlay<span class="tag">&lt;/<span class="title">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">packaging</span>&gt;</span>war<span class="tag">&lt;/<span class="title">packaging</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">version</span>&gt;</span>1.0<span class="tag">&lt;/<span class="title">version</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="title">build</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="title">plugins</span>&gt;</span></span><br><span class="line">            <span class="comment">&lt;!--&#x7B2C;&#x4E00;&#x6B65;&#xFF1A;&#x6CE8;&#x91CA;&#x65E0;&#x7528;&#x7EC4;&#x4EF6;</span><br><span class="line">			 &lt;plugin&gt;</span><br><span class="line">                &lt;groupId&gt;com.rimerosolutions.maven.plugins&lt;/groupId&gt;</span><br><span class="line">                &lt;artifactId&gt;wrapper-maven-plugin&lt;/artifactId&gt;</span><br><span class="line">                &lt;version&gt;0.0.4&lt;/version&gt;</span><br><span class="line">                &lt;configuration&gt;</span><br><span class="line">                    &lt;verifyDownload&gt;true&lt;/verifyDownload&gt;</span><br><span class="line">                    &lt;checksumAlgorithm&gt;MD5&lt;/checksumAlgorithm&gt;</span><br><span class="line">                &lt;/configuration&gt;</span><br><span class="line">            &lt;/plugin&gt;--&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="title">plugin</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="title">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="title">groupId</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="title">artifactId</span>&gt;</span>spring-boot-maven-plugin<span class="tag">&lt;/<span class="title">artifactId</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="title">version</span>&gt;</span>${springboot.version}<span class="tag">&lt;/<span class="title">version</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="title">configuration</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="title">mainClass</span>&gt;</span>org.springframework.boot.loader.WarLauncher<span class="tag">&lt;/<span class="title">mainClass</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="title">addResources</span>&gt;</span>true<span class="tag">&lt;/<span class="title">addResources</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;/<span class="title">configuration</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="title">plugin</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="title">plugin</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="title">groupId</span>&gt;</span>org.apache.maven.plugins<span class="tag">&lt;/<span class="title">groupId</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="title">artifactId</span>&gt;</span>maven-war-plugin<span class="tag">&lt;/<span class="title">artifactId</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="title">version</span>&gt;</span>2.6<span class="tag">&lt;/<span class="title">version</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="title">configuration</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="title">warName</span>&gt;</span>cas<span class="tag">&lt;/<span class="title">warName</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="title">failOnMissingWebXml</span>&gt;</span>false<span class="tag">&lt;/<span class="title">failOnMissingWebXml</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="title">recompressZippedFiles</span>&gt;</span>false<span class="tag">&lt;/<span class="title">recompressZippedFiles</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="title">archive</span>&gt;</span></span><br><span class="line">                        <span class="tag">&lt;<span class="title">compress</span>&gt;</span>false<span class="tag">&lt;/<span class="title">compress</span>&gt;</span></span><br><span class="line">                        <span class="tag">&lt;<span class="title">manifestFile</span>&gt;</span>${project.build.directory}/war/work/org.apereo.cas/cas-server-webapp${app.server}/META-INF/MANIFEST.MF</span><br><span class="line">                        <span class="tag">&lt;/<span class="title">manifestFile</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;/<span class="title">archive</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="title">overlays</span>&gt;</span></span><br><span class="line">                        <span class="tag">&lt;<span class="title">overlay</span>&gt;</span></span><br><span class="line">                            <span class="tag">&lt;<span class="title">groupId</span>&gt;</span>org.apereo.cas<span class="tag">&lt;/<span class="title">groupId</span>&gt;</span></span><br><span class="line">                            <span class="tag">&lt;<span class="title">artifactId</span>&gt;</span>cas-server-webapp${app.server}<span class="tag">&lt;/<span class="title">artifactId</span>&gt;</span></span><br><span class="line">                        <span class="tag">&lt;/<span class="title">overlay</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;/<span class="title">overlays</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;/<span class="title">configuration</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="title">plugin</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="title">plugin</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="title">groupId</span>&gt;</span>org.apache.maven.plugins<span class="tag">&lt;/<span class="title">groupId</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="title">artifactId</span>&gt;</span>maven-compiler-plugin<span class="tag">&lt;/<span class="title">artifactId</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="title">version</span>&gt;</span>3.3<span class="tag">&lt;/<span class="title">version</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="title">plugin</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="title">plugins</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="title">finalName</span>&gt;</span>cas<span class="tag">&lt;/<span class="title">finalName</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="title">build</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="title">dependencies</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="title">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="title">groupId</span>&gt;</span>org.apereo.cas<span class="tag">&lt;/<span class="title">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="title">artifactId</span>&gt;</span>cas-server-webapp${app.server}<span class="tag">&lt;/<span class="title">artifactId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="title">version</span>&gt;</span>${cas.version}<span class="tag">&lt;/<span class="title">version</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="title">type</span>&gt;</span>war<span class="tag">&lt;/<span class="title">type</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="title">scope</span>&gt;</span>runtime<span class="tag">&lt;/<span class="title">scope</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="title">dependency</span>&gt;</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">&lt;!--&#x7B2C;&#x4E8C;&#x6B65;:&#x5F15;&#x5165;&#x6570;&#x636E;&#x5E93;&#x8BA4;&#x8BC1;&#x76F8;&#x5173; start--&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="title">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="title">groupId</span>&gt;</span>org.apereo.cas<span class="tag">&lt;/<span class="title">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="title">artifactId</span>&gt;</span>cas-server-support-jdbc<span class="tag">&lt;/<span class="title">artifactId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="title">version</span>&gt;</span>${cas.version}<span class="tag">&lt;/<span class="title">version</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="title">dependency</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="title">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="title">groupId</span>&gt;</span>org.apereo.cas<span class="tag">&lt;/<span class="title">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="title">artifactId</span>&gt;</span>cas-server-support-jdbc-drivers<span class="tag">&lt;/<span class="title">artifactId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="title">version</span>&gt;</span>${cas.version}<span class="tag">&lt;/<span class="title">version</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="title">dependency</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="title">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="title">groupId</span>&gt;</span>mysql<span class="tag">&lt;/<span class="title">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="title">artifactId</span>&gt;</span>mysql-connector-java<span class="tag">&lt;/<span class="title">artifactId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="title">version</span>&gt;</span>5.1.36<span class="tag">&lt;/<span class="title">version</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="title">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="title">dependencies</span>&gt;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="title">properties</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="title">cas.version</span>&gt;</span>5.1.4<span class="tag">&lt;/<span class="title">cas.version</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="title">springboot.version</span>&gt;</span>1.5.3.RELEASE<span class="tag">&lt;/<span class="title">springboot.version</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!-- app.server could be -jetty, -undertow, -tomcat, or blank if you plan to provide appserver --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="title">app.server</span>&gt;</span>-tomcat<span class="tag">&lt;/<span class="title">app.server</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="title">maven.compiler.source</span>&gt;</span>1.8<span class="tag">&lt;/<span class="title">maven.compiler.source</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="title">maven.compiler.target</span>&gt;</span>1.8<span class="tag">&lt;/<span class="title">maven.compiler.target</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="title">project.build.sourceEncoding</span>&gt;</span>UTF-8<span class="tag">&lt;/<span class="title">project.build.sourceEncoding</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="title">properties</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="title">repositories</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="title">repository</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="title">id</span>&gt;</span>sonatype-releases<span class="tag">&lt;/<span class="title">id</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="title">url</span>&gt;</span>http://oss.sonatype.org/content/repositories/releases/<span class="tag">&lt;/<span class="title">url</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="title">snapshots</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="title">enabled</span>&gt;</span>false<span class="tag">&lt;/<span class="title">enabled</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="title">snapshots</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="title">releases</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="title">enabled</span>&gt;</span>true<span class="tag">&lt;/<span class="title">enabled</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="title">releases</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="title">repository</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="title">repository</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="title">id</span>&gt;</span>sonatype-snapshots<span class="tag">&lt;/<span class="title">id</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="title">url</span>&gt;</span>https://oss.sonatype.org/content/repositories/snapshots/<span class="tag">&lt;/<span class="title">url</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="title">snapshots</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="title">enabled</span>&gt;</span>true<span class="tag">&lt;/<span class="title">enabled</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="title">snapshots</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="title">releases</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="title">enabled</span>&gt;</span>false<span class="tag">&lt;/<span class="title">enabled</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="title">releases</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="title">repository</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="title">repository</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="title">id</span>&gt;</span>shibboleth-releases<span class="tag">&lt;/<span class="title">id</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="title">url</span>&gt;</span>https://build.shibboleth.net/nexus/content/repositories/releases<span class="tag">&lt;/<span class="title">url</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="title">repository</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="title">repository</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="title">id</span>&gt;</span>spring-milestones<span class="tag">&lt;/<span class="title">id</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="title">url</span>&gt;</span>https://repo.spring.io/milestone<span class="tag">&lt;/<span class="title">url</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="title">repository</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="title">repositories</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">&lt;!--&#x7B2C;&#x4E09;&#x6B65;&#xFF1A;&#x6CE8;&#x91CA;&#x6389;&#x65E0;&#x7528;&#x7684;&#x7EC4;&#x4EF6;</span><br><span class="line">	&lt;profiles&gt;</span><br><span class="line">        &lt;profile&gt;</span><br><span class="line">            &lt;activation&gt;</span><br><span class="line">                &lt;activeByDefault&gt;false&lt;/activeByDefault&gt;</span><br><span class="line">            &lt;/activation&gt;</span><br><span class="line">            &lt;id&gt;pgp&lt;/id&gt;</span><br><span class="line">            &lt;build&gt;</span><br><span class="line">                &lt;plugins&gt;</span><br><span class="line">                    &lt;plugin&gt;</span><br><span class="line">                        &lt;groupId&gt;com.github.s4u.plugins&lt;/groupId&gt;</span><br><span class="line">                        &lt;artifactId&gt;pgpverify-maven-plugin&lt;/artifactId&gt;</span><br><span class="line">                        &lt;version&gt;1.1.0&lt;/version&gt;</span><br><span class="line">                        &lt;executions&gt;</span><br><span class="line">                            &lt;execution&gt;</span><br><span class="line">                                &lt;goals&gt;</span><br><span class="line">                                    &lt;goal&gt;check&lt;/goal&gt;</span><br><span class="line">                                &lt;/goals&gt;</span><br><span class="line">                            &lt;/execution&gt;</span><br><span class="line">                        &lt;/executions&gt;</span><br><span class="line">                        &lt;configuration&gt;</span><br><span class="line">                            &lt;pgpKeyServer&gt;hkp://pool.sks-keyservers.net&lt;/pgpKeyServer&gt;</span><br><span class="line">                            &lt;pgpKeysCachePath&gt;${settings.localRepository}/pgpkeys-cache&lt;/pgpKeysCachePath&gt;</span><br><span class="line">                            &lt;scope&gt;test&lt;/scope&gt;</span><br><span class="line">                            &lt;verifyPomFiles&gt;true&lt;/verifyPomFiles&gt;</span><br><span class="line">                            &lt;failNoSignature&gt;false&lt;/failNoSignature&gt;</span><br><span class="line">                        &lt;/configuration&gt;</span><br><span class="line">                    &lt;/plugin&gt;</span><br><span class="line">                &lt;/plugins&gt;</span><br><span class="line">            &lt;/build&gt;</span><br><span class="line">        &lt;/profile&gt;</span><br><span class="line">    &lt;/profiles&gt;--&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">project</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<ol>
+<li>&#x4FEE;&#x6539;&#x914D;&#x7F6E;&#x6587;&#x4EF6;<br>&#x6211;&#x4EEC;&#x5728;cas-overly&#x8FD9;&#x4E2A;&#x9879;&#x76EE;&#x7684;&#x6839;&#x76EE;&#x5F55;&#x4E0B;&#x65B0;&#x5EFA;&#x4E00;&#x4E2A;src&#x76EE;&#x5F55;&#xFF0C;&#x5E76;&#x5728;src&#x76EE;&#x5F55;&#x4E0B;&#x521B;&#x5EFA;&#x4E00;&#x4E2A;resource&#x76EE;&#x5F55;&#xFF0C;&#x5728;resource&#x76EE;&#x5F55;&#x4E0B;&#x518D;&#x65B0;&#x5EFA;&#x4E00;&#x4E2A;application.properties&#x6587;&#x4EF6;&#xFF0C;&#x8BE5;&#x6587;&#x4EF6;&#x4E2D;&#x8981;&#x5199;&#x7684;&#x5C31;&#x662F;&#x6211;&#x4EEC;&#x7684;&#x914D;&#x7F6E;&#x6587;&#x4EF6;&#x5185;&#x5BB9;&#x4E86;&#xFF1A;</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">#STEP 3 &#x5728;TOMCAT8.5&#x4E2D;&#x8DD1;&#x4E00;&#x4E2A;&#x6A21;&#x677F;&#x7136;&#x540E;&#x5C06;&#x5176;war&#x5305;&#x4E2D;&#x89E3;&#x538B;&#x51FA;&#x6765;&#x7684;&#x7684;application.properties&#x590D;&#x5236;&#x51FA;&#x6765;&#xFF0C;&#x653E;&#x5230;&#x624B;&#x52A8;&#x521B;&#x5EFA;&#x7684;src&#x4E0B;&#x7684;resources&#x91CC;&#x9762;
+
+##
+# CAS Server Context Configuration
+#z
+server.context-path=/cas
+server.port=9092
+
+#STEP 5&#x6DFB;&#x52A0;&#x8BA4;&#x8BC1;&#x670D;&#x52A1;
+cas.serviceRegistry.initFromJson=true
+
+#STEP 4&#x7B7E;&#x53D1;&#x8BC1;&#x4E66;&#xFF0C;&#x5982;&#x679C;&#x662F;&#x7528;spring boot&#x4E4B;&#x7C7B;&#x5D4C;&#x5165;&#x5F0F;&#x7684;&#x5BB9;&#x5668;&#xFF0C;&#x5219;&#x9700;&#x8981;&#x6539;&#x8FD9;&#x91CC;&#x7684;&#x914D;&#x7F6E;&#xFF0C;&#x5982;&#x679C;&#x662F;&#x76F4;&#x63A5;&#x90E8;&#x5728;tomcat&#x4E2D;&#xFF0C;&#x5219;&#x9700;&#x8981;&#x628A;tomcat&#x6539;&#x6210;https&#x7684;
+#server.ssl.key-store=file:/etc/cas/thekeystore
+#server.ssl.key-store-password=changeit
+#server.ssl.key-password=changeit
+# server.ssl.ciphers=
+# server.ssl.client-auth=
+# server.ssl.enabled=
+# server.ssl.key-alias=
+# server.ssl.key-store-provider=
+# server.ssl.key-store-type=
+# server.ssl.protocol=
+# server.ssl.trust-store=
+# server.ssl.trust-store-password=
+# server.ssl.trust-store-provider=
+# server.ssl.trust-store-type=
+
+#server.max-http-header-size=2097152
+#server.use-forward-headers=true
+#server.connection-timeout=20000
+#server.error.include-stacktrace=NEVER
+
+#server.tomcat.max-http-post-size=2097152
+#server.tomcat.basedir=build/tomcat
+#server.tomcat.accesslog.enabled=true
+#server.tomcat.accesslog.pattern=%t %a &quot;%r&quot; %s (%D ms)
+#server.tomcat.accesslog.suffix=.log
+#server.tomcat.max-threads=10
+#server.tomcat.port-header=X-Forwarded-Port
+#server.tomcat.protocol-header=X-Forwarded-Proto
+#server.tomcat.protocol-header-https-value=https
+#server.tomcat.remote-ip-header=X-FORWARDED-FOR
+#server.tomcat.uri-encoding=UTF-8
+
+spring.http.encoding.charset=UTF-8
+spring.http.encoding.enabled=true
+spring.http.encoding.force=true
+
+##
+# CAS Cloud Bus Configuration
+#
+spring.cloud.bus.enabled=false
+# spring.cloud.bus.refresh.enabled=true
+# spring.cloud.bus.env.enabled=true
+# spring.cloud.bus.destination=CasCloudBus
+# spring.cloud.bus.ack.enabled=true
+
+endpoints.enabled=false
+endpoints.sensitive=true
+
+endpoints.restart.enabled=false
+endpoints.shutdown.enabled=false
+
+management.security.enabled=true
+management.security.roles=ACTUATOR,ADMIN
+management.security.sessions=if_required
+management.context-path=/status
+management.add-application-context-header=false
+
+security.basic.authorize-mode=role
+security.basic.enabled=false
+security.basic.path=/cas/status/**
+
+##
+# CAS Web Application Session Configuration
+#
+server.session.timeout=300
+server.session.cookie.http-only=true
+server.session.tracking-modes=COOKIE
+
+##
+# CAS Thymeleaf View Configuration
+#
+spring.thymeleaf.encoding=UTF-8
+spring.thymeleaf.cache=false
+spring.thymeleaf.mode=HTML
+##
+# CAS Log4j Configuration
+#
+# logging.config=file:/etc/cas/log4j2.xml
+server.context-parameters.isLog4jAutoInitializationDisabled=true
+
+##
+# CAS AspectJ Configuration
+#
+spring.aop.auto=true
+spring.aop.proxy-target-class=true
+
+##
+# CAS Authentication Credentials
+#
+#STEP4 &#x6CE8;&#x91CA;&#x6389;&#x5199;&#x6B7B;&#x7684;&#x7528;&#x6237; &#x6539;&#x7528;jdbc&#x7684;&#x7528;&#x6237; START
+#cas.authn.accept.users=casuser::Mellon
+
+cas.authn.jdbc.query[0].sql=select * from s_user where username=?
+cas.authn.jdbc.query[0].healthQuery=
+cas.authn.jdbc.query[0].isolateInternalQueries=false
+cas.authn.jdbc.query[0].url=jdbc:mysql://172.18.18.25:3306/pa_db?useUnicode=true&amp;characterEncoding=UTF-8&amp;autoReconnect=true&amp;useSSL=false
+cas.authn.jdbc.query[0].failFast=true
+cas.authn.jdbc.query[0].isolationLevelName=ISOLATION_READ_COMMITTED
+cas.authn.jdbc.query[0].dialect=org.hibernate.dialect.MySQLDialect
+cas.authn.jdbc.query[0].leakThreshold=10
+cas.authn.jdbc.query[0].propagationBehaviorName=PROPAGATION_REQUIRED
+cas.authn.jdbc.query[0].batchSize=1
+cas.authn.jdbc.query[0].user=root
+#cas.authn.jdbc.query[0].ddlAuto=create-drop
+cas.authn.jdbc.query[0].maxAgeDays=180
+cas.authn.jdbc.query[0].password=dhcc
+cas.authn.jdbc.query[0].autocommit=false
+cas.authn.jdbc.query[0].driverClass=com.mysql.jdbc.Driver
+cas.authn.jdbc.query[0].idleTimeout=5000
+# cas.authn.jdbc.query[0].credentialCriteria=
+# cas.authn.jdbc.query[0].name=
+# cas.authn.jdbc.query[0].order=0
+# cas.authn.jdbc.query[0].dataSourceName=
+# cas.authn.jdbc.query[0].dataSourceProxy=false
+cas.authn.jdbc.query[0].fieldPassword=password
+
+# cas.authn.jdbc.query[0].fieldExpired=
+# cas.authn.jdbc.query[0].fieldDisabled=
+# cas.authn.jdbc.query[0].principalAttributeList=sn,cn:commonName,givenName
+
+#cas.authn.jdbc.query[0].passwordEncoder.type=DEFAULT
+#cas.authn.jdbc.query[0].passwordEncoder.type=com.example.CustomPasswordEncoder
+#cas.authn.jdbc.query[0].passwordEncoder.characterEncoding=UTF-8
+#cas.authn.jdbc.query[0].passwordEncoder.encodingAlgorithm=MD5
+
+#cas.authn.jdbc.query[0].passwordEncoder.secret=
+#cas.authn.jdbc.query[0].passwordEncoder.strength=16
+
+# cas.authn.jdbc.query[0].principalTransformation.suffix=
+# cas.authn.jdbc.query[0].principalTransformation.caseConversion=NONE|UPPERCASE|LOWERCASE
+# cas.authn.jdbc.query[0].principalTransformation.prefix=
+# STEP4 END
+
+
+##
+# CAS Delegated Authentication
+#
+#cas.authn.pac4j.bitbucket.clientName=Bitbucket
+#cas.authn.pac4j.dropbox.clientName=Dropbox
+#cas.authn.pac4j.facebook.clientName=Facebook
+#cas.authn.pac4j.foursquare.clientName=Foursquare
+#cas.authn.pac4j.github.clientName=Github
+#cas.authn.pac4j.google.clientName=Google
+#cas.authn.pac4j.linkedIn.clientName=LinkedIn
+#cas.authn.pac4j.paypal.clientName=PayPal
+#cas.authn.pac4j.twitter.clientName=Twitter
+#cas.authn.pac4j.yahoo.clientName=Yahoo
+#cas.authn.pac4j.windowsLive.clientName=Windows Live
+#cas.authn.pac4j.wordpress.clientName=WordPress
+
+#&#x591A;&#x5C5E;&#x6027;
+cas.authn.attributeRepository.jdbc[0].singleRow=true
+cas.authn.attributeRepository.jdbc[0].order=0
+cas.authn.attributeRepository.jdbc[0].url=jdbc:mysql://172.18.18.25:3306/pa_db?useUnicode=true&amp;characterEncoding=UTF-8&amp;autoReconnect=true&amp;useSSL=false
+cas.authn.attributeRepository.jdbc[0].username=username
+cas.authn.attributeRepository.jdbc[0].user=root
+cas.authn.attributeRepository.jdbc[0].password=dhcc
+cas.authn.attributeRepository.jdbc[0].sql=select * from s_user where {0}
+cas.authn.attributeRepository.jdbc[0].dialect=org.hibernate.dialect.MySQLDialect
+cas.authn.attributeRepository.jdbc[0].ddlAuto=none
+cas.authn.attributeRepository.jdbc[0].driverClass=com.mysql.jdbc.Driver
+cas.authn.attributeRepository.jdbc[0].leakThreshold=10
+cas.authn.attributeRepository.jdbc[0].propagationBehaviorName=PROPAGATION_REQUIRED
+cas.authn.attributeRepository.jdbc[0].batchSize=1
+cas.authn.attributeRepository.jdbc[0].healthQuery=SELECT 1
+cas.authn.attributeRepository.jdbc[0].failFast=trueyeshi
+#http&#x8BBF;&#x95EE;
+cas.tgc.secure=false</span><br></pre></td></tr></table></figure>
+<p>&#x770B;&#x4E0A;&#x9762;&#x7684;&#x914D;&#x7F6E;&#x6587;&#x4EF6;&#x4F60;&#x4F1A;&#x53D1;&#x73B0;&#x6211;&#x914D;&#x7F6E;&#x4E86;mysql&#x7684;jdbc&#x8FDE;&#x63A5;&#x8BF7;&#x6C42;&#xFF0C;&#x5176;&#x5B9E;&#x5C31;&#x662F;&#x4E3A;&#x4E86;&#x7ED9;CAS&#x670D;&#x52A1;&#x7AEF;&#x914D;&#x7F6E;&#x7528;&#x6237;&#x540D;&#x548C;&#x5BC6;&#x7801;&#x9A8C;&#x8BC1;&#x7684;&#xFF0C;&#x4F60;&#x81EA;&#x5DF1;&#x505A;&#x7684;&#x8BDD;&#xFF0C;&#x9700;&#x8981;&#x5728;&#x4F60;&#x7684;&#x6570;&#x636E;&#x5E93;&#x4E2D;&#x521B;&#x5EFA;&#x4E00;&#x4E2A;&#x6570;&#x636E;&#x5E93;&#x7A7A;&#x95F4;&#x548C;&#x4E00;&#x5F20;&#x7528;&#x6237;&#x8868;&#xFF0C;&#x5E76;&#x4E14;&#x4FDD;&#x8BC1;&#x8BE5;&#x8868;&#x4E2D;&#x6700;&#x5C11;&#x6709;&#x4E09;&#x4E2A;&#x5B57;&#x6BB5;&#xFF1A;id,username&#x548C;password&#xFF0C;&#x8FD9;&#x4E2A;&#x914D;&#x7F6E;&#x6587;&#x4EF6;&#x4E2D;&#x5199;&#x7684;&#x662F;&#x6211;&#x7684;&#x6D4B;&#x8BD5;&#x670D;&#x52A1;&#x5668;&#x7684;&#x914D;&#x7F6E;&#xFF0C;&#x4F60;&#x8981;&#x6539;&#x6210;&#x81EA;&#x5DF1;&#x7684;&#x54E6;&#x3002;<br>&#x8FD9;&#x91CC;&#x6709;&#x51E0;&#x4E2A;&#x70B9;&#x8981;&#x6CE8;&#x610F;&#x4E0B;&#xFF1A;<br><strong>cas.authn.accept.users=casuser::Mellon&#x8FD9;&#x4E2A;&#x914D;&#x7F6E;&#x8BB0;&#x5F97;&#x5220;&#x6389;&#xFF0C;&#x8FD9;&#x5C31;&#x662F;&#x90A3;&#x4E2A;&#x5199;&#x6B7B;&#x7684;&#x7528;&#x6237;</strong><br> cas.authn.jdbc.query[0]&#x8FD9;&#x4E9B;&#x914D;&#x7F6E;&#x5C31;&#x662F;&#x6570;&#x636E;&#x5E93;&#x9A8C;&#x8BC1;&#x76F8;&#x5173;&#x7684;&#x5185;&#x5BB9;<br> &#x5728;cas.authn.jdbc.query[0].sql&#x4E2D;&#xFF0C;&#x7A0B;&#x5E8F;&#x4F1A;&#x628A;&#x4F60;&#x767B;&#x5F55;&#x65F6;&#x8F93;&#x5165;&#x7684;&#x7528;&#x6237;&#x540D;&#x4F5C;&#x4E3A;&#x53C2;&#x6570;&#x4F20;&#x8FDB;&#x53BB;<br><strong>cas.authn.jdbc.query[0].fieldPassword&#x5219;&#x662F;&#x6307;&#x660E;&#x90A3;&#x4E00;&#x5217;&#x5BF9;&#x5E94;&#x7684;&#x662F;&#x4F60;&#x8F93;&#x5165;&#x7684;&#x5BC6;&#x7801;&#xFF0C;&#x76EE;&#x524D;&#x6CA1;&#x6709;&#x505A;MD5</strong><br>&#x5982;&#x679C;&#x4F7F;&#x7528;http&#x8BBF;&#x95EE; &#x5FC5;&#x987B;&#x52A0;&#x5165; <strong>cas.tgc.secure=false</strong> &#x5426;&#x5219;&#x767B;&#x5F55;&#x72B6;&#x6001;&#x4E0D;&#x80FD;&#x5171;&#x4EAB;&#x3002;</p>
+<ol>
+<li><p>&#x52A0;&#x5165;http&#x8BBF;&#x95EE;&#x670D;&#x52A1;<br>&#x8FD9;&#x91CC;&#x53EF;&#x80FD;&#x4E0D;&#x597D;&#x7406;&#x89E3;&#xFF0C;&#x6211;&#x5148;&#x6765;&#x8BB2;&#x4E00;&#x4E2A;&#x6211;&#x9047;&#x5230;&#x7684;&#x95EE;&#x9898;&#xFF0C;&#x4F60;&#x5C31;&#x53EF;&#x4EE5;&#x7406;&#x89E3;&#x4E86;&#xFF1A;<br>&#x914D;&#x7F6E;&#x597D;CAS&#x7684;&#x5BA2;&#x6237;&#x7AEF;&#x540E;&#xFF0C;&#x6211;&#x5C31;&#x5F00;&#x59CB;&#x6D4B;&#x8BD5;&#x6211;&#x7684;&#x5BA2;&#x6237;&#x7AEF;&#x5B50;&#x7CFB;&#x7EDF;&#xFF0C;&#x5728;&#x6D4F;&#x89C8;&#x5668;&#x4E2D;&#x8F93;&#x5165;&#x6211;&#x7684;&#x5B50;&#x7CFB;&#x7EDF;&#x9879;&#x76EE;&#x5730;&#x5740;&#xFF1A;<br><a href="http://com.dhcc.cas:9093" target="_blank" rel="external">http://com.dhcc.cas:9093</a><br>&#x540E;&#x7531;&#x4E8E;&#x6211;&#x7684;&#x5B50;&#x7CFB;&#x7EDF;&#x7684;&#x914D;&#x7F6E;&#xFF0C;&#x8BBF;&#x95EE;&#x754C;&#x9762;&#x4F1A;&#x91CD;&#x5B9A;&#x5411;&#x5230;<br><a href="http://com.dhcc.cas:9092/cas/login?service:http://com.dhcc.cas:9093/" target="_blank" rel="external">http://com.dhcc.cas:9092/cas/login?service:http://com.dhcc.cas:9093/</a><br>&#x4F46;&#x662F;&#x8FD9;&#x4E2A;&#x754C;&#x9762;&#x7406;&#x8BBA;&#x4E0A;&#x6765;&#x8BF4;&#x5E94;&#x8BE5;&#x662F;&#x8DF3;&#x8F6C;&#x5230;CAS&#x670D;&#x52A1;&#x7AEF;&#x7684;&#x767B;&#x5F55;&#x754C;&#x9762;&#x7684;&#xFF0C;&#x53EF;&#x662F;&#x6211;&#x7684;&#x8FD9;&#x4E2A;&#x8DEF;&#x5F84;&#x5374;&#x65E0;&#x6CD5;&#x8DF3;&#x8F6C;&#xFF0C;<br>&#x5E76;&#x5C55;&#x793A;&#x5982;&#x4E0B;&#x754C;&#x9762;&#xFF1A;</p>
+<p><img src="/2017/11/29/Springboot&#x96C6;&#x6210;Shiro&#x548C;Cas&#x5B9E;&#x73B0;&#x5355;&#x70B9;&#x767B;&#x5F55;-&#x670D;&#x52A1;&#x7AEF;&#x7BC7;CAS5/5.png" alt="logo"></p>
+</li>
+</ol>
+<p>&#x6211;&#x767E;&#x601D;&#x4E0D;&#x5F97;&#x5176;&#x89E3;&#xFF0C;&#x5C1D;&#x8BD5;&#x4E86;&#x5404;&#x79CD;&#x65B9;&#x6CD5;&#x4E5F;&#x4E0D;&#x884C;&#xFF0C;&#x76F4;&#x5230;&#x6211;&#x53D1;&#x73B0;&#x4E86;&#x5C06;&#x8DEF;&#x5F84;&#x6539;&#x4E3A;&#xFF1A;<br><a href="http://com.dhcc.cas:9092/cas/login?service=https://com.dhcc.cas:9093/" target="_blank" rel="external">http://com.dhcc.cas:9092/cas/login?service=https://com.dhcc.cas:9093/</a><br>&#x754C;&#x9762;&#x4F1A;&#x81EA;&#x52A8;&#x8DF3;&#x8F6C;&#x5230;CAS&#x670D;&#x52A1;&#x7AEF;&#x7684;&#x767B;&#x5F55;&#x754C;&#x9762;&#xFF0C;&#x8FD9;&#x65F6;&#x6211;&#x624D;&#x5F00;&#x59CB;&#x56DE;&#x5FC6;&#x8D77;CAS&#x670D;&#x52A1;&#x7AEF;&#x662F;&#x4E0D;&#x662F;&#x54EA;&#x91CC;&#x6211;&#x6CA1;&#x6709;&#x914D;&#x7F6E;&#x5BF9;&#xFF0C;&#x4E8E;&#x662F;&#x6211;&#x5728;&#x7F51;&#x4E0A;&#x67E5;&#x8D44;&#x6599;&#x624D;&#x77E5;&#x9053;CAS4.2&#x4EE5;&#x4E0A;&#x5149;&#x52A0;&#x5165;cas.tgc.secure=false &#x8FD9;&#x4E2A;&#x53C2;&#x6570;&#x914D;&#x7F6E;&#x662F;&#x4E0D;&#x591F;&#x7684;&#xFF0C;&#x8FD8;&#x8981;&#x5BF9;<strong>HTTPSandIMAPS-10000001.json</strong>&#x8FD9;&#x4E2A;&#x6587;&#x4EF6;&#x4E2D;&#x8FDB;&#x884C;&#x4FEE;&#x6539;&#xFF0C;&#x5927;&#x5BB6;&#x53EF;&#x80FD;&#x4F1A;&#x95EE;&#x4E86;&#xFF0C;&#x6211;&#x600E;&#x4E48;&#x6CA1;&#x770B;&#x5230;&#x8FD9;&#x4E2A;&#x6587;&#x4EF6;&#xFF1F;<br>&#x56E0;&#x4E3A;&#x9ED8;&#x8BA4;&#x7684;&#x9879;&#x76EE;&#x67B6;&#x6784;&#x662F;&#x6CA1;&#x6709;&#x8FD9;&#x4E2A;&#x6587;&#x4EF6;&#x7684;&#xFF0C;&#x6211;&#x4EEC;&#x8981;&#x5C06;&#x5BFC;&#x51FA;&#x7684;war&#x5305;&#x89E3;&#x538B;&#xFF0C;&#x7136;&#x540E;&#x5728;WEB-INF\classes\services&#x8FD9;&#x4E2A;&#x8DEF;&#x5F84;&#x4E0B;&#x627E;&#x5230;&#x8FD9;&#x4E2A;&#x6587;&#x4EF6;&#xFF0C;&#x7136;&#x540E;&#x5728;&#x6211;&#x4EEC;&#x7684;&#x9879;&#x76EE;&#x4E2D;&#x7684;resources&#x76EE;&#x5F55;&#x4E0B;&#x518D;&#x65B0;&#x5EFA;&#x4E00;&#x4E2A;services&#x76EE;&#x5F55;&#xFF0C;&#x5E76;&#x5C06;&#x8BE5;&#x6587;&#x4EF6;&#x62F7;&#x8D1D;&#x5230;&#x8FD9;&#x4E2A;&#x8DEF;&#x5F84;&#x4E0B;&#x5373;&#x53EF;&#x3002;<br>&#x73B0;&#x5728;&#x4F60;&#x7684;&#x9879;&#x76EE;&#x67B6;&#x6784;&#x5E94;&#x8BE5;&#x662F;&#x8FD9;&#x4E2A;&#x6837;&#x5B50;&#x7684;&#xFF1A;</p>
+<p> <img src="/2017/11/29/Springboot&#x96C6;&#x6210;Shiro&#x548C;Cas&#x5B9E;&#x73B0;&#x5355;&#x70B9;&#x767B;&#x5F55;-&#x670D;&#x52A1;&#x7AEF;&#x7BC7;CAS5/6.png" alt="logo"></p>
+<p>&#x5F15;&#x5165;&#x8FD9;&#x4E2A;&#x6587;&#x4EF6;&#x80AF;&#x5B9A;&#x662F;&#x4E3A;&#x4E86;&#x4FEE;&#x6539;&#x5B83;&#xFF0C;&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x770B;&#x5230;&#x8FD9;&#x4E2A;json&#x4E2D;&#x6709;&#x884C;&#x4EE3;&#x7801;&#xFF0C;&#x5176;&#x5B9E;&#x662F;&#x4E2A;&#x6B63;&#x5219;&#x8868;&#x8FBE;&#x5F0F;&#xFF1A;<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&quot;serviceId&quot; : &quot;^(https|imaps)://.*&quot;</span><br></pre></td></tr></table></figure></p>
+<p>&#x4E86;&#x89E3;json&#x7684;&#x90FD;&#x77E5;&#x9053;&#xFF0C;&#x8FD9;&#x91CC;&#x5176;&#x5B9E;&#x662F;&#x8BF4;serviceId&#x7684;&#x503C;&#x662F;&#x6240;&#x6709;&#x5E26;https&#x548C;imaps&#x7684;url&#x8BF7;&#x6C42;&#x90FD;&#x4F1A;&#x88AB;&#x5F53;&#x6210;&#x5DF2;&#x7ECF;&#x6CE8;&#x518C;&#x7684;&#x670D;&#x52A1;&#xFF0C;&#x6211;&#x4EEC;&#x53EA;&#x8981;&#x5C06;&#x5B83;&#x6539;&#x6210;&#x4E0B;&#x9762;&#x8FD9;&#x6837;&#x5C31;&#x53EF;&#x4EE5;&#x4E86;&#xFF1A;<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&quot;serviceId&quot; : &quot;^(https|imaps|http)://.*&quot;</span><br></pre></td></tr></table></figure></p>
+<p>&#x8FD9;&#x6837;&#x6211;&#x4EEC;&#x5C31;&#x53EF;&#x4EE5;&#x5B89;&#x5FC3;&#x7684;&#x4F7F;&#x7528;CAS&#x7684;http&#x8BF7;&#x6C42;&#x670D;&#x52A1;&#x4E86;&#x3002;</p>
+<h2 id="&#x7ED3;&#x8BED;">&#x7ED3;&#x8BED;</h2><p>&#x81F3;&#x6B64;&#xFF0C;&#x6211;&#x4EEC;&#x7684;CAS&#x670D;&#x52A1;&#x7AEF;&#x57FA;&#x672C;&#x4E0A;&#x5C31;&#x642D;&#x5EFA;&#x597D;&#x4E86;&#xFF0C;&#x53EA;&#x8981;&#x5C06;&#x5B83;&#x6253;&#x6210;war&#x5305;&#xFF0C;&#x5E76;&#x653E;&#x5230;tomcat&#x4E2D;&#x542F;&#x52A8;&#x8D77;&#x6765;&#xFF0C;&#x4FBF;&#x53EF;&#x4EE5;&#x4F5C;&#x4E3A;&#x4EEC;&#x7684;&#x5355;&#x70B9;&#x767B;&#x5F55;&#x7684;&#x670D;&#x52A1;&#x7AEF;&#x4F7F;&#x7528;&#x4E86;&#x3002;<br>&#x8FD9;&#x91CC;&#x9700;&#x8981;&#x6CE8;&#x610F;&#x4E00;&#x4E0B;&#x51E0;&#x70B9;&#xFF1A;</p>
+<ol>
+<li>&#x6CE8;&#x610F;&#x81EA;&#x5B9A;&#x4E49;&#x7684;&#x914D;&#x7F6E;&#x6587;&#x4EF6;&#x662F;&#x5426;&#x5199;&#x5BF9;&#x4E86;&#xFF0C;&#x5C24;&#x5176;&#x662F;&#x6570;&#x636E;&#x5E93;&#x7684;&#x914D;&#x7F6E;&#x3002;</li>
+<li>&#x4E00;&#x5B9A;&#x8981;&#x52A0;&#x5165;&#x5E76;&#x4FEE;&#x6539;HTTPSandIMAPS-10000001.json&#x6587;&#x4EF6;&#xFF0C;&#x5426;&#x5219;&#x540E;&#x671F;&#x4F60;&#x7684;CAS&#x5BA2;&#x6237;&#x7AEF;&#x80AF;&#x5B9A;&#x4E0D;&#x4F1A;&#x81EA;&#x52A8;&#x8DF3;&#x8F6C;&#x5230;&#x767B;&#x5F55;&#x754C;&#x9762;&#x3002;</li>
+</ol>
+<p>&#x53EA;&#x8981;&#x4F60;&#x7684;&#x670D;&#x52A1;&#x7AEF;&#x53EF;&#x4EE5;&#x6B63;&#x5E38;&#x542F;&#x7528;&#xFF0C;&#x4F60;&#x5C31;&#x6210;&#x529F;&#x4E86;&#x4E00;&#x534A;&#x4E86;&#xFF0C;&#x4E0B;&#x4E00;&#x7BC7;&#x6211;&#x4EEC;&#x5C31;&#x5F00;&#x59CB;&#x8BB2;&#x89E3;CAS&#x5BA2;&#x6237;&#x7AEF;&#x7684;&#x914D;&#x7F6E;&#x4E86;&#x3002;</p>
+<h2 id="&#x76F8;&#x5173;&#x8D44;&#x6599;">&#x76F8;&#x5173;&#x8D44;&#x6599;</h2><ol>
+<li><a href="http://www.cnblogs.com/flying607/p/7598248.html" target="_blank" rel="external">CAS 5.1.x &#x7684;&#x642D;&#x5EFA;&#x548C;&#x4F7F;&#x7528;&#xFF08;&#x4E00;&#xFF09;&#x2014;&#x2014; &#x901A;&#x8FC7;Overlay&#x642D;&#x5EFA;&#x670D;&#x52A1;&#x7AEF;</a></li>
+<li><a href="http://blog.csdn.net/zzq900503/article/details/54910609" target="_blank" rel="external">&#x5355;&#x70B9;&#x767B;&#x5F55;(&#x4E03;)&#x2014;&#x2013;&#x5B9E;&#x6218;&#x2014;&#x2013;cas server&#x53BB;&#x6389;https&#x9A8C;&#x8BC1;</a></li>
+</ol>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/SpringBoot/" rel="tag">#SpringBoot</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/11/15/SpringBoot中实现Shiro控制ThymeLeaf界面按钮级权限控制/" rel="next" title="SpringBoot中实现Shiro控制ThymeLeaf界面按钮级权限控制">
+                <i class="fa fa-chevron-left"></i> SpringBoot中实现Shiro控制ThymeLeaf界面按钮级权限控制
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+  <a class="jiathis_button_tsina"></a>
+  <a class="jiathis_button_tqq"></a>
+  <a class="jiathis_button_weixin"></a>
+  <a class="jiathis_button_cqq"></a>
+  <a class="jiathis_button_douban"></a>
+  <a class="jiathis_button_renren"></a>
+  <a class="jiathis_button_qzone"></a>
+  <a class="jiathis_button_kaixin001"></a>
+  <a class="jiathis_button_copy"></a>
+  <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank"></a>
+  <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+  var jiathis_config={
+    hideMore:false
+  }
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+  <p>热评文章</p>
+  <div class="ds-top-threads" data-range="weekly" data-num-items="4"></div>
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2017/11/29/Springboot集成Shiro和Cas实现单点登录-服务端篇CAS5/"
+           data-title="Springboot集成Shiro和Cas实现单点登录(服务端篇CAS5)" data-url="http://jasoncool.com/2017/11/29/Springboot集成Shiro和Cas实现单点登录-服务端篇CAS5/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="http://tva2.sinaimg.cn/crop.0.0.720.720.180/460788ebjw8ep8yc024exj20k00k0tc2.jpg"
+               alt="Mr.Cool" />
+          <p class="site-author-name" itemprop="name">Mr.Cool</p>
+          <p class="site-description motion-element" itemprop="description">热爱移动开发，专注移动技术</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/">
+              <span class="site-state-item-count">15</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              
+                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-name">标签</span>
+              
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/lastcool" target="_blank" title="微博">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  微博
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是单点登录？"><span class="nav-number">1.</span> <span class="nav-text">什么是单点登录？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CAS架构图"><span class="nav-number">2.</span> <span class="nav-text">CAS架构图</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装CAS服务端"><span class="nav-number">3.</span> <span class="nav-text">安装CAS服务端</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#结语"><span class="nav-number">4.</span> <span class="nav-text">结语</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#相关资料"><span class="nav-number">5.</span> <span class="nav-text">相关资料</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Mr.Cool</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"jasoncool"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+       search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+    'use strict';
+    $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+            // get the contents from search data
+            isfetched = true;
+            $('.popup').detach().appendTo('.header-inner');
+            var datas = $( "entry", xmlResponse ).map(function() {
+                return {
+                    title: $( "title", this ).text(),
+                    content: $("content",this).text(),
+                    url: $( "url" , this).text()
+                };
+            }).get();
+            var $input = document.getElementById(search_id);
+            var $resultContent = document.getElementById(content_id);
+            $input.addEventListener('input', function(){
+                var matchcounts = 0;
+                var str='<ul class=\"search-result-list\">';
+                var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                $resultContent.innerHTML = "";
+                if (this.value.trim().length > 1) {
+                // perform local searching
+                datas.forEach(function(data) {
+                    var isMatch = true;
+                    var content_index = [];
+                    var data_title = data.title.trim().toLowerCase();
+                    var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                    var data_url = data.url;
+                    var index_title = -1;
+                    var index_content = -1;
+                    var first_occur = -1;
+                    // only match artiles with not empty titles and contents
+                    if(data_title != '' && data_content != '') {
+                        keywords.forEach(function(keyword, i) {
+                            index_title = data_title.indexOf(keyword);
+                            index_content = data_content.indexOf(keyword);
+                            if( index_title < 0 && index_content < 0 ){
+                                isMatch = false;
+                            } else {
+                                if (index_content < 0) {
+                                    index_content = 0;
+                                }
+                                if (i == 0) {
+                                    first_occur = index_content;
+                                }
+                            }
+                        });
+                    }
+                    // show search results
+                    if (isMatch) {
+                        matchcounts += 1;
+                        str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                        var content = data.content.trim().replace(/<[^>]+>/g,"");
+                        if (first_occur >= 0) {
+                            // cut out 100 characters
+                            var start = first_occur - 20;
+                            var end = first_occur + 80;
+                            if(start < 0){
+                                start = 0;
+                            }
+                            if(start == 0){
+                                end = 50;
+                            }
+                            if(end > content.length){
+                                end = content.length;
+                            }
+                            var match_content = content.substring(start, end);
+                            // highlight all keywords
+                            keywords.forEach(function(keyword){
+                                var regS = new RegExp(keyword, "gi");
+                                match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                            });
+
+                            str += "<p class=\"search-result\">" + match_content +"...</p>"
+                        }
+                        str += "</li>";
+                    }
+                })};
+                str += "</ul>";
+                if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+                if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+                $resultContent.innerHTML = str;
+            });
+            proceedsearch();
+        }
+    });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".popoverlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+  
+
+  
+
+  
+
+</body>
+</html>
