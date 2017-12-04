@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="SpringBoot," />
 
 
 
@@ -84,15 +84,17 @@
 
 
 
-<meta name="description" content="热爱移动开发，专注移动技术">
-<meta property="og:type" content="website">
-<meta property="og:title" content="移动开发小水吧">
-<meta property="og:url" content="http://jasoncool.com/index.html">
+<meta name="description" content="&amp;#x524D;&amp;#x8A00;&amp;#x8FD9;&amp;#x91CC;&amp;#x6211;&amp;#x5148;&amp;#x8981;&amp;#x8BF4;&amp;#x660E;&amp;#x4E00;&amp;#x4E0B;&amp;#xFF0C;&amp;#x6211;&amp;#x4EEC;&amp;#x7684;&amp;#x9879;&amp;#x76EE;&amp;#x67B6;&amp;#x6784;&amp;#x662F;Springboot+Shiro+Ehcache+ThymeLeaf+Mybai">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Springboot集成Shiro和Cas实现单点登录-客户端篇">
+<meta property="og:url" content="http://jasoncool.com/2017/12/04/Springboot集成Shiro和Cas实现单点登录-客户端篇/index.html">
 <meta property="og:site_name" content="移动开发小水吧">
-<meta property="og:description" content="热爱移动开发，专注移动技术">
+<meta property="og:description" content="&amp;#x524D;&amp;#x8A00;&amp;#x8FD9;&amp;#x91CC;&amp;#x6211;&amp;#x5148;&amp;#x8981;&amp;#x8BF4;&amp;#x660E;&amp;#x4E00;&amp;#x4E0B;&amp;#xFF0C;&amp;#x6211;&amp;#x4EEC;&amp;#x7684;&amp;#x9879;&amp;#x76EE;&amp;#x67B6;&amp;#x6784;&amp;#x662F;Springboot+Shiro+Ehcache+ThymeLeaf+Mybai">
+<meta property="og:image" content="http://jasoncool.com/2017/12/04/Springboot集成Shiro和Cas实现单点登录-客户端篇/1.png">
+<meta property="og:updated_time" content="2017-12-04T08:39:41.102Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="移动开发小水吧">
-<meta name="twitter:description" content="热爱移动开发，专注移动技术">
+<meta name="twitter:title" content="Springboot集成Shiro和Cas实现单点登录-客户端篇">
+<meta name="twitter:description" content="&amp;#x524D;&amp;#x8A00;&amp;#x8FD9;&amp;#x91CC;&amp;#x6211;&amp;#x5148;&amp;#x8981;&amp;#x8BF4;&amp;#x660E;&amp;#x4E00;&amp;#x4E0B;&amp;#xFF0C;&amp;#x6211;&amp;#x4EEC;&amp;#x7684;&amp;#x9879;&amp;#x76EE;&amp;#x67B6;&amp;#x6784;&amp;#x662F;Springboot+Shiro+Ehcache+ThymeLeaf+Mybai">
 
 
 
@@ -113,9 +115,9 @@
 
 
 
-  <link rel="canonical" href="http://jasoncool.com/"/>
+  <link rel="canonical" href="http://jasoncool.com/2017/12/04/Springboot集成Shiro和Cas实现单点登录-客户端篇/"/>
 
-  <title> 移动开发小水吧 </title>
+  <title> Springboot集成Shiro和Cas实现单点登录-客户端篇 | 移动开发小水吧 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -136,9 +138,7 @@
     
   
 
-  <div class="container one-collumn sidebar-position-left 
-   page-home 
- ">
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -238,9 +238,9 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
 
   
   
@@ -260,10 +260,7 @@
             
             
               
-                
-                <a class="post-title-link" href="/2017/12/04/Springboot集成Shiro和Cas实现单点登录-客户端篇/" itemprop="url">
-                  Springboot集成Shiro和Cas实现单点登录-客户端篇
-                </a>
+                Springboot集成Shiro和Cas实现单点登录-客户端篇
               
             
           </h1>
@@ -329,9 +326,7 @@
       
 
       
-        
-          
-            <h2 id="&#x524D;&#x8A00;">&#x524D;&#x8A00;</h2><p>&#x8FD9;&#x91CC;&#x6211;&#x5148;&#x8981;&#x8BF4;&#x660E;&#x4E00;&#x4E0B;&#xFF0C;&#x6211;&#x4EEC;&#x7684;&#x9879;&#x76EE;&#x67B6;&#x6784;&#x662F;Springboot+Shiro+Ehcache+ThymeLeaf+Mybaits,&#x5728;&#x8FD9;&#x4E2A;&#x57FA;&#x7840;&#x4E0A;&#xFF0C;&#x6211;&#x4EEC;&#x518D;&#x52A0;&#x5165;&#x4E86;CAS&#x5355;&#x70B9;&#x767B;&#x5F55;&#xFF0C;&#x867D;&#x7136;&#x524D;&#x9762;&#x7684;&#x6846;&#x67B6;&#x770B;&#x7740;&#x5F88;&#x957F;&#xFF0C;&#x4F46;&#x662F;&#x548C;&#x5355;&#x70B9;&#x767B;&#x5F55;&#x76F8;&#x5173;&#x7684;&#x6838;&#x5FC3;&#x67B6;&#x6784;&#x5176;&#x5B9E;&#x5C31;&#x662F;Springboot&#x548C;Shiro&#x800C;&#x5DF2;&#xFF0C;&#x6240;&#x4EE5;&#x5728;&#x770B;&#x8FD9;&#x7BC7;&#x6587;&#x7AE0;&#x4E4B;&#x524D;&#xFF0C;&#x9700;&#x8981;&#x4F60;&#x638C;&#x63E1;&#x7684;&#x77E5;&#x8BC6;&#x6709;Springboot&#x7684;&#x57FA;&#x7840;&#x6846;&#x67B6;&#x642D;&#x5EFA;&#x4EE5;&#x53CA;&#x96C6;&#x6210;Shiro&#x540E;&#x7684;&#x4E00;&#x4E9B;&#x64CD;&#x4F5C;&#xFF0C;&#x56E0;&#x4E3A;&#x4E4B;&#x540E;&#x7684;&#x96C6;&#x6210;CAS&#x5176;&#x5B9E;&#x4E5F;&#x662F;&#x5728;&#x8FD9;&#x4E2A;&#x57FA;&#x7840;&#x4E0A;&#x8FDB;&#x884C;&#x7684;&#x4FEE;&#x6539;&#x3002;</p>
+        <h2 id="&#x524D;&#x8A00;">&#x524D;&#x8A00;</h2><p>&#x8FD9;&#x91CC;&#x6211;&#x5148;&#x8981;&#x8BF4;&#x660E;&#x4E00;&#x4E0B;&#xFF0C;&#x6211;&#x4EEC;&#x7684;&#x9879;&#x76EE;&#x67B6;&#x6784;&#x662F;Springboot+Shiro+Ehcache+ThymeLeaf+Mybaits,&#x5728;&#x8FD9;&#x4E2A;&#x57FA;&#x7840;&#x4E0A;&#xFF0C;&#x6211;&#x4EEC;&#x518D;&#x52A0;&#x5165;&#x4E86;CAS&#x5355;&#x70B9;&#x767B;&#x5F55;&#xFF0C;&#x867D;&#x7136;&#x524D;&#x9762;&#x7684;&#x6846;&#x67B6;&#x770B;&#x7740;&#x5F88;&#x957F;&#xFF0C;&#x4F46;&#x662F;&#x548C;&#x5355;&#x70B9;&#x767B;&#x5F55;&#x76F8;&#x5173;&#x7684;&#x6838;&#x5FC3;&#x67B6;&#x6784;&#x5176;&#x5B9E;&#x5C31;&#x662F;Springboot&#x548C;Shiro&#x800C;&#x5DF2;&#xFF0C;&#x6240;&#x4EE5;&#x5728;&#x770B;&#x8FD9;&#x7BC7;&#x6587;&#x7AE0;&#x4E4B;&#x524D;&#xFF0C;&#x9700;&#x8981;&#x4F60;&#x638C;&#x63E1;&#x7684;&#x77E5;&#x8BC6;&#x6709;Springboot&#x7684;&#x57FA;&#x7840;&#x6846;&#x67B6;&#x642D;&#x5EFA;&#x4EE5;&#x53CA;&#x96C6;&#x6210;Shiro&#x540E;&#x7684;&#x4E00;&#x4E9B;&#x64CD;&#x4F5C;&#xFF0C;&#x56E0;&#x4E3A;&#x4E4B;&#x540E;&#x7684;&#x96C6;&#x6210;CAS&#x5176;&#x5B9E;&#x4E5F;&#x662F;&#x5728;&#x8FD9;&#x4E2A;&#x57FA;&#x7840;&#x4E0A;&#x8FDB;&#x884C;&#x7684;&#x4FEE;&#x6539;&#x3002;</p>
 <h2 id="&#x5F15;&#x5165;Shiro-cas&#x5305;">&#x5F15;&#x5165;Shiro-cas&#x5305;</h2><p>&#x9700;&#x8981;&#x96C6;&#x6210;CAS&#x90A3;&#x4E48;&#x80AF;&#x5B9A;&#x8981;&#x5F15;&#x5165;CAS&#x76F8;&#x5173;&#x7684;&#x7EC4;&#x4EF6;&#x5305;&#xFF0C;&#x5728;POM.xml&#x4E2D;&#x5F15;&#x5165;&#xFF1A;</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- shiro spring. --&gt;</span><br><span class="line">		&lt;dependency&gt;</span><br><span class="line">			&lt;groupId&gt;org.apache.shiro&lt;/groupId&gt;</span><br><span class="line">			&lt;artifactId&gt;shiro-spring&lt;/artifactId&gt;</span><br><span class="line">			&lt;version&gt;1.2.6&lt;/version&gt;</span><br><span class="line">		&lt;/dependency&gt;</span><br><span class="line"></span><br><span class="line">		&lt;!-- shiro ehcache --&gt;</span><br><span class="line">		&lt;dependency&gt;</span><br><span class="line">			&lt;groupId&gt;org.apache.shiro&lt;/groupId&gt;</span><br><span class="line">			&lt;artifactId&gt;shiro-ehcache&lt;/artifactId&gt;</span><br><span class="line">			&lt;version&gt;1.2.6&lt;/version&gt;</span><br><span class="line">		&lt;/dependency&gt;</span><br><span class="line">		&lt;!-- shiro cas --&gt;</span><br><span class="line">		&lt;dependency&gt;</span><br><span class="line">			&lt;groupId&gt;org.apache.shiro&lt;/groupId&gt;</span><br><span class="line">			&lt;artifactId&gt;shiro-cas&lt;/artifactId&gt;</span><br><span class="line">			&lt;version&gt;1.2.6&lt;/version&gt;</span><br><span class="line">		&lt;/dependency&gt;</span><br></pre></td></tr></table></figure>
 <p>&#x524D;&#x4E24;&#x4E2A;&#x4E00;&#x4E2A;&#x662F;Spring&#x548C;Shiro&#x7ED3;&#x5408;&#x7684;shiro-spring&#x5305;&#x548C;&#x4E0E;ehcache&#x7ED3;&#x5408;&#x7684;shiro-ehcache&#x5305;&#xFF0C;&#x8FD9;&#x4E24;&#x4E2A;&#x5305;&#x5E94;&#x8BE5;&#x662F;&#x4E4B;&#x524D;&#x5C31;&#x6709;&#x7684;&#xFF0C;&#x4E4B;&#x6240;&#x4EE5;&#x4E5F;&#x628A;&#x4ED6;&#x4EEC;&#x5199;&#x8FDB;&#x6765;&#x662F;&#x56E0;&#x4E3A;&#x5982;&#x679C;&#x8981;&#x5F15;&#x5165;CAS&#x7684;&#x7EC4;&#x4EF6;&#x5305;&#xFF0C;&#x9700;&#x8981;&#x4FDD;&#x8BC1;&#x8FD9;&#x4E09;&#x4E2A;&#x5305;&#x7684;&#x7248;&#x672C;&#x53F7;&#x4E00;&#x81F4;&#xFF0C;&#x7B14;&#x8005;&#x4E4B;&#x524D;&#x5F15;&#x5165;&#x7684;&#x524D;&#x4E24;&#x4E2A;&#x5305;&#x7684;&#x7248;&#x672C;&#x53F7;&#x662F;1.2.4&#xFF0C;&#x7ED3;&#x679C;&#x5355;&#x72EC;&#x5F15;&#x5165;1.2.6&#x7684;shiro-cas&#x5305;&#x540E;&#xFF0C;&#x4E00;&#x4E9B;cas&#x5173;&#x952E;&#x7684;&#x7C7B;&#x662F;&#x627E;&#x4E0D;&#x5230;&#x7684;&#xFF0C;&#x6240;&#x4EE5;&#x8FD9;&#x91CC;&#x5C3D;&#x91CF;&#x4FDD;&#x6301;&#x8FD9;&#x4E09;&#x4E2A;&#x5F15;&#x5165;&#x5305;&#x7684;&#x7248;&#x672C;&#x53F7;&#x4E00;&#x81F4;&#x3002;</p>
@@ -672,536 +667,100 @@ cas.authn.attributeRepository.jdbc[0].failFast=trueyeshi</span><br></pre></td></
 <li><a href="http://blog.csdn.net/catoop/article/details/50534006" target="_blank" rel="external">Spring Boot &#x96C6;&#x6210;Shiro&#x548C;CAS</a></li>
 </ol>
 
-          
+      
+    </div>
+
+    <div>
+      
         
+
       
     </div>
 
     <div>
       
-    </div>
+        
 
-    <div>
       
     </div>
 
     <footer class="post-footer">
       
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/11/29/Springboot集成Shiro和Cas实现单点登录-服务端篇CAS5/" itemprop="url">
-                  Springboot集成Shiro和Cas实现单点登录(服务端篇CAS5)
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-11-29T17:15:26+08:00" content="Nov 29 2017">
-              Nov 29 2017
-            </time>
-          </span>
-
+        <div class="post-tags">
           
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/SpringBoot/" itemprop="url" rel="index">
-                    <span itemprop="name">SpringBoot</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2017/11/29/Springboot集成Shiro和Cas实现单点登录-服务端篇CAS5/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/11/29/Springboot集成Shiro和Cas实现单点登录-服务端篇CAS5/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
+            <a href="/tags/SpringBoot/" rel="tag">#SpringBoot</a>
           
         </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
       
 
       
-        
-          <h2 id="&#x4EC0;&#x4E48;&#x662F;&#x5355;&#x70B9;&#x767B;&#x5F55;&#xFF1F;">&#x4EC0;&#x4E48;&#x662F;&#x5355;&#x70B9;&#x767B;&#x5F55;&#xFF1F;</h2><p>&#x5148;&#x8BF4;&#x4E00;&#x4E2A;&#x9700;&#x6C42;&#x573A;&#x666F;&#xFF0C;&#x6BD4;&#x5982;&#xFF1A;&#x4E00;&#x4E2A;&#x4F01;&#x4E1A;&#x7684;&#x5185;&#x90E8;&#x6709;N&#x591A;&#x4E2A;&#x5B50;&#x7CFB;&#x7EDF;&#xFF0C;&#x6BCF;&#x4E2A;&#x5B50;&#x7CFB;&#x7EDF;&#x90FD;&#x6709;&#x4E00;&#x5957;&#x81EA;&#x5DF1;&#x7684;&#x7528;&#x6237;&#x540D;&#x548C;&#x5BC6;&#x7801;&#xFF0C;&#x90A3;&#x4E48;&#x4F01;&#x4E1A;&#x7684;&#x5458;&#x5DE5;&#x8981;&#x767B;&#x5F55;N&#x4E2A;&#x5B50;&#x7CFB;&#x7EDF;&#xFF0C;&#x8FD9;&#x6837;&#x4E00;&#x4E2A;&#x5458;&#x5DE5; &#x5C31;&#x8981;&#x8BB0;&#x4F4F;N&#x4E2A;&#x7528;&#x6237;&#x540D;&#x548C;&#x5BC6;&#x7801;&#xFF0C;&#x5C31;&#x7B97;&#x5404;&#x4E2A;&#x5B50;&#x7CFB;&#x7EDF;&#x7684;&#x7528;&#x6237;&#x540D;&#x548C;&#x5BC6;&#x7801;&#x90FD;&#x662F;&#x7EDF;&#x4E00;&#x7684;&#xFF0C;&#x767B;&#x5F55;&#x6BCF;&#x4E2A;&#x5B50;&#x7CFB;&#x7EDF;&#x90FD;&#x8981;&#x8F93;&#x5165;&#x7528;&#x6237;&#x540D;&#x548C;&#x5BC6;&#x7801;&#x8FDB;&#x884C;&#x767B;&#x5F55;&#x4E5F;&#x662F;&#x4E00;&#x4E2A;&#x7E41;&#x7410;&#x7684;&#x64CD;&#x4F5C;&#x8FC7;&#x7A0B;&#xFF0C;&#x90A3;&#x4E48;&#x5355;&#x70B9;&#x767B;&#x5F55;&#x529F;&#x80FD;&#x7531;&#x6B64;&#x4FBF;&#x5E94;&#x8FD0;&#x800C;&#x751F;&#x4E86;&#x3002;<br><strong>&#x5355;&#x70B9;&#x767B;&#x5F55;</strong>&#xFF08;Single Sign On&#xFF09;&#xFF0C;&#x7B80;&#x79F0;&#x4E3A; SSO&#xFF0C;&#x662F;&#x76EE;&#x524D;&#x6BD4;&#x8F83;&#x6D41;&#x884C;&#x7684;&#x4F01;&#x4E1A;&#x4E1A;&#x52A1;&#x6574;&#x5408;&#x7684;&#x89E3;&#x51B3;&#x65B9;&#x6848;&#x4E4B;&#x4E00;&#x3002;SSO&#x7684;&#x5B9A;&#x4E49;&#x662F;&#x5728;&#x591A;&#x4E2A;&#x5E94;&#x7528;&#x7CFB;&#x7EDF;&#x4E2D;&#xFF0C;&#x7528;&#x6237;&#x53EA;&#x9700;&#x8981;&#x767B;&#x5F55;&#x4E00;&#x6B21;&#x5C31;&#x53EF;&#x4EE5;&#x8BBF;&#x95EE;&#x6240;&#x6709;&#x76F8;&#x4E92;&#x4FE1;&#x4EFB;&#x7684;&#x5E94;&#x7528;&#x7CFB;&#x7EDF;&#x3002;<br></p>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2017/11/29/Springboot集成Shiro和Cas实现单点登录-服务端篇CAS5/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/11/29/Springboot集成Shiro和Cas实现单点登录-服务端篇CAS5/" rel="next" title="Springboot集成Shiro和Cas实现单点登录(服务端篇CAS5)">
+                <i class="fa fa-chevron-left"></i> Springboot集成Shiro和Cas实现单点登录(服务端篇CAS5)
+              </a>
+            
           </div>
-        
-      
-    </div>
 
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
+          <div class="post-nav-prev post-nav-item">
             
-            
-              
-                
-                <a class="post-title-link" href="/2017/11/15/SpringBoot中实现Shiro控制ThymeLeaf界面按钮级权限控制/" itemprop="url">
-                  SpringBoot中实现Shiro控制ThymeLeaf界面按钮级权限控制
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-11-15T14:54:47+08:00" content="Nov 15 2017">
-              Nov 15 2017
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/SpringBoot/" itemprop="url" rel="index">
-                    <span itemprop="name">SpringBoot</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2017/11/15/SpringBoot中实现Shiro控制ThymeLeaf界面按钮级权限控制/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/11/15/SpringBoot中实现Shiro控制ThymeLeaf界面按钮级权限控制/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
+          </div>
         </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
       
 
       
-        
-          <h2 id="&#x9700;&#x6C42;&#x7B80;&#x8FF0;">&#x9700;&#x6C42;&#x7B80;&#x8FF0;</h2><p>&#x5728;&#x4E1A;&#x7EE9;&#x6838;&#x7B97;&#x7CFB;&#x7EDF;&#x4E2D;&#xFF0C;&#x6211;&#x4EEC;&#x4F7F;&#x7528;&#x4E86;SpringBoot&#x4F5C;&#x4E3A;&#x9879;&#x76EE;&#x7684;&#x6574;&#x4F53;&#x67B6;&#x6784;&#xFF0C;&#x4F7F;&#x7528;ThymeLeaf&#x4F5C;&#x4E3A;&#x524D;&#x7AEF;&#x754C;&#x9762;&#x6846;&#x67B6;&#xFF0C;&#x4F7F;&#x7528;Shiro&#x4F5C;&#x4E3A;&#x6211;&#x4EEC;&#x7684;&#x6743;&#x9650;&#x63A7;&#x5236;&#x6846;&#x67B6;&#xFF0C;Shiro&#x4F5C;&#x4E3A;&#x8F7B;&#x91CF;&#x7EA7;&#x7684;&#x6743;&#x9650;&#x6846;&#x67B6;&#xFF0C;&#x4F7F;&#x7528;&#x8D77;&#x6765;&#x975E;&#x5E38;&#x65B9;&#x4FBF;&#xFF0C;&#x4F46;&#x662F;&#x5728;&#x4F7F;&#x7528;&#x7684;&#x8FC7;&#x7A0B;&#x4E2D;&#x6211;&#x53D1;&#x73B0;&#xFF0C;Shiro&#x4F5C;&#x4E3A;&#x9875;&#x9762;&#x7EA7;&#x7684;&#x6743;&#x9650;&#x63A7;&#x5236;&#x6846;&#x67B6;&#x975E;&#x5E38;&#x597D;&#x7528;&#xFF0C;&#x5B83;&#x53EF;&#x4EE5;&#x6CE8;&#x5165;&#x5230;Controller&#x4E2D;&#x5BF9;&#x9875;&#x9762;&#x7EA7;&#x7684;&#x8BBF;&#x95EE;&#x6743;&#x9650;&#x505A;&#x63A7;&#x5236;&#xFF0C;&#x4F46;&#x662F;&#x5982;&#x679C;&#x6211;&#x4EEC;&#x60F3;&#x8981;&#x5B9E;&#x73B0;&#x9875;&#x9762;&#x4E2D;&#x67D0;&#x4E2A;&#x6309;&#x94AE;&#x6216;&#x8005;&#x5217;&#x8868;&#x7684;&#x6743;&#x9650;&#x663E;&#x793A;&#xFF0C;&#x5355;&#x7EAF;&#x7684;&#x5728;Controller&#x4E2D;&#x6DFB;&#x52A0;&#x6CE8;&#x89E3;&#x5C31;&#x663E;&#x5F97;&#x6349;&#x895F;&#x89C1;&#x8098;&#x4E86;&#x3002;<br></p>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2017/11/15/SpringBoot中实现Shiro控制ThymeLeaf界面按钮级权限控制/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
       
     </footer>
   </article>
 
 
-    
+
+    <div class="post-spread">
       
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+  <a class="jiathis_button_tsina"></a>
+  <a class="jiathis_button_tqq"></a>
+  <a class="jiathis_button_weixin"></a>
+  <a class="jiathis_button_cqq"></a>
+  <a class="jiathis_button_douban"></a>
+  <a class="jiathis_button_renren"></a>
+  <a class="jiathis_button_qzone"></a>
+  <a class="jiathis_button_kaixin001"></a>
+  <a class="jiathis_button_copy"></a>
+  <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank"></a>
+  <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+  var jiathis_config={
+    hideMore:false
+  }
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+<!-- JiaThis Button END -->
 
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/11/06/SpringBoot1.5以上版本自定义配置文件/" itemprop="url">
-                  SpringBoot1.5以上版本自定义配置文件
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-11-06T16:48:28+08:00" content="Nov 6 2017">
-              Nov 6 2017
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/SpringBoot/" itemprop="url" rel="index">
-                    <span itemprop="name">SpringBoot</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2017/11/06/SpringBoot1.5以上版本自定义配置文件/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/11/06/SpringBoot1.5以上版本自定义配置文件/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>&#x6700;&#x8FD1;&#x5728;&#x5B66;&#x4E60;SpringBoot&#x65B9;&#x9762;&#x7684;&#x77E5;&#x8BC6;&#xFF0C;&#x57FA;&#x672C;&#x7684;&#x6846;&#x67B6;&#x5DF2;&#x7ECF;&#x4E86;&#x89E3;&#x7684;&#x5DEE;&#x4E0D;&#x591A;&#x4E86;&#xFF0C;&#x4ECA;&#x5929;&#x5728;&#x642D;&#x6846;&#x67B6;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x60F3;&#x5230;&#x4E86;&#x4E00;&#x4E2A;&#x4F7F;&#x7528;&#x573A;&#x666F;&#xFF1A;&#x5728;&#x4E00;&#x4E2A;Web&#x5E73;&#x53F0;&#x4E0A;&#xFF0C;&#x5982;&#x679C;&#x6CA1;&#x6709;&#x767B;&#x5F55;&#x8BE5;&#x5E73;&#x53F0;&#xFF0C;&#x90A3;&#x4E48;&#x8BBF;&#x95EE;&#x7684;&#x754C;&#x9762;&#x662F;&#x6709;&#x9650;&#x7684;&#xFF0C;&#x8FD9;&#x6837;&#x6211;&#x5C31;&#x9700;&#x8981;&#x505A;&#x4E00;&#x4E2A;&#x767D;&#x540D;&#x5355;&#xFF0C;&#x672A;&#x767B;&#x5F55;&#x7684;&#x7528;&#x6237;&#x5982;&#x679C;&#x8BBF;&#x95EE;&#x7684;&#x662F;&#x767D;&#x540D;&#x5355;&#x4E2D;&#x7684;&#x9875;&#x9762;&#xFF0C;&#x662F;&#x53EF;&#x4EE5;&#x4E0D;&#x9700;&#x8981;&#x9A8C;&#x8BC1;&#x5176;&#x767B;&#x9646;&#x7684;&#x3002;<br>&#x8FD9;&#x6837;&#x95EE;&#x9898;&#x7684;&#x89E3;&#x51B3;&#x601D;&#x8DEF;&#x662F;&#x6211;&#x9700;&#x8981;&#x4E00;&#x4E2A;List&#x6765;&#x653E;&#x7F6E;&#x6211;&#x7684;&#x767D;&#x540D;&#x5355;&#x8DEF;&#x5F84;&#xFF0C;&#x4F46;&#x662F;&#x6211;&#x6709;&#x53C8;&#x4E0D;&#x60F3;&#x5C06;&#x8FD9;&#x4E2A;&#x767D;&#x540D;&#x5355;&#x653E;&#x7F6E;&#x5728;&#x9759;&#x6001;&#x53D8;&#x91CF;&#x4E2D;&#xFF0C;&#x6240;&#x4EE5;&#x60F3;&#x5230;&#x4E86;SpringBoot&#x652F;&#x6301;&#x81EA;&#x5B9A;&#x4E49;&#x914D;&#x7F6E;&#x6587;&#x4EF6;&#xFF0C;&#x800C;&#x6211;&#x53EA;&#x8981;&#x7EF4;&#x62A4;&#x4E00;&#x4E2A;&#x914D;&#x7F6E;&#x6587;&#x4EF6;&#xFF0C;&#x5728;&#x6BCF;&#x6B21;&#x8FC7;&#x6EE4;&#x5668;&#x8C03;&#x7528;&#x7684;&#x65F6;&#x5019;&#x5C06;&#x767D;&#x540D;&#x5355;&#x8BFB;&#x51FA;&#x6765;&#x5C31;&#x53EF;&#x4EE5;&#x4E86;&#xFF0C;&#x8FD9;&#x6837;&#x9879;&#x76EE;&#x4E2D;&#x7684;&#x5F00;&#x53D1;&#x4EBA;&#x5458;&#x53EA;&#x8981;&#x7EF4;&#x62A4;&#x4E00;&#x4E2A;&#x914D;&#x7F6E;&#x6587;&#x4EF6;&#x5373;&#x53EF;&#xFF0C;&#x65E2;&#x7136;&#x6709;&#x4E86;&#x601D;&#x8DEF;&#xFF0C;&#x90A3;&#x4E48;&#x5C31;&#x53EF;&#x4EE5;&#x5F00;&#x59CB;&#x5B9E;&#x73B0;&#x4E86;&#x3002;<br></p>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2017/11/06/SpringBoot1.5以上版本自定义配置文件/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
       
     </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/06/15/Android自定义View的测量过程详解/" itemprop="url">
-                  Android自定义View的测量过程详解
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-06-15T16:47:48+08:00" content="Jun 15 2017">
-              Jun 15 2017
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Android/" itemprop="url" rel="index">
-                    <span itemprop="name">Android</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2017/06/15/Android自定义View的测量过程详解/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/06/15/Android自定义View的测量过程详解/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <blockquote>
-<p>&#x5728;Android&#x5F00;&#x53D1;&#x4E2D;&#xFF0C;&#x81EA;&#x5B9A;&#x4E49;View&#x53EF;&#x4EE5;&#x8BF4;&#x662F;&#x4ECE;&#x4E1A;&#x4EBA;&#x5458;&#x4ECE;&#x521D;&#x7EA7;&#x5230;&#x4E2D;&#x7EA7;&#x7684;&#x4E00;&#x4E2A;&#x6807;&#x5FD7;&#x6027;&#x8FC7;&#x6E21;&#xFF0C;&#x4E0D;&#x8BBA;&#x4F60;&#x662F;&#x8001;&#x9E1F;&#x8FD8;&#x662F;&#x65B0;&#x4EBA;&#xFF0C;&#x4E0D;&#x8BBA;&#x4F60;&#x662F;&#x5DE5;&#x4F5C;&#x8FD8;&#x662F;&#x9762;&#x8BD5;&#xFF0C;&#x81EA;&#x5B9A;&#x4E49;View&#x90FD;&#x5982;&#x540C;&#x4E00;&#x4E2A;&#x5B88;&#x5173;&#x7684;BOSS&#x4E00;&#x6837;&#xFF0C;&#x65E0;&#x6CD5;&#x56DE;&#x907F;&#xFF0C;&#x300A;&#x5FC3;&#x82B1;&#x8DEF;&#x653E;&#x300B;&#x91CC;&#x5F20;&#x4FEA;( &#x90A3;&#x4E2A;&#x5927;&#x957F;&#x817F;)&#x8BF4;&#x8FC7;&#xFF0C;&#x201C;&#x9047;&#x5230;&#x95EE;&#x9898;&#xFF0C;&#x6B63;&#x9762;&#x9762;&#x5BF9;&#x3002;&#x201D;&#xFF0C;&#x597D;&#x5427;&#xFF0C;&#x8EB2;&#x4E0D;&#x8D77;&#x6211;&#x8FD8;&#x6253;&#x4E0D;&#x8FC7;&#x4E48;&#x6211;&#xFF1F;&#x64B8;&#x8D77;&#x8896;&#x5B50;&#xFF0C;&#x5E72;&#xFF01;<br></p></blockquote>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2017/06/15/Android自定义View的测量过程详解/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-  </section>
-
-  
-  <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
-  </nav>
-
+  </div>
 
 
           </div>
           
 
+  <p>热评文章</p>
+  <div class="ds-top-threads" data-range="weekly" data-num-items="4"></div>
+
 
           
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2017/12/04/Springboot集成Shiro和Cas实现单点登录-客户端篇/"
+           data-title="Springboot集成Shiro和Cas实现单点登录-客户端篇" data-url="http://jasoncool.com/2017/12/04/Springboot集成Shiro和Cas实现单点登录-客户端篇/">
+      </div>
+    
+  </div>
+
 
         </div>
         
@@ -1221,8 +780,17 @@ cas.authn.attributeRepository.jdbc[0].failFast=trueyeshi</span><br></pre></td></
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel  sidebar-panel-active ">
+      <section class="site-overview sidebar-panel ">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="http://tva2.sinaimg.cn/crop.0.0.720.720.180/460788ebjw8ep8yc024exj20k00k0tc2.jpg"
@@ -1283,6 +851,17 @@ cas.authn.attributeRepository.jdbc[0].failFast=trueyeshi</span><br></pre></td></
 
       </section>
 
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#引入Shiro-cas包"><span class="nav-number">2.</span> <span class="nav-text">引入Shiro-cas包</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#加入单点登录的配置"><span class="nav-number">3.</span> <span class="nav-text">加入单点登录的配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#查看效果"><span class="nav-number">4.</span> <span class="nav-text">查看效果</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#获取用户信息"><span class="nav-number">5.</span> <span class="nav-text">获取用户信息</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#后记"><span class="nav-number">6.</span> <span class="nav-text">后记</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#相关资料"><span class="nav-number">7.</span> <span class="nav-text">相关资料</span></a></li></ol></div>
+            
+          </div>
+        </section>
       
 
     </div>
@@ -1379,6 +958,10 @@ cas.authn.attributeRepository.jdbc[0].failFast=trueyeshi</span><br></pre></td></
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
 
   
 
