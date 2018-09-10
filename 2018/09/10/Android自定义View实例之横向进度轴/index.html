@@ -1,0 +1,831 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Android," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="&amp;#x4E00;&amp;#x4E9B;&amp;#x5FC3;&amp;#x91CC;&amp;#x8BDD;&amp;#x81EA;&amp;#x5B9A;&amp;#x4E49;View&amp;#x4F5C;&amp;#x4E3A;Android&amp;#x7A0B;&amp;#x5E8F;&amp;#x5F00;&amp;#x53D1;&amp;#x8FC7;&amp;#x7A0B;&amp;#x4E2D;&amp;#xFF0C;&amp;#x521D;&amp;#x9636;&amp;#x5230;&amp;#x4E2D;&amp;#x9636;&amp;#x66">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Android自定义View实例之横向进度轴">
+<meta property="og:url" content="http://jasoncool.com/2018/09/10/Android自定义View实例之横向进度轴/index.html">
+<meta property="og:site_name" content="移动开发小水吧">
+<meta property="og:description" content="&amp;#x4E00;&amp;#x4E9B;&amp;#x5FC3;&amp;#x91CC;&amp;#x8BDD;&amp;#x81EA;&amp;#x5B9A;&amp;#x4E49;View&amp;#x4F5C;&amp;#x4E3A;Android&amp;#x7A0B;&amp;#x5E8F;&amp;#x5F00;&amp;#x53D1;&amp;#x8FC7;&amp;#x7A0B;&amp;#x4E2D;&amp;#xFF0C;&amp;#x521D;&amp;#x9636;&amp;#x5230;&amp;#x4E2D;&amp;#x9636;&amp;#x66">
+<meta property="og:image" content="http://jasoncool.com/2018/09/10/Android自定义View实例之横向进度轴/1.gif">
+<meta property="og:updated_time" content="2018-09-10T03:54:27.312Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Android自定义View实例之横向进度轴">
+<meta name="twitter:description" content="&amp;#x4E00;&amp;#x4E9B;&amp;#x5FC3;&amp;#x91CC;&amp;#x8BDD;&amp;#x81EA;&amp;#x5B9A;&amp;#x4E49;View&amp;#x4F5C;&amp;#x4E3A;Android&amp;#x7A0B;&amp;#x5E8F;&amp;#x5F00;&amp;#x53D1;&amp;#x8FC7;&amp;#x7A0B;&amp;#x4E2D;&amp;#xFF0C;&amp;#x521D;&amp;#x9636;&amp;#x5230;&amp;#x4E2D;&amp;#x9636;&amp;#x66">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://jasoncool.com/2018/09/10/Android自定义View实例之横向进度轴/"/>
+
+  <title> Android自定义View实例之横向进度轴 | 移动开发小水吧 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">移动开发小水吧</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">没啥高深技术，只求水水更健康！</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup">
+ <span class="search-icon fa fa-search"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Android自定义View实例之横向进度轴
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2018-09-10T10:42:24+08:00" content="Sep 10 2018">
+              Sep 10 2018
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Android/" itemprop="url" rel="index">
+                    <span itemprop="name">Android</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2018/09/10/Android自定义View实例之横向进度轴/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2018/09/10/Android自定义View实例之横向进度轴/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="&#x4E00;&#x4E9B;&#x5FC3;&#x91CC;&#x8BDD;">&#x4E00;&#x4E9B;&#x5FC3;&#x91CC;&#x8BDD;</h2><p>&#x81EA;&#x5B9A;&#x4E49;View&#x4F5C;&#x4E3A;Android&#x7A0B;&#x5E8F;&#x5F00;&#x53D1;&#x8FC7;&#x7A0B;&#x4E2D;&#xFF0C;&#x521D;&#x9636;&#x5230;&#x4E2D;&#x9636;&#x664B;&#x7EA7;&#x7684;&#x5173;&#x952E;&#x6027;&#x6807;&#x5FD7;&#xFF0C;&#x4E00;&#x76F4;&#x662F;&#x5F88;&#x591A;Android&#x7A0B;&#x5E8F;&#x5458;&#x5B66;&#x4E60;&#x7684;&#x5FC5;&#x7ECF;&#x4E4B;&#x8DEF;&#xFF0C;&#x6709;&#x5F88;&#x591A;&#x540C;&#x884C;&#x5728;&#x9047;&#x5230;&#x81EA;&#x5B9A;&#x4E49;View&#x540E;&#x9009;&#x62E9;&#x4E86;&#x77E5;&#x96BE;&#x800C;&#x9000;&#xFF0C;&#x8FD9;&#x5C31;&#x9020;&#x6210;&#x4E86;&#x4E00;&#x4E2A;&#x73B0;&#x8C61;&#xFF0C;&#x90A3;&#x5C31;&#x662F;&#x8FD9;&#x4E9B;&#x7A0B;&#x5E8F;&#x5458;&#x53EA;&#x4F1A;&#x62FF;&#x522B;&#x4EBA;&#x9020;&#x597D;&#x7684;&#x8F6E;&#x5B50;&#x4FEE;&#x4FEE;&#x8865;&#x8865;&#xFF0C;&#x800C;&#x4ECE;&#x4E0D;&#x77E5;&#x9053;&#x4E00;&#x4E2A;&#x8F6E;&#x5B50;&#x8BE5;&#x5982;&#x4F55;&#x9020;&#x51FA;&#x6765;&#xFF0C;&#x8FD9;&#x6837;&#x4E0D;&#x597D;&#x3002;</p>
+<p>&#x867D;&#x7136;&#x6211;&#x4E5F;&#x4E0D;&#x5EFA;&#x8BAE;&#x5927;&#x5BB6;&#x90FD;&#x91CD;&#x590D;&#x7684;&#x9020;&#x8F6E;&#x5B50;&#xFF0C;&#x6BD5;&#x7ADF;&#x4F60;&#x9020;&#x51FA;&#x6765;&#x7684;&#x672A;&#x5FC5;&#x6BD4;&#x522B;&#x4EBA;&#x597D;&#xFF0C;&#x9020;&#x597D;&#x4E86;&#x4E5F;&#x82B1;&#x8D39;&#x5927;&#x91CF;&#x65F6;&#x95F4;&#xFF0C;&#x62D6;&#x5EF6;&#x4E86;&#x9879;&#x76EE;&#x8FDB;&#x5EA6;&#xFF0C;&#x4F46;&#x662F;&#x77E5;&#x9053;&#x5982;&#x4F55;&#x9020;&#x8F6E;&#x5B50;&#x8FD9;&#x4EF6;&#x4E8B;&#x80AF;&#x5B9A;&#x662F;&#x5F88;&#x91CD;&#x8981;&#x7684;&#xFF0C;&#x4E0D;&#x80FD;&#x56E0;&#x564E;&#x5E9F;&#x98DF;&#xFF0C;&#x6BD5;&#x7ADF;&#x81EA;&#x5B9A;&#x4E49;View&#x6D89;&#x53CA;&#x7684;&#x77E5;&#x8BC6;&#x70B9;&#x975E;&#x5E38;&#x591A;&#x4E14;&#x590D;&#x6742;&#xFF0C;&#x53EA;&#x6709;&#x638C;&#x63E1;&#x4E86;&#x96BE;&#x5EA6;&#x8F83;&#x9AD8;&#x7684;&#x6280;&#x80FD;&#xFF0C;&#x4F60;&#x624D;&#x80FD;&#x5728;&#x7EA2;&#x5229;&#x671F;&#x5DF2;&#x8FC7;&#x7684;&#x79FB;&#x52A8;&#x5F00;&#x53D1;&#x4E2D;&#x8D70;&#x7684;&#x66F4;&#x8FDC;&#xFF0C;&#x722C;&#x7684;&#x66F4;&#x9AD8;&#xFF0C;&#x6BD5;&#x7ADF;&#x8FD9;&#x4E2A;&#x884C;&#x4E1A;&#x867D;&#x7B97;&#x4E0D;&#x4E0A;&#x5F31;&#x8089;&#x5F3A;&#x98DF;&#xFF0C;&#x4F46;&#x662F;&#x4F18;&#x80DC;&#x7565;&#x6C70;&#x7684;&#x81EA;&#x7136;&#x6CD5;&#x5219;&#x8FD8;&#x662F;&#x6709;&#x7684;&#x3002;</p>
+<p>&#x597D;&#x4E86;&#xFF0C;&#x53ED;&#x53ED;&#x4E86;&#x8FD9;&#x4E48;&#x591A;&#xFF0C;&#x76EE;&#x7684;&#x4E0D;&#x662F;&#x8BF4;&#x6559;&#xFF0C;&#x800C;&#x662F;&#x5E0C;&#x671B;&#x6BCF;&#x4E2A;&#x4EBA;&#x90FD;&#x80FD;&#x770B;&#x6E05;&#x81EA;&#x5DF1;&#x672A;&#x6765;&#x7684;&#x8DEF;&#xFF0C;&#x6709;&#x6240;&#x8FFD;&#x6C42;&#x4E5F;&#x5B66;&#x4F1A;&#x53D6;&#x820D;&#x3002;</p>
+<a id="more"></a>
+<h2 id="&#x8BF4;&#x8BF4;&#x8FD9;&#x4E2A;&#x81EA;&#x5B9A;&#x4E49;View">&#x8BF4;&#x8BF4;&#x8FD9;&#x4E2A;&#x81EA;&#x5B9A;&#x4E49;View</h2><p>  &#x81EA;&#x5B9A;&#x4E49;View&#x5176;&#x5B9E;&#x6CA1;&#x5565;&#x597D;&#x8BF4;&#x7684;&#xFF0C;&#x76F4;&#x63A5;&#x770B;&#x6548;&#x679C;&#x56FE;&#x5373;&#x53EF;&#xFF1A;<br><img src="/2018/09/10/Android&#x81EA;&#x5B9A;&#x4E49;View&#x5B9E;&#x4F8B;&#x4E4B;&#x6A2A;&#x5411;&#x8FDB;&#x5EA6;&#x8F74;/1.gif" alt="logo"><br>&#x5927;&#x6982;&#x5C31;&#x662F;&#x8FD9;&#x4E2A;&#x6837;&#x5B50;&#x4E86;&#xFF0C;&#x6709;&#x51E0;&#x5904;&#x9700;&#x8981;&#x7B80;&#x5355;&#x8BF4;&#x660E;&#x4E00;&#x4E0B;&#xFF1A;</p>
+<p>1.&#x53EF;&#x4EE5;&#x81EA;&#x5B9A;&#x4E49;&#x5706;&#x5F62;&#x7684;&#x5927;&#x5C0F;<br>2.&#x53EF;&#x4EE5;&#x81EA;&#x5B9A;&#x4E49;&#x8FDE;&#x63A5;&#x7EBF;&#x7684;&#x7C97;&#x7EC6;<br>3.&#x53EF;&#x4EE5;&#x81EA;&#x5B9A;&#x4E49;&#x5B8C;&#x6210;&#x548C;&#x672A;&#x5B8C;&#x6210;&#x7684;&#x989C;&#x8272;<br>4.&#x53EF;&#x4EE5;&#x81EA;&#x5B9A;&#x4E49;&#x9636;&#x6BB5;&#x6587;&#x5B57;&#x7684;&#x5927;&#x5C0F;<br>5.&#x53EF;&#x4EE5;&#x6DFB;&#x52A0;&#x70B9;&#x51FB;&#x4E8B;&#x4EF6;<br>6.&#x652F;&#x6301;&#x8BBE;&#x7F6E;&#x8FDB;&#x5EA6;&#x7EBF;&#x5728;&#x4E24;&#x4E2A;&#x5706;&#x5F62;&#x4E4B;&#x95F4;<br>(&#x6BD4;&#x5982;&#xFF1A;&#x8BBE;&#x7F6E;&#x6B65;&#x6570;&#x4E3A;2.3&#xFF0C;&#x4ECE;0&#x5F00;&#x59CB;&#x753B;&#x70B9;&#x5219;&#x4F1A;&#x5728;&#x70B9;2&#x548C;&#x70B9;3&#x4E4B;&#x95F4;&#x6709;&#x4E00;&#x4E2A;&#x5B8C;&#x6210;&#x5EA6;&#x4E3A;&#x767E;&#x5206;&#x4E4B;30&#x7684;&#x5B8C;&#x6210;&#x7EBF;)</p>
+<p>&#x57FA;&#x672C;&#x4E0A;&#x81EA;&#x5B9A;&#x4E49;View&#x5C31;&#x662F;&#x8FD9;&#x4E2A;&#x6837;&#x5B50;&#x4E86;&#xFF0C;&#x9002;&#x5408;&#x4E00;&#x4E9B;&#x8FDB;&#x5EA6;&#x5468;&#x671F;&#x8F83;&#x77ED;&#x7684;&#x4E1A;&#x52A1;&#xFF0C;&#x6BD4;&#x5982;&#xFF1A;&#x5468;&#x671F;&#x8F83;&#x77ED;&#x7684;&#x552E;&#x540E;&#x4E1A;&#x52A1;&#x6216;&#x8005;&#x5F00;&#x53D1;&#x6D41;&#x7A0B;&#x7B49;&#x8FDB;&#x5EA6;&#x8F74;&#x3002;</p>
+<h2 id="&#x81EA;&#x5B9A;&#x4E49;View&#x7684;&#x7ED8;&#x5236;&#x601D;&#x8DEF;">&#x81EA;&#x5B9A;&#x4E49;View&#x7684;&#x7ED8;&#x5236;&#x601D;&#x8DEF;</h2><p>&#x6BCF;&#x505A;&#x4E00;&#x4E2A;&#x81EA;&#x5B9A;&#x4E49;View&#x6211;&#x4EEC;&#x5FC5;&#x987B;&#x517B;&#x6210;&#x4E00;&#x4E2A;&#x4E60;&#x60EF;&#xFF0C;&#x90A3;&#x5C31;&#x662F;&#x5148;&#x8003;&#x8651;&#x7ED8;&#x5236;&#x601D;&#x8DEF;&#xFF0C;&#x81EA;&#x5B9A;&#x4E49;View&#x7684;&#x8FC7;&#x7A0B;&#x5176;&#x5B9E;&#x5C31;&#x662F;&#x5229;&#x7528;Android&#x7ED9;&#x7684;&#x753B;&#x7B14;(Paint)&#x548C;&#x81EA;&#x5B9A;&#x4E49;&#x7684;&#x5C5E;&#x6027;&#x503C;(attrs.xml)&#x518D;&#x6839;&#x636E;&#x4E00;&#x5B9A;&#x7684;&#x6D4B;&#x91CF;&#x89C4;&#x5219;&#xFF08;onMeasure&#xFF09;&#x4EE5;&#x53CA;&#x7ED8;&#x5236;&#x6D41;&#x7A0B;(onDraw)&#x5229;&#x7528;&#x4E00;&#x4E9B;&#x7B97;&#x6CD5;(&#x8D1D;&#x585E;&#x5C14;&#x66F2;&#x7EBF;&#x7B49;)&#x5728;&#x753B;&#x5E03;(Canvas)&#x4E0A;&#x7ED8;&#x5236;&#x7684;&#x8FC7;&#x7A0B;&#xFF0C;&#x6240;&#x4EE5;&#x5728;&#x4F60;&#x4E0D;&#x9700;&#x8981;&#x5B66;&#x4E60;&#x4E00;&#x4E9B;&#x753B;&#x753B;&#x7684;&#x57FA;&#x672C;&#x529F;&#x7684;&#x524D;&#x63D0;&#x4E0B;&#xFF08;Paint&#x548C;Canvas&#x90FD;&#x5E2E;&#x4F60;&#x505A;&#x4E86;&#xFF09;&#xFF0C;&#x5982;&#x4F55;&#x6784;&#x56FE;&#x5C31;&#x6210;&#x4E86;&#x4E00;&#x4E2A;&#x7A0B;&#x5E8F;&#x5458;&#x7ED8;&#x5236;&#x81EA;&#x5B9A;&#x4E49;View&#x7684;&#x5173;&#x952E;&#x3002;</p>
+<p>&#x6784;&#x56FE;&#xFF0C;&#x770B;&#x4F3C;&#x89E6;&#x624B;&#x53EF;&#x53CA;&#x4F46;&#x5B9E;&#x9645;&#x4E0A;&#x865A;&#x65E0;&#x7F25;&#x7F08;&#xFF0C;&#x8FD9;&#x662F;&#x4E00;&#x4E2A;&#x521B;&#x4F5C;&#x7684;&#x8FC7;&#x7A0B;&#xFF0C;&#x521B;&#x4F5C;&#x5C31;&#x662F;&#x75DB;&#x82E6;&#x7684;&#x8FC7;&#x7A0B;(&#x5929;&#x624D;&#x9664;&#x5916;)&#x3002;</p>
+<p>&#x73B0;&#x5728;&#x56DE;&#x5230;&#x6211;&#x4EEC;&#x7684;&#x81EA;&#x5B9A;&#x4E49;View&#x5427;&#xFF0C;&#x8981;&#x7ED8;&#x5236;&#x4E00;&#x4E2A;&#x6A2A;&#x5411;&#x7684;&#x8FDB;&#x5EA6;&#x8F74;&#xFF0C;&#x6700;&#x5173;&#x952E;&#x7684;&#x51E0;&#x4E2A;&#x95EE;&#x9898;&#xFF1A;</p>
+<p>1.&#x5982;&#x4F55;&#x7ED8;&#x5236;&#x70B9;?<br>2.&#x5982;&#x4F55;&#x7ED8;&#x5236;&#x7EBF;&#xFF1F;<br>3.&#x7B2C;&#x4E00;&#x4E2A;&#x70B9;&#x5DE6;&#x8FB9;&#x7559;&#x767D;&#x591A;&#x5C11;&#xFF1F;<br>4.&#x7B2C;&#x4E8C;&#x4E2A;&#x70B9;&#x53F3;&#x8FB9;&#x7559;&#x767D;&#x591A;&#x5C11;&#xFF1F;<br>5.&#x81EA;&#x5B9A;&#x4E49;&#x6D4B;&#x91CF;&#x7684;&#x5BBD;&#x5EA6;&#x548C;&#x9AD8;&#x5EA6;&#x5E94;&#x8BE5;&#x600E;&#x4E48;&#x8BA1;&#x7B97;&#xFF1F;</p>
+<p>&#x95EE;&#x9898;&#x5176;&#x5B9E;&#x4E0D;&#x591A;&#xFF0C;&#x7ED8;&#x5236;&#x70B9;&#x548C;&#x7EBF;Canvas&#x90FD;&#x6709;&#x73B0;&#x6210;&#x7684;&#x65B9;&#x6CD5;&#xFF0C;&#x4E0D;&#x7528;&#x64CD;&#x5FC3;&#xFF0C;&#x5173;&#x952E;&#x662F;&#x7B2C;&#x4E00;&#x4E2A;&#x70B9;&#x7684;&#x5DE6;&#x8FB9;&#x7559;&#x767D;&#x548C;&#x6700;&#x540E;&#x4E00;&#x4E2A;&#x70B9;&#x7684;&#x53F3;&#x8FB9;&#x7559;&#x767D;&#xFF0C;&#x56E0;&#x4E3A;&#x6211;&#x5F00;&#x59CB;&#x753B;&#x7684;&#x65F6;&#x5019;&#x7B80;&#x5355;&#x7684;&#x8BA4;&#x4E3A;&#x53EA;&#x8981;&#x7559;&#x51FA;&#x5706;&#x5F62;&#x7684;&#x534A;&#x5F84;&#x5C31;&#x884C;&#x4E86;&#xFF0C;&#x7ED3;&#x679C;&#x53D1;&#x73B0;&#x4E0B;&#x9762;&#x7684;&#x5B57;&#x6BD4;&#x5706;&#x5F62;&#x5BBD;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x5B57;&#x5C31;&#x8D85;&#x51FA;&#x754C;&#x9762;&#x4E86;&#xFF0C;&#x6240;&#x4EE5;&#x5F97;&#x8003;&#x8651;&#x5B57;&#x548C;&#x534A;&#x5F84;&#x7684;&#x5BBD;&#x5EA6;&#xFF0C;&#x53D6;&#x6BD4;&#x8F83;&#x5BBD;&#x7684;&#x90A3;&#x4E2A;&#x503C;&#x8FDB;&#x884C;&#x7559;&#x767D;&#xFF0C;&#x81EA;&#x5B9A;&#x4E49;&#x6D4B;&#x91CF;&#x7684;&#x5BBD;&#x5EA6;&#x548C;&#x9AD8;&#x5EA6;&#x6211;&#x662F;&#x8FD9;&#x4E48;&#x8BBE;&#x8BA1;&#x7684;&#xFF1A;&#x5BBD;&#x5EA6;&#x4E3A;&#x624B;&#x673A;&#x5BBD;&#x5EA6;&#xFF0C;&#x9664;&#x975E;&#x4F60;&#x5199;&#x4E86;&#x5177;&#x4F53;&#x503C;&#xFF0C;&#x9AD8;&#x5EA6;&#x4E3A;&#x5706;&#x7684;&#x76F4;&#x5F84;&#x52A0;&#x4E0A;&#x4E24;&#x4E2A;&#x5B57;&#x7684;&#x9AD8;&#x5EA6;&#x518D;&#x52A0;&#x4E0A;padding&#x3002;</p>
+<p>&#x8FD9;&#x6837;&#x5C31;&#x628A;&#x8FD9;&#x4E2A;&#x81EA;&#x5B9A;&#x4E49;View&#x7684;&#x6846;&#x67B6;&#x642D;&#x5EFA;&#x597D;&#x4E86;&#xFF0C;&#x7136;&#x540E;&#x8003;&#x8651;&#x7684;&#x5C31;&#x662F;&#x5982;&#x4F55;&#x8FDE;&#x7EBF;&#x4EE5;&#x53CA;&#x5982;&#x4F55;&#x753B;&#x672A;&#x5B8C;&#x6210;&#x7684;&#x5EF6;&#x957F;&#x7EBF;&#x4E86;&#xFF1A;</p>
+<p>1.&#x8FDE;&#x7EBF;&#x5F88;&#x7B80;&#x5355;&#xFF0C;&#x53EA;&#x8981;&#x786E;&#x5B9A;&#x6B65;&#x6570;&#x5927;&#x4E8E;1&#xFF0C;&#x7136;&#x540E;&#x8BA9;&#x603B;&#x5BBD;&#x5EA6;&#x51CF;&#x53BB;&#x5DE6;&#x53F3;&#x7559;&#x767D;&#x7684;&#x5BBD;&#x5EA6;&#x548C;&#x8D77;&#x59CB;&#x53CA;&#x7ED3;&#x675F;&#x4E24;&#x4E2A;&#x5706;&#x7684;&#x76F4;&#x5F84;&#xFF0C;&#x5269;&#x4E0B;&#x7684;&#x5BBD;&#x5EA6;&#x5728;&#x9664;&#x4EE5;&#x70B9;&#x6570;-1&#x6765;&#x7B97;&#x51FA;&#x6BCF;&#x6761;&#x8FDE;&#x63A5;&#x7EBF;&#x7684;&#x957F;&#x5EA6;&#xFF0C;&#x518D;&#x5C06;&#x7EBF;&#x8FDE;&#x63A5;&#x8D77;&#x6765;&#x5373;&#x53EF;&#x3002;</p>
+<p>2.&#x672A;&#x5B8C;&#x6210;&#x8FDB;&#x5EA6;&#x7684;&#x5EF6;&#x957F;&#x7EBF;&#x7684;&#x601D;&#x8DEF;&#x5C31;&#x662F;&#xFF0C;&#x5F97;&#x5230;&#x8FD9;&#x4E2A;&#x6B65;&#x6570;&#x6700;&#x5927;&#x7684;&#x6B65;&#x6570;&#xFF0C;&#x5728;&#x8FD9;&#x4E2A;&#x6B65;&#x6570;&#x5BF9;&#x5E94;&#x7684;&#x5706;&#x5F62;&#x4E4B;&#x540E;&#x7ED8;&#x5236;&#x4E00;&#x6761;&#x8FDE;&#x63A5;&#x7EBF;&#x957F;&#x5EA6;&#x767E;&#x5206;&#x6BD4;&#x957F;&#x5EA6;&#x7684;&#x5B8C;&#x6210;&#x7EBF;&#x8986;&#x76D6;&#x5373;&#x53EF;&#x3002;</p>
+<p>&#x5F53;&#x7136;&#x8FD8;&#x8981;&#x8003;&#x8651;&#x81EA;&#x5B9A;&#x4E49;View&#x8BBE;&#x7F6E;&#x70B9;&#x51FB;&#x4E8B;&#x4EF6;&#x5E76;&#x5BF9;&#x5916;&#x63D0;&#x4F9B;&#x63A5;&#x53E3;&#x4EE5;&#x53CA;&#x70B9;&#x51FB;&#x4E8B;&#x4EF6;&#x5224;&#x65AD;&#x70B9;&#x51FB;&#x70B9;&#x662F;&#x5426;&#x5728;&#x65F6;&#x95F4;&#x8F74;&#x7684;&#x5706;&#x5F62;&#x4E0A;&#x5E76;&#x91CD;&#x65B0;&#x7ED8;&#x5236;&#x5B8C;&#x6210;&#x548C;&#x672A;&#x5B8C;&#x6210;&#x7684;&#x754C;&#x9762;&#x7B49;&#x7B49;&#x3002;</p>
+<p>&#x8FD9;&#x4E2A;&#x601D;&#x8DEF;&#x5199;&#x51FA;&#x6765;&#x53EF;&#x80FD;&#x5F88;&#x96BE;&#x63CF;&#x8FF0;&#x6E05;&#x695A;&#xFF0C;&#x5982;&#x679C;&#x770B;&#x4E0D;&#x61C2;&#x6216;&#x8005;&#x770B;&#x8FF7;&#x7CCA;&#x4E86;&#x90A3;&#x80AF;&#x5B9A;&#x662F;&#x6211;&#x8868;&#x8FBE;&#x4E0D;&#x597D;&#xFF0C;&#x4E0D;&#x7528;&#x62C5;&#x5FC3;&#xFF0C;&#x7EE7;&#x7EED;&#x5F80;&#x4E0B;&#x770B;&#xFF0C;&#x4EE3;&#x7801;&#x4F1A;&#x544A;&#x8BC9;&#x4F60;&#x4E00;&#x5207;&#xFF0C;Talking  Is Cheap!</p>
+<h2 id="&#x4EE3;&#x7801;&#x5982;&#x4F55;&#x5B9E;&#x73B0;">&#x4EE3;&#x7801;&#x5982;&#x4F55;&#x5B9E;&#x73B0;</h2><p>&#x7B2C;&#x4E00;&#x6B65;&#xFF1A;&#x5728;values&#x6587;&#x4EF6;&#x5939;&#x91CC;&#x52A0;&#x5165;attrs.xml&#x6587;&#x4EF6;&#xFF0C;&#x7528;&#x6765;&#x5B58;&#x653E;&#x81EA;&#x5B9A;&#x4E49;View&#x7528;&#x5230;&#x7684;&#x81EA;&#x5B9A;&#x4E49;&#x5C5E;&#x6027;&#xFF0C;&#x4E3B;&#x8981;&#x76EE;&#x7684;&#x662F;&#x5728;&#x5E03;&#x5C40;&#x6587;&#x4EF6;&#x4E2D;&#x5C31;&#x53EF;&#x4EE5;&#x8BBE;&#x7F6E;&#x81EA;&#x5B9A;&#x4E49;&#x5C5E;&#x6027;&#x7684;&#x503C;&#xFF0C;&#x65B9;&#x4FBF;&#x5F00;&#x53D1;&#x8005;&#x8BBE;&#x7F6E;&#x3002;</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="pi">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">resources</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">declare-styleable</span> <span class="attribute">name</span>=<span class="value">&quot;TimeLineView&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="title">attr</span> <span class="attribute">name</span>=<span class="value">&quot;textSize&quot;</span> <span class="attribute">format</span>=<span class="value">&quot;dimension&quot;</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="title">attr</span> <span class="attribute">name</span>=<span class="value">&quot;tlradius&quot;</span> <span class="attribute">format</span>=<span class="value">&quot;dimension&quot;</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="title">attr</span> <span class="attribute">name</span>=<span class="value">&quot;lineWidth&quot;</span> <span class="attribute">format</span>=<span class="value">&quot;dimension&quot;</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="title">attr</span> <span class="attribute">name</span>=<span class="value">&quot;CompleteColor&quot;</span> <span class="attribute">format</span>=<span class="value">&quot;color&quot;</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="title">attr</span> <span class="attribute">name</span>=<span class="value">&quot;NoCompleteColor&quot;</span> <span class="attribute">format</span>=<span class="value">&quot;color&quot;</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="title">declare-styleable</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">resources</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>&#x8FD9;&#x4E2A;&#x64CD;&#x4F5C;&#x5982;&#x679C;&#x770B;&#x4E0D;&#x61C2;&#xFF0C;&#x5C31;&#x5F97;&#x81EA;&#x5DF1;&#x53BB;&#x5B66;&#x4E86;&#xFF0C;&#x4E3B;&#x8981;&#x5B66;&#x4E60;&#x81EA;&#x5B9A;&#x4E49;&#x5C5E;&#x6027;&#x65B9;&#x9762;&#x7684;&#x77E5;&#x8BC6;&#x3002;</p>
+<p>&#x7B2C;&#x4E8C;&#x6B65;&#xFF1A;&#x5F00;&#x59CB;&#x7F16;&#x5199;&#x81EA;&#x5B9A;&#x4E49;View&#x7684;&#x4EE3;&#x7801;&#xFF0C;&#x878D;&#x5165;&#x521A;&#x624D;&#x7684;&#x601D;&#x8DEF;&#xFF0C;&#x6CE8;&#x91CA;&#x6211;&#x5DF2;&#x7ECF;&#x5199;&#x7684;&#x975E;&#x5E38;&#x597D;&#x4E86;(&#x4E2A;&#x4EBA;&#x8BA4;&#x4E3A;),&#x8BF7;&#x8BA4;&#x771F;&#x9605;&#x8BFB;&#xFF0C;&#x5E26;&#x7740;&#x521A;&#x624D;&#x6211;&#x63CF;&#x8FF0;&#x7684;&#x7A00;&#x91CC;&#x7CCA;&#x6D82;&#x7684;&#x601D;&#x8DEF;&#x4E5F;&#x53EF;&#x4EE5;&#x3002;</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br><span class="line">226</span><br><span class="line">227</span><br><span class="line">228</span><br><span class="line">229</span><br><span class="line">230</span><br><span class="line">231</span><br><span class="line">232</span><br><span class="line">233</span><br><span class="line">234</span><br><span class="line">235</span><br><span class="line">236</span><br><span class="line">237</span><br><span class="line">238</span><br><span class="line">239</span><br><span class="line">240</span><br><span class="line">241</span><br><span class="line">242</span><br><span class="line">243</span><br><span class="line">244</span><br><span class="line">245</span><br><span class="line">246</span><br><span class="line">247</span><br><span class="line">248</span><br><span class="line">249</span><br><span class="line">250</span><br><span class="line">251</span><br><span class="line">252</span><br><span class="line">253</span><br><span class="line">254</span><br><span class="line">255</span><br><span class="line">256</span><br><span class="line">257</span><br><span class="line">258</span><br><span class="line">259</span><br><span class="line">260</span><br><span class="line">261</span><br><span class="line">262</span><br><span class="line">263</span><br><span class="line">264</span><br><span class="line">265</span><br><span class="line">266</span><br><span class="line">267</span><br><span class="line">268</span><br><span class="line">269</span><br><span class="line">270</span><br><span class="line">271</span><br><span class="line">272</span><br><span class="line">273</span><br><span class="line">274</span><br><span class="line">275</span><br><span class="line">276</span><br><span class="line">277</span><br><span class="line">278</span><br><span class="line">279</span><br><span class="line">280</span><br><span class="line">281</span><br><span class="line">282</span><br><span class="line">283</span><br><span class="line">284</span><br><span class="line">285</span><br><span class="line">286</span><br><span class="line">287</span><br><span class="line">288</span><br><span class="line">289</span><br><span class="line">290</span><br><span class="line">291</span><br><span class="line">292</span><br><span class="line">293</span><br><span class="line">294</span><br><span class="line">295</span><br><span class="line">296</span><br><span class="line">297</span><br><span class="line">298</span><br><span class="line">299</span><br><span class="line">300</span><br><span class="line">301</span><br><span class="line">302</span><br><span class="line">303</span><br><span class="line">304</span><br><span class="line">305</span><br><span class="line">306</span><br><span class="line">307</span><br><span class="line">308</span><br><span class="line">309</span><br><span class="line">310</span><br><span class="line">311</span><br><span class="line">312</span><br><span class="line">313</span><br><span class="line">314</span><br><span class="line">315</span><br><span class="line">316</span><br><span class="line">317</span><br><span class="line">318</span><br><span class="line">319</span><br><span class="line">320</span><br><span class="line">321</span><br><span class="line">322</span><br><span class="line">323</span><br><span class="line">324</span><br><span class="line">325</span><br><span class="line">326</span><br><span class="line">327</span><br><span class="line">328</span><br><span class="line">329</span><br><span class="line">330</span><br><span class="line">331</span><br><span class="line">332</span><br><span class="line">333</span><br><span class="line">334</span><br><span class="line">335</span><br><span class="line">336</span><br><span class="line">337</span><br><span class="line">338</span><br><span class="line">339</span><br><span class="line">340</span><br><span class="line">341</span><br><span class="line">342</span><br><span class="line">343</span><br><span class="line">344</span><br><span class="line">345</span><br><span class="line">346</span><br><span class="line">347</span><br><span class="line">348</span><br><span class="line">349</span><br><span class="line">350</span><br><span class="line">351</span><br><span class="line">352</span><br><span class="line">353</span><br><span class="line">354</span><br><span class="line">355</span><br><span class="line">356</span><br><span class="line">357</span><br><span class="line">358</span><br><span class="line">359</span><br><span class="line">360</span><br><span class="line">361</span><br><span class="line">362</span><br><span class="line">363</span><br><span class="line">364</span><br><span class="line">365</span><br><span class="line">366</span><br><span class="line">367</span><br><span class="line">368</span><br><span class="line">369</span><br><span class="line">370</span><br><span class="line">371</span><br><span class="line">372</span><br><span class="line">373</span><br><span class="line">374</span><br><span class="line">375</span><br><span class="line">376</span><br><span class="line">377</span><br><span class="line">378</span><br><span class="line">379</span><br><span class="line">380</span><br><span class="line">381</span><br><span class="line">382</span><br><span class="line">383</span><br><span class="line">384</span><br><span class="line">385</span><br><span class="line">386</span><br><span class="line">387</span><br><span class="line">388</span><br><span class="line">389</span><br><span class="line">390</span><br><span class="line">391</span><br><span class="line">392</span><br><span class="line">393</span><br><span class="line">394</span><br><span class="line">395</span><br><span class="line">396</span><br><span class="line">397</span><br><span class="line">398</span><br><span class="line">399</span><br><span class="line">400</span><br><span class="line">401</span><br><span class="line">402</span><br><span class="line">403</span><br><span class="line">404</span><br><span class="line">405</span><br><span class="line">406</span><br><span class="line">407</span><br><span class="line">408</span><br><span class="line">409</span><br><span class="line">410</span><br><span class="line">411</span><br><span class="line">412</span><br><span class="line">413</span><br><span class="line">414</span><br><span class="line">415</span><br><span class="line">416</span><br><span class="line">417</span><br><span class="line">418</span><br><span class="line">419</span><br><span class="line">420</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span><br><span class="line"> * <span class="doctag">@author</span> &#x8D3E;&#x771F;</span><br><span class="line"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TimeLineView</span> <span class="keyword">extends</span> <span class="title">View</span> </span>{</span><br><span class="line">    <span class="comment">/*</span><br><span class="line">    &#x5B9A;&#x4E49;&#x753B;&#x7B14;</span><br><span class="line">     */</span></span><br><span class="line">    <span class="keyword">private</span> Paint mPaint;</span><br><span class="line">    <span class="comment">/*</span><br><span class="line">    &#x5EF6;&#x957F;&#x7EBF;&#x4E13;&#x7528;&#x753B;&#x7B14;</span><br><span class="line">     */</span></span><br><span class="line">    <span class="keyword">private</span> Paint exPaint;</span><br><span class="line">    <span class="comment">/*</span><br><span class="line">    &#x5B57;&#x4F53;&#x5927;&#x5C0F;</span><br><span class="line">     */</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">float</span> mTextSize;</span><br><span class="line">    <span class="comment">/*</span><br><span class="line">    &#x5706;&#x5F62;&#x534A;&#x5F84;</span><br><span class="line">     */</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">float</span> mRadius;</span><br><span class="line">    <span class="comment">/*</span><br><span class="line">    &#x7EBF;&#x7684;&#x7C97;&#x5EA6;</span><br><span class="line">     */</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">float</span> mLineWidth;</span><br><span class="line">    <span class="comment">/*</span><br><span class="line">    &#x5B8C;&#x6210;&#x7684;&#x989C;&#x8272;</span><br><span class="line">     */</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> mCompleteColor;</span><br><span class="line">    <span class="comment">/*</span><br><span class="line">    &#x672A;&#x5B8C;&#x6210;&#x7684;&#x989C;&#x8272;</span><br><span class="line">     */</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> mNoCompleteColor;</span><br><span class="line">    <span class="comment">/*</span><br><span class="line">    &#x5F53;&#x524D;&#x6267;&#x884C;&#x5230;&#x7684;&#x6B65;&#x6570; &#x4ECE;0&#x5F00;&#x59CB;&#x8BA1;&#x7B97;</span><br><span class="line">     */</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">float</span> mStep=<span class="number">0</span>;</span><br><span class="line">    <span class="comment">/*</span><br><span class="line">     * &#x4F20;&#x5165;&#x7684;&#x6587;&#x5B57;&#x7684;list</span><br><span class="line">     */</span></span><br><span class="line">    <span class="keyword">private</span> List&lt;String&gt; pointStringList;</span><br><span class="line">    <span class="comment">/*</span><br><span class="line">     * &#x6BCF;&#x4E2A;&#x70B9;&#x7684;X&#x5750;&#x6807;</span><br><span class="line">     */</span></span><br><span class="line">    <span class="keyword">private</span> Float[] pointXArray;</span><br><span class="line">    <span class="comment">/*</span><br><span class="line">     * &#x6587;&#x5B57;&#x9AD8;&#x5EA6;</span><br><span class="line">     */</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">float</span> mTextHeight;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/*</span><br><span class="line">    &#x81EA;&#x5B9A;&#x4E49;&#x7684;&#x8282;&#x70B9;&#x70B9;&#x51FB;&#x4E8B;&#x4EF6;</span><br><span class="line">     */</span></span><br><span class="line">    OnTimeLineStepClickListener onTimeLineStepClickListener;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/*</span><br><span class="line">    &#x5B58;&#x653E;&#x5706;&#x5FC3;&#x7684;&#x5217;&#x8868;</span><br><span class="line">     */</span></span><br><span class="line">    List&lt;CircleCenter&gt; circleCenterList;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/*</span><br><span class="line">     *  &#x70B9;&#x4E0E;&#x70B9;&#x4E4B;&#x95F4;&#x7684;&#x9636;&#x6BB5;&#x957F;&#x5EA6;</span><br><span class="line">     */</span></span><br><span class="line">    <span class="keyword">float</span> sectionLength;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/*</span><br><span class="line">    &#x8BA1;&#x7B97;&#x4FDD;&#x7559;&#x4E24;&#x4F4D;&#x5C0F;&#x6570;&#x7528;&#x7684;&#x5DE5;&#x5177;&#x7C7B;</span><br><span class="line">     */</span></span><br><span class="line">    BigDecimal bigDecimal;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">TimeLineView</span><span class="params">(Context context)</span> </span>{</span><br><span class="line">        <span class="keyword">this</span>(context,<span class="keyword">null</span>);</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">TimeLineView</span><span class="params">(Context context, @Nullable AttributeSet attrs)</span> </span>{</span><br><span class="line">        <span class="keyword">this</span>(context, attrs,<span class="number">0</span>);</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">TimeLineView</span><span class="params">(Context context, @Nullable AttributeSet attrs, <span class="keyword">int</span> defStyleAttr)</span> </span>{</span><br><span class="line">        <span class="keyword">super</span>(context, attrs, defStyleAttr);</span><br><span class="line">        initAttr(attrs);</span><br><span class="line">        init();</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span><br><span class="line">     * &#x521D;&#x59CB;&#x5316;&#x81EA;&#x5B9A;&#x4E49;&#x5C5E;&#x6027;&#x7684;</span><br><span class="line">     * <span class="doctag">@param</span> attrs attrs.xml&#x91CC;&#x5B9A;&#x4E49;&#x7684;&#x5C5E;&#x6027;</span><br><span class="line">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span>  <span class="title">initAttr</span><span class="params">(AttributeSet attrs)</span></span>{</span><br><span class="line">        <span class="keyword">if</span> (attrs != <span class="keyword">null</span>) {</span><br><span class="line">            TypedArray typedArray = getContext().obtainStyledAttributes(attrs, R.styleable.TimeLineView);</span><br><span class="line">            mTextSize = typedArray.getDimension(R.styleable.TimeLineView_textSize, <span class="number">20</span>);</span><br><span class="line">            mRadius = typedArray.getDimension(R.styleable.TimeLineView_tlradius,<span class="number">20</span>);</span><br><span class="line">            mLineWidth=typedArray.getDimension(R.styleable.TimeLineView_tlradius,<span class="number">5</span>);</span><br><span class="line">            mCompleteColor=typedArray.getColor(R.styleable.TimeLineView_CompleteColor,Color.GREEN);</span><br><span class="line">            mNoCompleteColor=typedArray.getColor(R.styleable.TimeLineView_NoCompleteColor,Color.GRAY);</span><br><span class="line">            <span class="comment">//&#x5207;&#x8BB0;&#x56DE;&#x6536;&#x9632;&#x6B62;&#x5185;&#x5B58;&#x6CC4;&#x6F0F;</span></span><br><span class="line">            typedArray.recycle();</span><br><span class="line">        }</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span><br><span class="line">     * &#x521D;&#x59CB;&#x5316;&#x753B;&#x7B14;&#x3001;&#x5B57;&#x4F53;&#x9AD8;&#x5EA6;&#x3001;&#x4F20;&#x5165;&#x6B65;&#x6570;&#x6587;&#x5B57;&#x5185;&#x5BB9;&#x7684;&#x5217;&#x8868;&#x4EE5;&#x53CA;&#x5706;&#x5FC3;&#x7684;&#x5217;&#x8868;</span><br><span class="line">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">init</span><span class="params">()</span></span>{</span><br><span class="line">        mPaint=<span class="keyword">new</span> Paint();</span><br><span class="line">        mPaint.setAntiAlias(<span class="keyword">true</span>);</span><br><span class="line">        mPaint.setTextSize(mTextSize);</span><br><span class="line">        mPaint.setStrokeWidth(mLineWidth);</span><br><span class="line">         exPaint=<span class="keyword">new</span> Paint();</span><br><span class="line">        mTextHeight=mPaint.descent() -mPaint.ascent();</span><br><span class="line">        pointStringList=<span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">        pointStringList.add(<span class="string">&quot;&#x7B2C;&#x4E00;&#x6B65;&quot;</span>);</span><br><span class="line">        pointStringList.add(<span class="string">&quot;&#x7B2C;&#x4E8C;&#x6B65;&quot;</span>);</span><br><span class="line">        pointStringList.add(<span class="string">&quot;&#x7B2C;&#x4E09;&#x6B65;&quot;</span>);</span><br><span class="line">        circleCenterList=<span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span><br><span class="line">     * &#x81EA;&#x5B9A;&#x4E49;&#x7684;&#x6D4B;&#x91CF;&#x65B9;&#x5F0F; &#x4E3B;&#x8981;&#x5904;&#x7406;&#x7684;&#x662F;wrap_content&#x6A21;&#x5F0F;&#x4E0B;&#x7684;&#x4E00;&#x4E9B;&#x9ED8;&#x8BA4;&#x503C;</span><br><span class="line">     * &#x5BBD;&#x5EA6;&#x662F;&#x4E0D;&#x7BA1;&#x5982;&#x4F55;&#x8BBE;&#x7F6E;&#x90FD;&#x662F;&#x5360;&#x7528;&#x7684;&#x6574;&#x4E2A;&#x5C4F;&#x5E55;&#x7684;&#x5BBD;&#x5EA6;&#xFF0C;&#x8FD9;&#x91CC;&#x53EF;&#x4EE5;&#x81EA;&#x884C;&#x8C03;&#x6574;</span><br><span class="line">     * &#x9AD8;&#x5EA6;&#x662F;&#x4E24;&#x500D;&#x5B57;&#x4F53;&#x7684;&#x9AD8;&#x5EA6;&#x52A0;&#x4E0A;&#x5706;&#x7684;&#x76F4;&#x5F84; &#x4F5C;&#x4E3A;&#x9ED8;&#x8BA4;&#x9AD8;&#x5EA6;&#xFF0C;&#x5982;&#x679C;&#x6709;&#x9700;&#x6C42;&#x4E5F;&#x53EF;&#x4EE5;&#x81EA;&#x884C;&#x8C03;&#x6574;</span><br><span class="line">     * <span class="doctag">@param</span> widthMeasureSpec &#x5BBD;&#x5EA6;&#x5C3A;</span><br><span class="line">     * <span class="doctag">@param</span> heightMeasureSpec &#x9AD8;&#x5EA6;&#x5C3A;</span><br><span class="line">     */</span></span><br><span class="line">   <span class="annotation">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onMeasure</span><span class="params">(<span class="keyword">int</span> widthMeasureSpec, <span class="keyword">int</span> heightMeasureSpec)</span> </span>{</span><br><span class="line">        <span class="keyword">super</span>.onMeasure(widthMeasureSpec, heightMeasureSpec);</span><br><span class="line">        <span class="keyword">final</span> <span class="keyword">int</span> minimumWidth = getSuggestedMinimumWidth();</span><br><span class="line">        <span class="keyword">final</span> <span class="keyword">int</span> minimumHeight = getSuggestedMinimumHeight();</span><br><span class="line">        <span class="keyword">int</span> width = measureWidth(minimumWidth, widthMeasureSpec);</span><br><span class="line">        <span class="keyword">int</span> height = measureHeight(minimumHeight, heightMeasureSpec);</span><br><span class="line">        setMeasuredDimension(width, height);</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span><br><span class="line">     * &#x6D4B;&#x91CF;&#x5BBD;&#x5EA6;</span><br><span class="line">     * <span class="doctag">@param</span> defaultWidth &#x9ED8;&#x8BA4;&#x5BBD;&#x5EA6;</span><br><span class="line">     * <span class="doctag">@param</span> measureSpec &#x5BBD;&#x5EA6;&#x5C3A;</span><br><span class="line">     * <span class="doctag">@return</span> &#x8BA1;&#x7B97;&#x540E;&#x7684;&#x5BBD;&#x5EA6;</span><br><span class="line">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">int</span> <span class="title">measureWidth</span><span class="params">(<span class="keyword">int</span> defaultWidth, <span class="keyword">int</span> measureSpec)</span> </span>{</span><br><span class="line"></span><br><span class="line">        <span class="keyword">int</span> specMode = MeasureSpec.getMode(measureSpec);</span><br><span class="line">        <span class="keyword">int</span> specSize = MeasureSpec.getSize(measureSpec);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        <span class="keyword">switch</span> (specMode) {</span><br><span class="line">            <span class="keyword">case</span> MeasureSpec.AT_MOST:</span><br><span class="line">                defaultWidth = getWidth();</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            <span class="keyword">case</span> MeasureSpec.EXACTLY:</span><br><span class="line">                defaultWidth = specSize;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            <span class="keyword">case</span> MeasureSpec.UNSPECIFIED:</span><br><span class="line">                defaultWidth = Math.max(defaultWidth, specSize);</span><br><span class="line">        }</span><br><span class="line">        <span class="keyword">return</span> defaultWidth;</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span><br><span class="line">     * &#x9AD8;&#x5EA6;&#x6D4B;&#x91CF;</span><br><span class="line">     * <span class="doctag">@param</span> defaultHeight &#x9ED8;&#x8BA4;&#x9AD8;&#x5EA6;</span><br><span class="line">     * <span class="doctag">@param</span> measureSpec &#x9AD8;&#x5EA6;&#x5C3A;</span><br><span class="line">     * <span class="doctag">@return</span> &#x8BA1;&#x7B97;&#x540E;&#x7684;&#x9AD8;&#x5EA6;</span><br><span class="line">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">int</span> <span class="title">measureHeight</span><span class="params">(<span class="keyword">int</span> defaultHeight, <span class="keyword">int</span> measureSpec)</span> </span>{</span><br><span class="line"></span><br><span class="line">        <span class="keyword">int</span> specMode = MeasureSpec.getMode(measureSpec);</span><br><span class="line">        <span class="keyword">int</span> specSize = MeasureSpec.getSize(measureSpec);</span><br><span class="line">        <span class="keyword">switch</span> (specMode) {</span><br><span class="line">            <span class="keyword">case</span> MeasureSpec.AT_MOST:</span><br><span class="line">                defaultHeight = (<span class="keyword">int</span>) (<span class="number">2</span>*mTextHeight+(mRadius*<span class="number">2</span>)) + getPaddingTop() + getPaddingBottom();</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            <span class="keyword">case</span> MeasureSpec.EXACTLY:</span><br><span class="line">                defaultHeight = specSize;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            <span class="keyword">case</span> MeasureSpec.UNSPECIFIED:</span><br><span class="line">                defaultHeight = Math.max(defaultHeight, specSize);</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">        }</span><br><span class="line">        <span class="keyword">return</span> defaultHeight;</span><br><span class="line">    }</span><br><span class="line">    <span class="comment">/**</span><br><span class="line">     * &#x7ED8;&#x5236;&#x601D;&#x8DEF;&#xFF1A;</span><br><span class="line">     * 1.&#x786E;&#x5B9A;&#x7B2C;&#x4E00;&#x6B65;&#x9AA4;&#x7684;&#x5706;&#x5F62;&#x548C;&#x6587;&#x5B57;&#x7684;&#x5BBD;&#x5EA6;&#xFF0C;&#x54EA;&#x4E2A;&#x5BBD;&#x5C31;&#x7528;&#x54EA;&#x4E2A;&#x4F5C;&#x4E3A;&#x7B2C;&#x4E00;&#x6B65;&#x7ED8;&#x5236;&#x7684;&#x5DE6;&#x8FB9;&#x8DDD;&#x79BB;</span><br><span class="line">     * 2.&#x786E;&#x5B9A;&#x6700;&#x540E;&#x6B65;&#x9AA4;&#x7684;&#x5706;&#x5F62;&#x548C;&#x6587;&#x5B57;&#x7684;&#x5BBD;&#x5EA6;&#xFF0C;&#x90A3;&#x4E2A;&#x5BBD;&#x5C31;&#x7528;&#x54EA;&#x4E2A;&#x6700;&#x4E3A;&#x6700;&#x540E;&#x4E00;&#x4E2A;&#x6B65;&#x9AA4;&#x7ED8;&#x5236;&#x7684;&#x53F3;&#x8FB9;&#x8DDD;&#x79BB;</span><br><span class="line">     * 3.&#x7528;&#x81EA;&#x5B9A;&#x4E49;&#x7EC4;&#x4EF6;&#x6574;&#x4F53;&#x7684;&#x5BBD;&#x5EA6;&#x51CF;&#x53BB;&#x5DE6;&#x8FB9;&#x8DDD;&#x548C;&#x53F3;&#x8FB9;&#x8DDD;&#x518D;&#x52A0;&#x4E0A;&#x4E24;&#x4E2A;&#x534A;&#x5F84;&#x7684;&#x8DDD;&#x79BB;&#xFF0C;&#x5269;&#x4E0B;&#x7684;&#x5C31;&#x662F;&#x8981;&#x5E73;&#x5206;&#x5269;&#x4E0B;&#x70B9;&#x7684;&#x8DDD;&#x79BB;</span><br><span class="line">     * 4.&#x5E73;&#x5206;&#x5269;&#x4E0B;&#x7684;&#x8DDD;&#x79BB;&#xFF0C;&#x753B;&#x5706;&#x540E;&#x8FDE;&#x7EBF;&#x3002;</span><br><span class="line">     */</span></span><br><span class="line">    <span class="annotation">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onDraw</span><span class="params">(Canvas canvas)</span> </span>{</span><br><span class="line">        <span class="keyword">super</span>.onDraw(canvas);</span><br><span class="line">        <span class="comment">//&#x5148;&#x5224;&#x65AD;&#x4F20;&#x5165;&#x7684;&#x6B65;&#x6570;&#x662F;&#x4E0D;&#x662F;&#x5927;&#x4E8E;0&#xFF0C;&#x5982;&#x679C;&#x4F20;&#x5165;&#x4E00;&#x4E2A;&#x7A7A;&#x6570;&#x636E;&#x7684;List&#x5219;&#x4E0D;&#x8C03;&#x7528;&#x663E;&#x793A;&#x6B65;&#x6570;&#x7684;&#x65B9;&#x6CD5;</span></span><br><span class="line">        <span class="keyword">if</span>(pointStringList.size()&gt;<span class="number">0</span>){</span><br><span class="line">            <span class="comment">//&#x5148;&#x8BBE;&#x7F6E;&#x6210;&#x5B8C;&#x6210;&#x540E;&#x7684;&#x989C;&#x8272;&#xFF0C;&#x56E0;&#x4E3A;&#x7ED8;&#x5236;&#x8FC7;&#x7A0B;&#x80AF;&#x5B9A;&#x662F;&#x5148;&#x7ED8;&#x5236;&#x5B8C;&#x6210;&#x540E;&#x7684;&#x989C;&#x8272;&#x4E14;&#x4F20;&#x5165;&#x7684;&#x6B65;&#x6570;&#x81F3;&#x5C11;&#x6709;&#x4E00;&#x6B65;&#x662F;&#x5B8C;&#x6210;&#x7684;</span></span><br><span class="line">            mPaint.setColor(mCompleteColor);</span><br><span class="line">            initViewsPos();</span><br><span class="line">            <span class="comment">//&#x5F53;&#x524D;&#x7ED8;&#x5236;&#x5230;&#x90A3;&#x4E00;&#x6B65;</span></span><br><span class="line">            <span class="keyword">int</span> currentStep;</span><br><span class="line">            <span class="comment">//&#x662F;&#x5426;&#x7ED8;&#x5236;&#x534A;&#x622A;&#x8FDB;&#x7A0B;&#x7684;&#x7EBF; &#x5982;2.3&#x5C31;&#x7ED8;&#x5236;&#x7B2C;&#x4E09;&#x6B65;&#x5230;&#x7B2C;&#x56DB;&#x6B65;&#x7684;&#x767E;&#x5206;&#x4E4B;30&#x7684;&#x5B8C;&#x6210;&#x7EBF;</span></span><br><span class="line">            <span class="keyword">boolean</span> isDrawExtrasLine=<span class="keyword">false</span>;</span><br><span class="line">            <span class="comment">//&#x5FAA;&#x73AF;X&#x8F74;&#x7684;&#x70B9;&#x8FDB;&#x884C;&#x7ED8;&#x5236;</span></span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;pointXArray.length;i++){</span><br><span class="line">                currentStep= i;</span><br><span class="line">                <span class="comment">//&#x5F53;&#x524D;&#x7684;&#x6B65;&#x9AA4;&#x5927;&#x4E8E;&#x8BBE;&#x7F6E;&#x7684;&#x6B65;&#x9AA4;&#x4E86;&#x5C31;&#x9700;&#x8981;&#x5C06;&#x7EBF;&#x548C;&#x5706;&#x6539;&#x6210;&#x672A;&#x5B8C;&#x6210;&#x8272;,&#x5982;&#x679C;&#x8981;&#x7ED8;&#x5236;&#x672A;&#x5B8C;&#x6210;&#x8272;&#x5C31;&#x8BF4;&#x660E;&#x53EF;&#x80FD;&#x8981;&#x7ED8;&#x5236;&#x5EF6;&#x957F;&#x7EBF;&#xFF0C;&#x90A3;&#x5C31;&#x5C06;&#x7ED8;&#x5236;&#x5EF6;&#x957F;&#x7EBF;&#x7684;&#x5F00;&#x5173;&#x6253;&#x5F00;&#x3002;</span></span><br><span class="line">                <span class="keyword">if</span>(currentStep &gt;mStep){</span><br><span class="line">                    mPaint.setColor(mNoCompleteColor);</span><br><span class="line">                    isDrawExtrasLine=<span class="keyword">true</span>;</span><br><span class="line">                }</span><br><span class="line">                drawCirlceAndText(canvas,pointStringList.get(i),pointXArray[i]);</span><br><span class="line">                <span class="comment">//&#x5F53;i&#x5927;&#x4E8E;1&#x8BF4;&#x660E;&#x6709;&#x8D77;&#x7801;&#x4E24;&#x4E2A;&#x70B9;&#x65F6;&#x624D;&#x6709;&#x5FC5;&#x8981;&#x753B;&#x7EBF;</span></span><br><span class="line">                <span class="keyword">if</span>(i&gt;=<span class="number">1</span>){</span><br><span class="line">                drawLine(canvas,pointXArray[i-<span class="number">1</span>],pointXArray[i]);</span><br><span class="line">                }</span><br><span class="line">            }</span><br><span class="line">            <span class="comment">//&#x7ED8;&#x5236;&#x5EF6;&#x957F;&#x7EBF;&#xFF0C;&#x4E3B;&#x8981;&#x662F;&#x5904;&#x7406;&#x6B65;&#x6570;&#x4E3A;&#x7C7B;&#x4F3C;2.3&#x65F6;&#xFF0C;&#x8FD9;&#x767E;&#x5206;&#x4E4B;30&#x7684;&#x7B2C;&#x4E09;&#x4E2A;&#x5706;&#x5230;&#x7B2C;&#x56DB;&#x4E2A;&#x5706;&#x4E4B;&#x95F4;&#x7684;&#x5B8C;&#x6210;&#x989C;&#x8272;&#x7684;&#x7EBF;</span></span><br><span class="line">            <span class="keyword">if</span>(isDrawExtrasLine){</span><br><span class="line">                bigDecimal  =<span class="keyword">new</span>  BigDecimal(mStep);</span><br><span class="line">               <span class="keyword">float</span> mStepTwoPoint =bigDecimal.setScale(<span class="number">2</span>,  BigDecimal.ROUND_HALF_UP).floatValue();</span><br><span class="line">               <span class="comment">//&#x53D6;&#x5C0F;&#x6570;&#x70B9;&#x540E;&#x7684;&#x6570;&#x5B57;</span></span><br><span class="line">               <span class="keyword">float</span> littleCountFloat=mStepTwoPoint-(<span class="keyword">int</span>)mStepTwoPoint;</span><br><span class="line">               drawExtrasLine(canvas,littleCountFloat);</span><br><span class="line">            }</span><br><span class="line">        }<span class="keyword">else</span>{</span><br><span class="line">            mPaint.setColor(Color.RED);</span><br><span class="line">            String noStepsWarnText=<span class="string">&quot;&#x4F20;&#x5165;&#x6B65;&#x6570;&#x4E3A;0&#xFF0C;&#x8BF7;&#x91CD;&#x65B0;&#x4F20;&#x5165;&#x6570;&#x636E;&quot;</span>;</span><br><span class="line">            canvas.drawText(noStepsWarnText,(getWidth()/<span class="number">2</span>)-mPaint.measureText(noStepsWarnText)/<span class="number">2</span>,getHeight() - <span class="keyword">this</span>.mRadius - <span class="number">1</span>,mPaint);</span><br><span class="line">        }</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span><br><span class="line">     * &#x521D;&#x59CB;&#x5316;&#x7EC4;&#x4EF6;&#x7684;&#x4F4D;&#x7F6E;</span><br><span class="line">     * &#x4E3B;&#x8981;&#x662F;&#x8BA1;&#x7B97;&#x5404;&#x4E2A;&#x5706;&#x5F62;&#x7684;&#x4F4D;&#x7F6E;</span><br><span class="line">     * &#x5E76;&#x5C06;&#x5176;&#x5706;&#x5FC3;&#x4F4D;&#x7F6E;&#x8BB0;&#x5F55;&#x5230;&#x6570;&#x7EC4;&#x4E2D;&#x53BB;</span><br><span class="line">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">initViewsPos</span><span class="params">()</span></span>{</span><br><span class="line">        <span class="comment">//&#x4F20;&#x5165;&#x7684;&#x6B65;&#x6570;</span></span><br><span class="line">        <span class="keyword">int</span> pointCount= pointStringList.size();</span><br><span class="line">        pointXArray=<span class="keyword">new</span> Float[pointCount];</span><br><span class="line">        <span class="comment">//&#x5982;&#x679C;&#x6587;&#x5B57;&#x7684;&#x957F;&#x5EA6;&#x5927;&#x4E8E;&#x534A;&#x5F84; &#x5C31;&#x7528;&#x6587;&#x5B57;&#x7684;&#x957F;&#x5EA6;&#x6765;&#x8BA1;&#x7B97; &#x5F00;&#x59CB;&#x7684;&#x70B9;&#x548C;&#x7ED3;&#x675F;&#x7684;&#x70B9;&#x540C;&#x7406;</span></span><br><span class="line">        <span class="keyword">float</span> startDistance=Math.max(mRadius,mPaint.measureText(pointStringList.get(<span class="number">0</span>))/<span class="number">2</span>);</span><br><span class="line">        <span class="keyword">float</span> endDistance=Math.max(mRadius,mPaint.measureText(pointStringList.get(pointStringList.size()-<span class="number">1</span>))/<span class="number">2</span>);</span><br><span class="line">        <span class="comment">//&#x6BCF;&#x6BB5;&#x7EBF;&#x7684;&#x8DDD;&#x79BB; &#x5BBD;&#x5EA6;&#x51CF;&#x53BB;&#x5DE6;&#x7559;&#x767D;&#x548C;&#x53F3;&#x7559;&#x767D;&#x540E;&#x9664;&#x4EE5;&#x70B9;&#x6570;&#x51CF;&#x4E00;&#x5373;&#x53EF; &#x5E2E;&#x52A9;&#x601D;&#x8003;&#x7684;&#x56FE;&#x4F8B;&#xFF1A;*---*---*---*</span></span><br><span class="line">         sectionLength=(getWidth()-startDistance-endDistance)/(pointCount-<span class="number">1</span>);</span><br><span class="line">         <span class="comment">//&#x5FAA;&#x73AF;&#x5C06;&#x8D77;&#x59CB;&#x70B9;&#x3001;&#x7ED3;&#x675F;&#x70B9;&#x548C;&#x4E2D;&#x95F4;&#x7684;&#x70B9;&#x7684;X&#x7684;&#x503C;&#x653E;&#x5165;&#x6570;&#x7EC4;&#x4E2D;</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;pointCount;i++){</span><br><span class="line">                <span class="keyword">if</span>(i==<span class="number">0</span>){</span><br><span class="line">                    pointXArray[i]=startDistance;</span><br><span class="line">                }<span class="keyword">else</span> <span class="keyword">if</span>(i==pointCount-<span class="number">1</span>){</span><br><span class="line">                    pointXArray[i]=getWidth()-endDistance;</span><br><span class="line">                }<span class="keyword">else</span>{</span><br><span class="line">                    pointXArray[i]=startDistance+sectionLength*i;</span><br><span class="line">                }</span><br><span class="line">        }</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span><br><span class="line">     * &#x7ED8;&#x5236;&#x5706;&#x5F62;&#x548C;&#x4E0B;&#x9762;&#x7684;&#x6587;&#x5B57;</span><br><span class="line">     * <span class="doctag">@param</span> canvas &#x753B;&#x5E03;</span><br><span class="line">     * <span class="doctag">@param</span> text &#x6587;&#x5B57;&#x5185;&#x5BB9;</span><br><span class="line">     * <span class="doctag">@param</span> x x&#x8F74;&#x7684;&#x503C;</span><br><span class="line">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">drawCirlceAndText</span><span class="params">(Canvas canvas,String text,<span class="keyword">float</span> x)</span></span>{</span><br><span class="line">        canvas.drawCircle(x,getHeight()- <span class="keyword">this</span>.mRadius * <span class="number">2</span> - <span class="number">30</span>,mRadius,mPaint);</span><br><span class="line">        <span class="comment">//&#x5C06;&#x6BCF;&#x4E2A;&#x5706;&#x7684;&#x5706;&#x5FC3;&#x52A0;&#x5165;&#x5230;&#x5217;&#x8868;&#x4E2D;&#x53BB;</span></span><br><span class="line">        circleCenterList.add(<span class="keyword">new</span> CircleCenter(x,getHeight()- <span class="keyword">this</span>.mRadius * <span class="number">2</span> - <span class="number">30</span>));</span><br><span class="line">        Log.e(<span class="string">&quot;mTextHeight:&quot;</span>,mTextHeight+<span class="string">&quot;&quot;</span>);</span><br><span class="line">        canvas.drawText(text,x-mPaint.measureText(text)/<span class="number">2</span>,getHeight() - <span class="keyword">this</span>.mRadius - <span class="number">1</span>,mPaint);</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span><br><span class="line">     *  &#x7ED8;&#x5236;&#x4E24;&#x5706;&#x4E4B;&#x95F4;&#x7684;&#x8FDE;&#x63A5;&#x7EBF; &#x603B;&#x6570;&#x4E3A;&#x70B9;&#x6570;-1</span><br><span class="line">     * <span class="doctag">@param</span> canvas &#x753B;&#x5E03;</span><br><span class="line">     * <span class="doctag">@param</span> startX &#x7EBF;&#x5F00;&#x59CB;&#x7684;X&#x8F74;&#x7684;&#x503C;</span><br><span class="line">     * <span class="doctag">@param</span> endX &#x7EBF;&#x7ED3;&#x675F;&#x7684;X&#x8F74;&#x7684;&#x503C;</span><br><span class="line">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">drawLine</span><span class="params">(Canvas canvas,<span class="keyword">float</span> startX,<span class="keyword">float</span> endX)</span></span>{</span><br><span class="line">        canvas.drawLine(startX+mRadius,getHeight()- <span class="keyword">this</span>.mRadius * <span class="number">2</span> - <span class="number">30</span>,endX-mRadius,getHeight()- <span class="keyword">this</span>.mRadius * <span class="number">2</span> - <span class="number">30</span>,mPaint);</span><br><span class="line"></span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span><br><span class="line">     * &#x7ED8;&#x5236;&#x591A;&#x4F59;&#x7684;&#x5C0F;&#x6570;&#x7EBF;&#x6BB5;</span><br><span class="line">     * &#x8FD9;&#x91CC;&#x7684;&#x7ED8;&#x5236;&#x539F;&#x7406;&#x662F; &#x8BA1;&#x7B97;&#x767E;&#x5206;&#x6BD4;&#x5E76;&#x627E;&#x5230;&#x5B8C;&#x6210;&#x6B65;&#x6570;&#x7684;&#x503C; &#x5E76;&#x5728;&#x5176;&#x4E4B;&#x540E; &#x7ED8;&#x5236;&#x4E00;&#x6761;&#x5B8C;&#x6210;&#x989C;&#x8272;&#x7684;&#x7EBF; &#x8BE5;&#x7EBF;&#x7684;&#x957F;&#x5EA6;&#x662F;&#x4E00;&#x4E2A;&#x7EBF;&#x6BB5;&#x4E58;&#x4EE5;&#x5B8C;&#x6210;&#x7684;&#x767E;&#x5206;&#x6BD4;</span><br><span class="line">     * <span class="doctag">@param</span> canvas &#x753B;&#x5E03;</span><br><span class="line">     * <span class="doctag">@param</span> percent &#x5B8C;&#x6210;&#x7684;&#x767E;&#x5206;&#x6BD4;</span><br><span class="line">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">drawExtrasLine</span><span class="params">(Canvas canvas,<span class="keyword">float</span> percent)</span></span>{</span><br><span class="line">        <span class="comment">//&#x627E;&#x5230;&#x6700;&#x5927;&#x6B65;&#x6570;&#x7684;&#x5706;&#x5F62;&#x7684;X&#x8F74;</span></span><br><span class="line">       <span class="keyword">float</span> maxGreenPointX= pointXArray[(<span class="keyword">int</span>)mStep];</span><br><span class="line">       <span class="comment">//&#x8BBE;&#x7F6E;&#x5EF6;&#x957F;&#x7EBF;&#x4E13;&#x7528;Paint&#x7684;&#x989C;&#x8272;&#x548C;&#x5BBD;&#x5EA6;</span></span><br><span class="line">       exPaint.setColor(mCompleteColor);</span><br><span class="line">       exPaint.setStrokeWidth(mLineWidth);</span><br><span class="line">       canvas.drawLine(maxGreenPointX+mRadius,getHeight()- <span class="keyword">this</span>.mRadius * <span class="number">2</span> - <span class="number">30</span>,maxGreenPointX+mRadius+sectionLength*percent,getHeight()- <span class="keyword">this</span>.mRadius * <span class="number">2</span> - <span class="number">30</span>,exPaint);</span><br><span class="line"></span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span><br><span class="line">     *  &#x4F20;&#x53C2;&#x7684;&#x65B9;&#x6CD5;&#xFF0C;&#x5BF9;&#x5916;&#x5F00;&#x653E;</span><br><span class="line">     * <span class="doctag">@param</span> mpointStringArray &#x4F20;&#x5165;&#x7684;&#x6B65;&#x9AA4;&#x7684;&#x6570;&#x7EC4;(&#x8FD9;&#x91CC;&#x4E4B;&#x6240;&#x4EE5;&#x7528;&#x6570;&#x7EC4;&#x662F;&#x56E0;&#x4E3A;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;<span class="doctag">@Size</span>&#x6CE8;&#x89E3;)</span><br><span class="line">     * <span class="doctag">@param</span> step &#x4F20;&#x5165;&#x7684;&#x5B8C;&#x6210;&#x6B65;&#x9AA4;&#x6570;</span><br><span class="line">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setPointStrings</span><span class="params">(@Size(min = <span class="number">2</span>)</span> String[] mpointStringArray, @<span class="title">FloatRange</span><span class="params">(from = <span class="number">1.0</span>)</span> <span class="keyword">float</span> step) </span>{</span><br><span class="line">        <span class="keyword">if</span> (mpointStringArray.length==<span class="number">0</span>) {</span><br><span class="line">            pointStringList.clear();</span><br><span class="line">            circleCenterList.clear();</span><br><span class="line">            mStep = <span class="number">0</span>;</span><br><span class="line">        } <span class="keyword">else</span> {</span><br><span class="line">            pointStringList =  Arrays.asList(mpointStringArray);</span><br><span class="line">            mStep = Math.min(step, pointStringList.size());</span><br><span class="line">            invalidate();</span><br><span class="line">        }</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span><br><span class="line">     * &#x52A8;&#x6001;&#x8BBE;&#x7F6E;&#x6B65;&#x6570;&#x7684;&#x65B9;&#x6CD5;</span><br><span class="line">     * <span class="doctag">@param</span> step &#x6B65;&#x6570;</span><br><span class="line">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setStep</span><span class="params">(@FloatRange(from = <span class="number">1.0</span>)</span> <span class="keyword">float</span> step)</span>{</span><br><span class="line">        mStep = Math.min(step, pointStringList.size());</span><br><span class="line">        invalidate();</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span><br><span class="line">     * &#x624B;&#x52BF;&#x65B9;&#x6CD5;&#x91CD;&#x5199; &#x8FD4;&#x56DE;true&#x6765;&#x6D88;&#x8D39;&#x6B64;&#x65B9;&#x6CD5;</span><br><span class="line">     * &#x539F;&#x7406;&#x662F;&#x5F53;&#x624B;&#x6307;&#x62AC;&#x8D77;&#x65F6; &#x8BA1;&#x7B97;&#x70B9;&#x51FB;&#x7684;&#x70B9;&#x662F;&#x4E0D;&#x662F;&#x5728;&#x6B65;&#x9AA4;&#x5706;&#x5F62;&#x4E2D;&#x7684;&#x67D0;&#x4E00;&#x4E2A;&#x8303;&#x56F4;&#x5185;&#xFF0C;&#x5982;&#x679C;&#x5728;&#x5C31;&#x89E6;&#x53D1;&#x81EA;&#x5B9A;&#x4E49;&#x70B9;&#x51FB;&#x4E8B;&#x4EF6;</span><br><span class="line">     * <span class="doctag">@param</span> event &#x70B9;&#x51FB;&#x4E8B;&#x4EF6;</span><br><span class="line">     * <span class="doctag">@return</span> true &#x6D88;&#x8D39;&#x4E8B;&#x4EF6;</span><br><span class="line">     */</span></span><br><span class="line">    <span class="annotation">@SuppressLint</span>(<span class="string">&quot;ClickableViewAccessibility&quot;</span>)</span><br><span class="line">    <span class="annotation">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">onTouchEvent</span><span class="params">(MotionEvent event)</span> </span>{</span><br><span class="line">        <span class="keyword">float</span> x =  event.getX();</span><br><span class="line">        <span class="keyword">float</span> y =  event.getY();</span><br><span class="line">        <span class="keyword">int</span> action = event.getAction();</span><br><span class="line">        <span class="keyword">switch</span> (action) {</span><br><span class="line">            <span class="keyword">case</span> MotionEvent.ACTION_DOWN:</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            <span class="keyword">case</span> MotionEvent.ACTION_MOVE:</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            <span class="keyword">case</span> MotionEvent.ACTION_UP:</span><br><span class="line">                <span class="keyword">if</span> (x + getLeft() &lt; getRight() &amp;&amp; y + getTop() &lt; getBottom()) {</span><br><span class="line">                    <span class="keyword">int</span> clickStep=isInTheCircles(x,y);</span><br><span class="line">                    <span class="keyword">if</span>(clickStep&gt;=<span class="number">0</span>&amp;&amp;onTimeLineStepClickListener!=<span class="keyword">null</span>)</span><br><span class="line">                    onTimeLineStepClickListener.onStepClick(clickStep);</span><br><span class="line">                }</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">        }</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line"></span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span><br><span class="line">      &#x5224;&#x65AD;&#x70B9;&#x51FB;&#x4F4D;&#x7F6E;&#x662F;&#x5426;&#x5728;&#x591A;&#x4E2A;&#x5706;&#x4E2D;&#x7684;&#x67D0;&#x4E00;&#x4E2A;&#x5185;</span><br><span class="line">     * <span class="doctag">@param</span> x &#x70B9;&#x51FB;&#x4E8B;&#x4EF6;&#x7684;x&#x8F74;</span><br><span class="line">     * <span class="doctag">@param</span> y &#x70B9;&#x51FB;&#x4E8B;&#x4EF6;&#x7684;y&#x8F74;</span><br><span class="line">     * <span class="doctag">@return</span> boolean&#x662F;&#x5426;&#x5728;&#x67D0;&#x5706;&#x5185;:&#x662F; true,&#x5426; false</span><br><span class="line">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">int</span> <span class="title">isInTheCircles</span><span class="params">(<span class="keyword">float</span> x,<span class="keyword">float</span> y)</span></span>{</span><br><span class="line">        <span class="keyword">int</span> clickStep=-<span class="number">1</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;circleCenterList.size();i++){</span><br><span class="line">            CircleCenter circleCenter=circleCenterList.get(i);</span><br><span class="line">            <span class="comment">//&#x70B9;&#x51FB;&#x4F4D;&#x7F6E;x&#x5750;&#x6807;&#x4E0E;&#x5706;&#x5FC3;&#x7684;x&#x5750;&#x6807;&#x7684;&#x8DDD;&#x79BB;</span></span><br><span class="line">            <span class="keyword">float</span> distanceX = Math.abs(circleCenter.getX()-x);</span><br><span class="line">            <span class="comment">//&#x70B9;&#x51FB;&#x4F4D;&#x7F6E;y&#x5750;&#x6807;&#x4E0E;&#x5706;&#x5FC3;&#x7684;y&#x5750;&#x6807;&#x7684;&#x8DDD;&#x79BB;</span></span><br><span class="line">            <span class="keyword">float</span> distanceY = Math.abs(circleCenter.getY()-y);</span><br><span class="line">            <span class="comment">//&#x70B9;&#x51FB;&#x4F4D;&#x7F6E;&#x4E0E;&#x5706;&#x5FC3;&#x7684;&#x76F4;&#x7EBF;&#x8DDD;&#x79BB;</span></span><br><span class="line">            <span class="keyword">int</span> distanceZ = (<span class="keyword">int</span>) Math.sqrt(Math.pow(distanceX,<span class="number">2</span>)+Math.pow(distanceY,<span class="number">2</span>));</span><br><span class="line">            <span class="comment">//&#x5982;&#x679C;&#x70B9;&#x51FB;&#x4F4D;&#x7F6E;&#x4E0E;&#x5706;&#x5FC3;&#x7684;&#x8DDD;&#x79BB;&#x5C0F;&#x4E8E;&#x7B49;&#x4E8E;&#x5706;&#x7684;&#x534A;&#x5F84;&#xFF0C;&#x8BC1;&#x660E;&#x70B9;&#x51FB;&#x4F4D;&#x7F6E;&#x6709;&#x5728;&#x5706;&#x5185;</span></span><br><span class="line">            <span class="keyword">if</span>(distanceZ &lt;= mRadius){</span><br><span class="line">                 clickStep=i;</span><br><span class="line">                 <span class="keyword">break</span>;</span><br><span class="line">            }</span><br><span class="line">        }</span><br><span class="line">        <span class="keyword">return</span> clickStep;</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="comment">/*</span><br><span class="line">    &#x8BBE;&#x7F6E;&#x63A5;&#x53E3;&#x7684;&#x65B9;&#x6CD5; &#x5BF9;&#x5916;&#x63D0;&#x4F9B;&#x8C03;&#x7528;</span><br><span class="line">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setOnTimeLineStepChangeListener</span><span class="params">(OnTimeLineStepClickListener onTimeLineStepClickListener)</span></span>{</span><br><span class="line">        <span class="keyword">this</span>.onTimeLineStepClickListener=onTimeLineStepClickListener;</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span><br><span class="line">     * &#x70B9;&#x51FB;&#x4E8B;&#x4EF6;&#x7684;&#x63A5;&#x53E3;&#x5B9A;&#x4E49;</span><br><span class="line">     */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">OnTimeLineStepClickListener</span> </span>{</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">void</span> <span class="title">onStepClick</span><span class="params">(<span class="keyword">float</span> step)</span></span>;</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span><br><span class="line">     * &#x5706;&#x5FC3;&#x7684;&#x5185;&#x90E8;&#x5B9E;&#x4F53;&#x7C7B;</span><br><span class="line">     * &#x4E3B;&#x8981;&#x4E3A;&#x662F;&#x5224;&#x65AD;&#x70B9;&#x51FB;&#x4E8B;&#x4EF6;&#x662F;&#x5426;&#x5728;&#x5706;&#x4E0A;&#x63D0;&#x4F9B;&#x7684;Bean</span><br><span class="line">     */</span></span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">CircleCenter</span></span>{</span><br><span class="line">        <span class="keyword">float</span> x;</span><br><span class="line">        <span class="keyword">float</span> y;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">private</span> <span class="title">CircleCenter</span><span class="params">(<span class="keyword">float</span> x,<span class="keyword">float</span> y)</span></span>{</span><br><span class="line">            <span class="keyword">this</span>.x=x;</span><br><span class="line">            <span class="keyword">this</span>.y=y;</span><br><span class="line">        }</span><br><span class="line">        <span class="function"><span class="keyword">private</span> <span class="keyword">float</span> <span class="title">getX</span><span class="params">()</span> </span>{</span><br><span class="line">            <span class="keyword">return</span> x;</span><br><span class="line">        }</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setX</span><span class="params">(<span class="keyword">float</span> x)</span> </span>{</span><br><span class="line">            <span class="keyword">this</span>.x = x;</span><br><span class="line">        }</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">private</span> <span class="keyword">float</span> <span class="title">getY</span><span class="params">()</span> </span>{</span><br><span class="line">            <span class="keyword">return</span> y;</span><br><span class="line">        }</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setY</span><span class="params">(<span class="keyword">float</span> y)</span> </span>{</span><br><span class="line">            <span class="keyword">this</span>.y = y;</span><br><span class="line">        }</span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+<p>&#x7B2C;&#x4E09;&#x6B65;&#xFF1A;&#x5E03;&#x5C40;&#x6587;&#x4EF6; &#x6CA1;&#x5565;&#x53EF;&#x8BF4;&#x7684;</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="pi">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">LinearLayout</span></span><br><span class="line">    <span class="attribute">xmlns:android</span>=<span class="value">&quot;http://schemas.android.com/apk/res/android&quot;</span></span><br><span class="line">    <span class="attribute">xmlns:app</span>=<span class="value">&quot;http://schemas.android.com/apk/res-auto&quot;</span></span><br><span class="line">    <span class="attribute">android:layout_width</span>=<span class="value">&quot;match_parent&quot;</span></span><br><span class="line">    <span class="attribute">android:layout_height</span>=<span class="value">&quot;match_parent&quot;</span></span><br><span class="line">    <span class="attribute">android:orientation</span>=<span class="value">&quot;vertical&quot;</span></span><br><span class="line">    &gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">com.jasoncool.study.view.TimeLineView</span></span><br><span class="line">        <span class="attribute">android:id</span>=<span class="value">&quot;@+id/timeline1&quot;</span></span><br><span class="line">        <span class="attribute">android:layout_width</span>=<span class="value">&quot;match_parent&quot;</span></span><br><span class="line">        <span class="attribute">android:layout_height</span>=<span class="value">&quot;wrap_content&quot;</span></span><br><span class="line">        <span class="attribute">android:layout_margin</span>=<span class="value">&quot;20dp&quot;</span></span><br><span class="line">        <span class="attribute">app:textSize</span>=<span class="value">&quot;20sp&quot;</span></span><br><span class="line">        <span class="attribute">app:tlradius</span>=<span class="value">&quot;7dp&quot;</span></span><br><span class="line">        <span class="attribute">app:CompleteColor</span>=<span class="value">&quot;@color/colorAccent&quot;</span></span><br><span class="line">        <span class="attribute">app:NoCompleteColor</span>=<span class="value">&quot;@color/colorPrimaryDark&quot;</span></span><br><span class="line">        /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">com.jasoncool.study.view.TimeLineView</span></span><br><span class="line">        <span class="attribute">android:id</span>=<span class="value">&quot;@+id/timeline2&quot;</span></span><br><span class="line">        <span class="attribute">android:layout_width</span>=<span class="value">&quot;match_parent&quot;</span></span><br><span class="line">        <span class="attribute">android:layout_height</span>=<span class="value">&quot;50dp&quot;</span></span><br><span class="line">        <span class="attribute">android:layout_margin</span>=<span class="value">&quot;20dp&quot;</span></span><br><span class="line">        <span class="attribute">app:textSize</span>=<span class="value">&quot;12sp&quot;</span></span><br><span class="line">        <span class="attribute">app:tlradius</span>=<span class="value">&quot;5dp&quot;</span></span><br><span class="line">        /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">LinearLayout</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>&#x7B2C;&#x56DB;&#x6B65;&#xFF1A;&#x5982;&#x4F55;&#x4F7F;&#x7528; &#x4E5F;&#x6CA1;&#x5565;&#x597D;&#x8BF4;&#x7684; &#x7EC4;&#x4EF6;&#x5F15;&#x5165;&#x4E86;ButterKnife&#xFF0C;&#x5982;&#x679C;&#x4F60;&#x6CA1;&#x7528;&#xFF0C;&#x81EA;&#x5DF1;&#x4FEE;&#x6539;&#x4E00;&#x4E0B;&#x5C31;&#x53EF;&#x4EE5;&#x4E86;&#x3002;</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TimeLineViewActivity</span> <span class="keyword">extends</span> <span class="title">AppCompatActivity</span> </span>{</span><br><span class="line"></span><br><span class="line">    <span class="annotation">@BindView</span>(R.id.timeline1)</span><br><span class="line">    TimeLineView timeline1;</span><br><span class="line">    <span class="annotation">@BindView</span>(R.id.timeline2)</span><br><span class="line">    TimeLineView timeline2;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">goTimeLineViewActivity</span><span class="params">(Context context)</span> </span>{</span><br><span class="line">        Intent intent = <span class="keyword">new</span> Intent(context, TimeLineViewActivity.class);</span><br><span class="line">        context.startActivity(intent);</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="annotation">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(@Nullable Bundle savedInstanceState)</span> </span>{</span><br><span class="line">        <span class="keyword">super</span>.onCreate(savedInstanceState);</span><br><span class="line">        setContentView(R.layout.activity_time_line_layout);</span><br><span class="line">        ButterKnife.bind(<span class="keyword">this</span>);</span><br><span class="line">        String[] steps = <span class="keyword">new</span> String[]{<span class="string">&quot;&#x53D1;&#x8D77;&#x552E;&#x540E;&quot;</span>,<span class="string">&quot;&#x5546;&#x5BB6;&#x6536;&#x8D27;&quot;</span>,<span class="string">&quot;&#x5546;&#x5BB6;&#x7EF4;&#x4FEE;&quot;</span>,<span class="string">&quot;&#x53D1;&#x56DE;&#x5BA2;&#x6237;&quot;</span>};</span><br><span class="line">        timeline1.setPointStrings(steps, <span class="number">1.535f</span>);</span><br><span class="line">        timeline1.setOnTimeLineStepChangeListener(<span class="keyword">new</span> TimeLineView.OnTimeLineStepClickListener() {</span><br><span class="line">            <span class="annotation">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onStepClick</span><span class="params">(<span class="keyword">float</span> step)</span> </span>{</span><br><span class="line">                Toast.makeText(TimeLineViewActivity.<span class="keyword">this</span>, <span class="string">&quot;&#x70B9;&#x51FB;&#x7684;&#x662F;&#x7B2C;&quot;</span> + (<span class="keyword">int</span>) (step + <span class="number">1</span>) + <span class="string">&quot;&#x6B65;&quot;</span>, Toast.LENGTH_SHORT).show();</span><br><span class="line">                timeline1.setStep(step);</span><br><span class="line">            }</span><br><span class="line">        });</span><br><span class="line">        String[] steps2 = <span class="keyword">new</span> String[]{<span class="string">&quot;&#x7B2C;&#x4E00;&#x6B65;&#x54DF;&#x7B2C;&#x4E00;&#x6B65;&quot;</span>,<span class="string">&quot;&#x7B2C;&#x4E8C;&#x6B65;&quot;</span>,<span class="string">&quot;&#x7B2C;&#x4E09;&#x90E8;&#x54DF;&#x7B2C;&#x4E09;&#x6B65;&quot;</span>,<span class="string">&quot;&#x7B2C;&#x56DB;&#x6B65;&quot;</span>};</span><br><span class="line">        timeline2.setPointStrings(steps2,<span class="number">1.423f</span>);</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+<h2 id="&#x7ED3;&#x8BED;">&#x7ED3;&#x8BED;</h2><p>&#x4EE3;&#x7801;&#x4E0D;&#x96BE;&#xFF0C;&#x6211;&#x7528;&#x4E86;&#x4E00;&#x4E0A;&#x5348;&#x65F6;&#x95F4;&#x6765;&#x5199;&#x51FA;&#x4E86;&#x4E00;&#x4E2A;&#x6700;&#x7B80;&#x964B;&#x7684;DEMO,&#x4ED6;&#x53EF;&#x4EE5;&#x5B8C;&#x6210;&#x57FA;&#x672C;&#x9700;&#x6C42;&#x5373;&#x53EF;&#xFF0C;&#x7136;&#x540E;&#x53C8;&#x7528;&#x4E86;&#x4E00;&#x4E0B;&#x5348;&#x7684;&#x65F6;&#x95F4;&#x6765;&#x4F18;&#x5316;&#x8FD9;&#x4E9B;&#x4EE3;&#x7801;&#xFF0C;&#x5B8C;&#x5584;&#x4E00;&#x4E9B;&#x601D;&#x8DEF;&#x548C;&#x6D4B;&#x8BD5;&#x4E00;&#x4E9B;&#x6781;&#x7AEF;&#x60C5;&#x51B5;&#xFF0C;&#x8FD9;&#x671F;&#x95F4;&#x8FD8;&#x6709;&#x4E00;&#x4E9B;&#x6742;&#x4E8B;&#x53BB;&#x5904;&#x7406;&#x3002;</p>
+<p>&#x4E4B;&#x6240;&#x4EE5;&#x5199;&#x8FD9;&#x4E2A;&#x5176;&#x5B9E;&#x662F;&#x60F3;&#x544A;&#x8BC9;&#x5927;&#x5BB6;&#xFF0C;&#x4E0D;&#x8981;&#x4E00;&#x53E3;&#x5403;&#x4E2A;&#x80D6;&#x5B50;&#xFF0C;&#x81EA;&#x5B9A;&#x4E49;View&#x4E00;&#x5B9A;&#x8981;&#x5148;&#x6839;&#x636E;&#x601D;&#x8DEF;&#x5199;&#x51FA;&#x57FA;&#x672C;&#x4EE3;&#x7801;&#x6765;&#xFF0C;&#x7136;&#x540E;&#x4E00;&#x6B65;&#x6B65;&#x7684;&#x4F18;&#x5316;&#xFF0C;&#x5F53;&#x7136;&#xFF0C;&#x5982;&#x679C;&#x4F60;&#x5F88;&#x719F;&#x6089;&#x4E86;&#x53E6;&#x5F53;&#x522B;&#x8BBA;&#xFF0C;&#x8FD9;&#x4E5F;&#x53EA;&#x662F;&#x6211;&#x7684;&#x5F00;&#x53D1;&#x98CE;&#x683C;&#x800C;&#x5DF2;&#x3002;</p>
+<p>&#x8C22;&#x8C22;&#x4F60;&#x770B;&#x5B8C;&#xFF01;</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Android/" rel="tag">#Android</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/08/29/Android-内存优化不完全手册/" rel="next" title="Android 内存优化不完全手册">
+                <i class="fa fa-chevron-left"></i> Android 内存优化不完全手册
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+  <a class="jiathis_button_tsina"></a>
+  <a class="jiathis_button_tqq"></a>
+  <a class="jiathis_button_weixin"></a>
+  <a class="jiathis_button_cqq"></a>
+  <a class="jiathis_button_douban"></a>
+  <a class="jiathis_button_renren"></a>
+  <a class="jiathis_button_qzone"></a>
+  <a class="jiathis_button_kaixin001"></a>
+  <a class="jiathis_button_copy"></a>
+  <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank"></a>
+  <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+  var jiathis_config={
+    hideMore:false
+  }
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+  <p>热评文章</p>
+  <div class="ds-top-threads" data-range="weekly" data-num-items="4"></div>
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2018/09/10/Android自定义View实例之横向进度轴/"
+           data-title="Android自定义View实例之横向进度轴" data-url="http://jasoncool.com/2018/09/10/Android自定义View实例之横向进度轴/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="http://tva2.sinaimg.cn/crop.0.0.720.720.180/460788ebjw8ep8yc024exj20k00k0tc2.jpg"
+               alt="Mr.Cool" />
+          <p class="site-author-name" itemprop="name">Mr.Cool</p>
+          <p class="site-description motion-element" itemprop="description">热爱移动开发，专注移动技术</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/">
+              <span class="site-state-item-count">26</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              
+                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-name">标签</span>
+              
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/lastcool" target="_blank" title="微博">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  微博
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一些心里话"><span class="nav-number">1.</span> <span class="nav-text">一些心里话</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#说说这个自定义View"><span class="nav-number">2.</span> <span class="nav-text">说说这个自定义View</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#自定义View的绘制思路"><span class="nav-number">3.</span> <span class="nav-text">自定义View的绘制思路</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#代码如何实现"><span class="nav-number">4.</span> <span class="nav-text">代码如何实现</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#结语"><span class="nav-number">5.</span> <span class="nav-text">结语</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Mr.Cool</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"jasoncool"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+       search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+    'use strict';
+    $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+            // get the contents from search data
+            isfetched = true;
+            $('.popup').detach().appendTo('.header-inner');
+            var datas = $( "entry", xmlResponse ).map(function() {
+                return {
+                    title: $( "title", this ).text(),
+                    content: $("content",this).text(),
+                    url: $( "url" , this).text()
+                };
+            }).get();
+            var $input = document.getElementById(search_id);
+            var $resultContent = document.getElementById(content_id);
+            $input.addEventListener('input', function(){
+                var matchcounts = 0;
+                var str='<ul class=\"search-result-list\">';
+                var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                $resultContent.innerHTML = "";
+                if (this.value.trim().length > 1) {
+                // perform local searching
+                datas.forEach(function(data) {
+                    var isMatch = true;
+                    var content_index = [];
+                    var data_title = data.title.trim().toLowerCase();
+                    var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                    var data_url = data.url;
+                    var index_title = -1;
+                    var index_content = -1;
+                    var first_occur = -1;
+                    // only match artiles with not empty titles and contents
+                    if(data_title != '' && data_content != '') {
+                        keywords.forEach(function(keyword, i) {
+                            index_title = data_title.indexOf(keyword);
+                            index_content = data_content.indexOf(keyword);
+                            if( index_title < 0 && index_content < 0 ){
+                                isMatch = false;
+                            } else {
+                                if (index_content < 0) {
+                                    index_content = 0;
+                                }
+                                if (i == 0) {
+                                    first_occur = index_content;
+                                }
+                            }
+                        });
+                    }
+                    // show search results
+                    if (isMatch) {
+                        matchcounts += 1;
+                        str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                        var content = data.content.trim().replace(/<[^>]+>/g,"");
+                        if (first_occur >= 0) {
+                            // cut out 100 characters
+                            var start = first_occur - 20;
+                            var end = first_occur + 80;
+                            if(start < 0){
+                                start = 0;
+                            }
+                            if(start == 0){
+                                end = 50;
+                            }
+                            if(end > content.length){
+                                end = content.length;
+                            }
+                            var match_content = content.substring(start, end);
+                            // highlight all keywords
+                            keywords.forEach(function(keyword){
+                                var regS = new RegExp(keyword, "gi");
+                                match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                            });
+
+                            str += "<p class=\"search-result\">" + match_content +"...</p>"
+                        }
+                        str += "</li>";
+                    }
+                })};
+                str += "</ul>";
+                if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+                if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+                $resultContent.innerHTML = str;
+            });
+            proceedsearch();
+        }
+    });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".popoverlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+  
+
+  
+
+  
+
+</body>
+</html>
