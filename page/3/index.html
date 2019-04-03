@@ -261,6 +261,135 @@
             
               
                 
+                <a class="post-title-link" href="/2018/07/27/Springboot2.0中封装RabbitMQ到Maven私服/" itemprop="url">
+                  Springboot2.0中封装RabbitMQ到Maven私服
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2018-07-27T09:16:17+08:00" content="Jul 27 2018">
+              Jul 27 2018
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/SpringBoot/" itemprop="url" rel="index">
+                    <span itemprop="name">SpringBoot</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2018/07/27/Springboot2.0中封装RabbitMQ到Maven私服/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2018/07/27/Springboot2.0中封装RabbitMQ到Maven私服/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h2 id="&#x8D77;&#x56E0;">&#x8D77;&#x56E0;</h2><p>&#x7531;&#x4E8E;&#x672A;&#x6765;&#x6211;&#x4EEC;&#x7684;&#x7CFB;&#x7EDF;&#x90FD;&#x662F;&#x7531;&#x4E00;&#x4E2A;&#x7EDF;&#x4E00;&#x7684;&#x7528;&#x6237;&#x7BA1;&#x7406;&#x7CFB;&#x7EDF;&#x6765;&#x7BA1;&#x7406;&#x7528;&#x6237;&#x6570;&#x636E;&#x7684;&#xFF0C;&#x6240;&#x4EE5;&#x5404;&#x4E2A;&#x5B50;&#x7CFB;&#x7EDF;&#x4E2D;&#x4E0D;&#x9700;&#x8981;&#x4E5F;&#x4E0D;&#x53EF;&#x4EE5;&#x968F;&#x610F;&#x7684;&#x65B0;&#x589E;&#x6216;&#x4FEE;&#x6539;&#x7528;&#x6237;&#x7684;&#x4E2A;&#x4EBA;&#x4FE1;&#x606F;&#xFF0C;&#x9274;&#x4E8E;&#x6B64;&#xFF0C;&#x6211;&#x8003;&#x8651;&#x901A;&#x8FC7;MQ&#x7684;&#x65B9;&#x5F0F;&#xFF0C;&#x5B9E;&#x73B0;&#x5728;&#x7528;&#x6237;&#x7CFB;&#x7EDF;&#x4E2D;&#x6DFB;&#x52A0;&#x3001;&#x5220;&#x9664;&#x6216;&#x4FEE;&#x6539;&#x7528;&#x6237;&#x4FE1;&#x606F;&#x65F6;&#x540C;&#x65F6;&#x5C06;&#x8FD9;&#x6761;&#x64CD;&#x4F5C;&#x8BB0;&#x5F55;&#x53D1;&#x9001;&#x7ED9;&#x8BE5;&#x7528;&#x6237;&#x62E5;&#x6709;&#x6743;&#x9650;&#x7684;&#x5B50;&#x7CFB;&#x7EDF;&#x4E2D;&#x53BB;&#x3002;</p>
+<p>&#x6709;&#x56FE;&#x66F4;&#x597D;&#x7406;&#x89E3;&#xFF1A;</p>
+<p><img src="/2018/07/27/Springboot2.0&#x4E2D;&#x5C01;&#x88C5;RabbitMQ&#x5230;Maven&#x79C1;&#x670D;/1.png" alt="logo"></p>
+<p>&#x65E2;&#x7136;&#x8BF4;&#x5230;MQ&#xFF0C;&#x5219;&#x9700;&#x8981;&#x7B80;&#x5355;&#x7684;&#x4ECB;&#x7ECD;&#x5E76;&#x4E86;&#x89E3;&#x4E00;&#x4E0B;MQ&#x4E86;&#xFF0C;&#x4E0B;&#x6587;&#x6458;&#x81EA;&#x767E;&#x5EA6;&#x767E;&#x79D1;&#xFF1A;</p>
+<blockquote>
+<p>MQ&#x5168;&#x79F0;&#x4E3A;Message Queue, <a href="https://baike.baidu.com/item/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97">&#x6D88;&#x606F;&#x961F;&#x5217;</a>&#xFF08;MQ&#xFF09;&#x662F;&#x4E00;&#x79CD;&#x5E94;&#x7528;&#x7A0B;&#x5E8F;&#x5BF9;&#x5E94;&#x7528;&#x7A0B;&#x5E8F;&#x7684;&#x901A;&#x4FE1;&#x65B9;&#x6CD5;&#x3002;&#x5E94;&#x7528;&#x7A0B;&#x5E8F;&#x901A;&#x8FC7;&#x8BFB;&#x5199;&#x51FA;&#x5165;&#x961F;&#x5217;&#x7684;&#x6D88;&#x606F;&#xFF08;&#x9488;&#x5BF9;&#x5E94;&#x7528;&#x7A0B;&#x5E8F;&#x7684;&#x6570;&#x636E;&#xFF09;&#x6765;&#x901A;&#x4FE1;&#xFF0C;&#x800C;&#x65E0;&#x9700;&#x4E13;&#x7528;&#x8FDE;&#x63A5;&#x6765;&#x94FE;&#x63A5;&#x5B83;&#x4EEC;&#x3002;&#x6D88;&#x606F;&#x4F20;&#x9012;&#x6307;&#x7684;&#x662F;&#x7A0B;&#x5E8F;&#x4E4B;&#x95F4;&#x901A;&#x8FC7;&#x5728;&#x6D88;&#x606F;&#x4E2D;&#x53D1;&#x9001;&#x6570;&#x636E;&#x8FDB;&#x884C;&#x901A;&#x4FE1;&#xFF0C;&#x800C;&#x4E0D;&#x662F;&#x901A;&#x8FC7;&#x76F4;&#x63A5;&#x8C03;&#x7528;&#x5F7C;&#x6B64;&#x6765;&#x901A;&#x4FE1;&#xFF0C;&#x76F4;&#x63A5;&#x8C03;&#x7528;&#x901A;&#x5E38;&#x662F;&#x7528;&#x4E8E;&#x8BF8;&#x5982;<a href="https://baike.baidu.com/item/%E8%BF%9C%E7%A8%8B%E8%BF%87%E7%A8%8B%E8%B0%83%E7%94%A8">&#x8FDC;&#x7A0B;&#x8FC7;&#x7A0B;&#x8C03;&#x7528;</a>&#x7684;&#x6280;&#x672F;&#x3002;&#x6392;&#x961F;&#x6307;&#x7684;&#x662F;&#x5E94;&#x7528;&#x7A0B;&#x5E8F;&#x901A;&#x8FC7; &#x961F;&#x5217;&#x6765;&#x901A;&#x4FE1;&#x3002;&#x961F;&#x5217;&#x7684;&#x4F7F;&#x7528;&#x9664;&#x53BB;&#x4E86;&#x63A5;&#x6536;&#x548C;&#x53D1;&#x9001;&#x5E94;&#x7528;&#x7A0B;&#x5E8F;&#x540C;&#x65F6;&#x6267;&#x884C;&#x7684;&#x8981;&#x6C42;&#x3002;&#x5176;&#x4E2D;&#x8F83;&#x4E3A;&#x6210;&#x719F;&#x7684;MQ&#x4EA7;&#x54C1;&#x6709;IBM WEBSPHERE MQ&#x7B49;&#x7B49;&#x3002; </p>
+</blockquote>
+<p>&#x7ECF;&#x8FC7;&#x5404;&#x79CD;&#x6587;&#x7AE0;&#x7684;&#x5BF9;&#x6BD4;&#x7279;&#x6027;&#x4EE5;&#x53CA;&#x6211;&#x4EEC;&#x4F7F;&#x7528;&#x7684;&#x4E1A;&#x52A1;&#x573A;&#x666F;&#x7B49;&#x7EFC;&#x5408;&#x5206;&#x6790;&#xFF0C;&#x6700;&#x540E;&#x9009;&#x62E9;&#x4E86;RabbitMQ&#x4F5C;&#x4E3A;&#x6211;&#x4EEC;&#x7684;&#x6D88;&#x606F;&#x961F;&#x5217;&#xFF0C;&#x81F3;&#x4E8E;&#x5BF9;&#x6BD4;&#x7684;&#x6587;&#x7AE0;&#x4E5F;&#x90FD;&#x662F;&#x767E;&#x5EA6;&#x7684;&#xFF0C;&#x6709;&#x5174;&#x8DA3;&#x7684;&#x53EF;&#x4EE5;&#x81EA;&#x884C;&#x67E5;&#x627E;&#x3002;</p>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2018/07/27/Springboot2.0中封装RabbitMQ到Maven私服/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2018/06/14/关于Activiti6的封装设计方案/" itemprop="url">
                   关于Activiti6的封装设计方案
                 </a>
@@ -737,128 +866,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2018/03/26/使用LayoutInflator发生的子View高度不正确解决办法/" itemprop="url">
-                  使用LayoutInflator发生的子View高度不正确解决办法
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2018-03-26T15:41:53+08:00" content="Mar 26 2018">
-              Mar 26 2018
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Android/" itemprop="url" rel="index">
-                    <span itemprop="name">Android</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2018/03/26/使用LayoutInflator发生的子View高度不正确解决办法/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2018/03/26/使用LayoutInflator发生的子View高度不正确解决办法/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h2 id="&#x7B80;&#x5355;&#x4ECB;&#x7ECD;&#x6211;&#x7684;&#x5E03;&#x5C40;&#x6846;&#x67B6;">&#x7B80;&#x5355;&#x4ECB;&#x7ECD;&#x6211;&#x7684;&#x5E03;&#x5C40;&#x6846;&#x67B6;</h2><p>  &#x8FD9;&#x91CC;&#x5927;&#x5BB6;&#x5E94;&#x8BE5;&#x5F88;&#x5947;&#x602A;&#xFF0C;&#x4E3A;&#x4EC0;&#x4E48;&#x5148;&#x8981;&#x4ECB;&#x7ECD;&#x6211;&#x7684;&#x5E03;&#x5C40;&#x6846;&#x67B6;&#x5462;&#xFF1F;&#x5176;&#x5B9E;&#x4E3B;&#x8981;&#x7684;&#x539F;&#x56E0;&#x662F;&#x56E0;&#x4E3A;&#x5148;&#x4E86;&#x89E3;&#x4E86;&#x6211;&#x7684;&#x5E03;&#x5C40;&#x6846;&#x67B6;&#x540E;&#xFF0C;&#x518D;&#x53BB;&#x7406;&#x89E3;&#x6211;&#x4E3A;&#x4EC0;&#x4E48;&#x4F1A;&#x9047;&#x5230;&#x8FD9;&#x6837;&#x7684;&#x95EE;&#x9898;&#xFF0C;&#x4F1A;&#x6BD4;&#x8F83;&#x5BB9;&#x6613;&#x6709;&#x4EE3;&#x5165;&#x611F;&#xFF0C;&#x4E0B;&#x6B21;&#x770B;&#x5B98;&#x4F60;&#x4E5F;&#x9047;&#x5230;&#x8FD9;&#x79CD;&#x60C5;&#x51B5;&#x7684;&#x65F6;&#x5019;&#x53EF;&#x4EE5;&#x5F88;&#x5FEB;&#x7684;&#x60F3;&#x8D77;&#x6765;&#x8FD9;&#x7BC7;&#x6587;&#x7AE0;&#x7684;&#x89E3;&#x51B3;&#x65B9;&#x6848;&#x4E86;&#x3002;<br>  &#x73B0;&#x5728;&#x5148;&#x6765;&#x7B80;&#x5355;&#x4ECB;&#x7ECD;&#x4E00;&#x4E0B;&#x6211;&#x7684;&#x5E03;&#x5C40;&#xFF0C;&#x770B;&#x4EE3;&#x7801;&#xFF1A;<br></p>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2018/03/26/使用LayoutInflator发生的子View高度不正确解决办法/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -904,7 +911,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/">
-              <span class="site-state-item-count">31</span>
+              <span class="site-state-item-count">32</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
