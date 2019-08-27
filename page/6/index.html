@@ -261,6 +261,129 @@
             
               
                 
+                <a class="post-title-link" href="/2017/01/19/关于Netty的ByteBuff内存泄漏问题/" itemprop="url">
+                  关于Netty的ByteBuff内存泄漏问题
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-01-19T11:33:12+08:00" content="Jan 19 2017">
+              Jan 19 2017
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Netty/" itemprop="url" rel="index">
+                    <span itemprop="name">Netty</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2017/01/19/关于Netty的ByteBuff内存泄漏问题/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/01/19/关于Netty的ByteBuff内存泄漏问题/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>&#x4E4B;&#x524D;&#x505A;&#x7684;&#x4E1C;&#x534E;&#x8F66;&#x7BA1;&#x6570;&#x636E;&#x91C7;&#x96C6;&#x5E73;&#x53F0;&#x603B;&#x662F;&#x53D1;&#x751F;&#x6570;&#x636E;&#x4E22;&#x5931;&#x7684;&#x60C5;&#x51B5;&#xFF0C;&#x867D;&#x7136;&#x4E0D;&#x9891;&#x7E41;&#x4F46;&#x662F;&#x8FD8;&#x662F;&#x8981;&#x5173;&#x6CE8;&#x4E00;&#x4E0B;&#x539F;&#x56E0;&#xFF0C;&#x4E8E;&#x662F;&#x4ECA;&#x5929;&#x63D0;&#x9AD8;&#x4E86;Netty&#x7684;Log&#x7EA7;&#x522B;&#xFF0C;&#x6253;&#x7B97;&#x67E5;&#x627E;&#x4E00;&#x4E0B;&#x95EE;&#x9898;&#x51FA;&#x5728;&#x54EA;&#x4E86;&#xFF0C;&#x63D0;&#x9AD8;&#x7EA7;&#x522B;&#x4EE3;&#x7801;&#xFF1A;<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ServerBootstrap b =<span class="keyword">new</span> ServerBootstrap();</span><br><span class="line">b.group(bossGroup,workerGroup).channel(NioServerSocketChannel.class).option(ChannelOption.SO_BACKLOG, <span class="number">2048</span>).handler(<span class="keyword">new</span> LoggingHandler(LogLevel.DEBUG)).childHandler(<span class="keyword">new</span> ChildChannelHandler());</span><br></pre></td></tr></table></figure></p>
+<p>&#x5C06;Loglevel&#x8BBE;&#x7F6E;&#x6210;DEBUG&#x6A21;&#x5F0F;&#x5C31;OK&#x4E86;&#x3002;<br>&#x4E8E;&#x662F;&#x5F00;&#x59CB;&#x5B89;&#x5FC3;&#x7684;&#x89C2;&#x5BDF;&#x65E5;&#x5FD7;&#xFF1A;<br></p>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2017/01/19/关于Netty的ByteBuff内存泄漏问题/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2017/01/09/Redis被入侵之后/" itemprop="url">
                   Redis被入侵之后
                 </a>
@@ -729,128 +852,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/08/25/使用DrawerLayout和NavigationView以及Toolbar创建一个MD风格的应用框架/" itemprop="url">
-                  使用DrawerLayout和NavigationView以及Toolbar创建一个MD风格的应用框架
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-08-25T17:13:13+08:00" content="Aug 25 2016">
-              Aug 25 2016
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Android/" itemprop="url" rel="index">
-                    <span itemprop="name">Android</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/08/25/使用DrawerLayout和NavigationView以及Toolbar创建一个MD风格的应用框架/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/08/25/使用DrawerLayout和NavigationView以及Toolbar创建一个MD风格的应用框架/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>   &#x65B0;&#x9879;&#x76EE;&#x5F00;&#x53D1;&#x5728;&#x5373;&#xFF0C;&#x901A;&#x8FC7;&#x4E4B;&#x524D;&#x7684;&#x539F;&#x578B;&#x8BBE;&#x8BA1;&#xFF0C;&#x6253;&#x7B97;&#x505A;&#x4E00;&#x4E2A;&#x53EF;&#x4EE5;&#x5B9E;&#x73B0;&#x4FA7;&#x6ED1;&#x8FB9;&#x680F;&#x7684;&#x5E94;&#x7528;&#xFF0C;&#x9274;&#x4E8E;&#x8C37;&#x6B4C;&#x5BF9;MaterialDesign&#x7684;&#x5927;&#x529B;&#x63A8;&#x5E7F;&#xFF0C;&#x4EE5;&#x53CA;&#x5B98;&#x65B9;&#x7684;&#x4E00;&#x4E9B;&#x5E94;&#x7528;&#x7684;&#x8BBE;&#x8BA1;&#x65B9;&#x5F0F;&#xFF0C;&#x6240;&#x4EE5;&#x6253;&#x7B97;&#x65B0;&#x7684;&#x5E94;&#x7528;&#x5C31;&#x4F7F;&#x7528;DrawerLayout+NavigationView+Toolbar&#x6765;&#x5B9E;&#x73B0;&#x4E86;&#x3002;<br>   &#x5148;&#x770B;&#x6548;&#x679C;&#x56FE;&#xFF1A;<br>   <img src="/2016/08/25/&#x4F7F;&#x7528;DrawerLayout&#x548C;NavigationView&#x4EE5;&#x53CA;Toolbar&#x521B;&#x5EFA;&#x4E00;&#x4E2A;MD&#x98CE;&#x683C;&#x7684;&#x5E94;&#x7528;&#x6846;&#x67B6;/1.png" alt="logo"><br></p>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/08/25/使用DrawerLayout和NavigationView以及Toolbar创建一个MD风格的应用框架/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -896,7 +897,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/">
-              <span class="site-state-item-count">33</span>
+              <span class="site-state-item-count">34</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
